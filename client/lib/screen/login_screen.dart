@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: SizedBox(
-              height: height,
+              height: height * 0.95,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void onLoginPressed() { // id, pw를 식별하고 확인여부에 따라 다음 페이지로 넘어감.
+  void onLoginPressed() { // id, pw를 식별하고 확인여부에 따라 다음 페이지로 넘어감. 일단은 입력된 값만 확인
     print(idTextEditingController.text);
     print(pwTextEditingController.text);
   }
@@ -116,7 +116,7 @@ class _MiddleLogin extends StatelessWidget {
             horizontal: 0.0,
           ),
           child: SizedBox(
-            width: width * 0.7,
+            width: width * 0.8,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
