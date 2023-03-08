@@ -48,3 +48,4 @@ def crawl_image() :
 
 def lambda_handler(event, context):
     crawl_image()
+    
