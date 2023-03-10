@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:client/screen/login_screen.dart';
+import 'screen/login_screen.dart';
 
 Future<void> main() async {
   /*WidgetsFlutterBinding.ensureInitialized();
