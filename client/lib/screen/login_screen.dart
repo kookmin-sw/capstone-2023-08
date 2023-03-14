@@ -54,7 +54,8 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void onLoginPressed() { // id, pw를 식별하고 확인여부에 따라 다음 페이지로 넘어감. 일단은 입력된 값만 확인
+  void onLoginPressed() {
+    // id, pw를 식별하고 확인여부에 따라 다음 페이지로 넘어감. 일단은 입력된 값만 확인
     print(idTextEditingController.text);
     print(pwTextEditingController.text);
   }
@@ -166,12 +167,9 @@ class _BottomPart extends StatelessWidget {
       children: [
         Row(
           children: [
-            TextButton(
-                onPressed: () {}, child: const Text('아이디찾기')),
-            TextButton(
-                onPressed: () {}, child: const Text('비밀번호찾기')),
-            TextButton(
-                onPressed: () {}, child: const Text('회원가입')),
+            TextButton(onPressed: () {}, child: const Text('아이디찾기')),
+            TextButton(onPressed: () {}, child: const Text('비밀번호찾기')),
+            TextButton(onPressed: () {}, child: const Text('회원가입')),
           ],
         ),
       ],
