@@ -36,6 +36,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   camera: ^0.10.3+2
+  carousel_slider: ^4.0.0
+  dots_indicator: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +63,8 @@ flutter:
 
   assets:
     - asset/img/
+    - assets/
+    - assets/clothes/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
