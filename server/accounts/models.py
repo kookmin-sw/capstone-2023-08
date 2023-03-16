@@ -46,7 +46,7 @@ class User(AbstractBaseUser) :
     user_id = models.CharField(max_length=20, unique=True, primary_key=True)
     password = models.CharField(max_length=20)
     user_name = models.CharField(max_length=10, unique=True)
-    user_img_url = models.FilePathField(unique=True)
+    user_img_url = models.URLField(unique=True)
 
     is_admin = models.BooleanField(default=False)
 
