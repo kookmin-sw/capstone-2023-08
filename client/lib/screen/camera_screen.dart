@@ -1,7 +1,6 @@
 import 'package:client/screen/camera_result.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'dart:io';
 
 class CameraScreen extends StatefulWidget {
   final CameraDescription camera;
@@ -39,9 +38,7 @@ class _CameraScreenState extends State<CameraScreen> {
             break;
         }
       }
-    }
-
-    );
+    });
   }
 
   @override
@@ -58,96 +55,92 @@ class _CameraScreenState extends State<CameraScreen> {
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-        body: SafeArea(
-          child: Stack(
+      child: Stack(
+        children: [
+          Column(
             children: [
-              Column(
-                children: [
-                  CameraPreview(controller),
-                ],
-              ),
-              Positioned(
-                right: 0,
-                child: Row(
+              CameraPreview(controller),
+            ],
+          ),
+          Positioned(
+            right: 0,
+            child: Row(
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  color: Colors.white,
+                  icon: const Icon(
+                    Icons.cameraswitch,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              width: width,
+              height: height * 0.22,
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 16.0,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      color: Colors.white,
-                      icon: Icon(
-                        Icons.cameraswitch,
+                    Expanded(
+                      child: Center(
+                        child: Column(
+                          children: const [
+                            Text(
+                              '상체를 가이드 라인에 맞춰주세요.',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
+                    ),
+                    ElevatedButton(
+                      // 카메라 촬영 버튼
+                      onPressed: () async {
+                        try {
+                          // Attempt to take a picture and get the file `image`
+                          // where it was saved.
+                          final image = await controller.takePicture();
+
+                          if (!mounted) return;
+
+                          // If the picture was taken, display it on a new screen.
+                          await Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => CameraResult(
+                                camera: widget.camera,
+                                imagePath: image.path,
+                              ),
+                            ),
+                          );
+                        } catch (e) {
+                          // If an error occurs, log the error to the console.
+                          print(e);
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: const CircleBorder(),
+                        padding: const EdgeInsets.all(24),
+                      ),
+                      child: const Icon(Icons.camera_alt),
                     ),
                   ],
                 ),
               ),
-              Positioned(
-                bottom: 0,
-                child: Container(
-                  width: width,
-                  height: height * 0.22,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 16.0,
-                      vertical: 16.0,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Center(
-                            child: Column(
-                              children: [
-                                Text(
-                                  '상체를 가이드 라인에 맞춰주세요.',
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        ElevatedButton(
-                          // 카메라 촬영 버튼
-                          onPressed: () async {
-                            try {
-                              // Attempt to take a picture and get the file `image`
-                              // where it was saved.
-                              final image = await controller.takePicture();
-
-                              if (!mounted) return;
-
-                              // If the picture was taken, display it on a new screen.
-                              await Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => CameraResult(
-                                    camera: widget.camera,
-                                    imagePath: image.path,
-                                  ),
-                                ),
-                              );
-                            } catch (e) {
-                              // If an error occurs, log the error to the console.
-                              print(e);
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            shape: CircleBorder(),
-                            padding: EdgeInsets.all(24),
-                          ),
-                          child: Icon(Icons.camera_alt),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
