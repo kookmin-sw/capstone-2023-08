@@ -73,7 +73,7 @@ class ShoppingScreen extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MyApp()));
+                                    builder: (context) => HomeScreen()));
                           },
                         ),
                       ),

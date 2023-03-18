@@ -1,3 +1,4 @@
+import 'package:client/layout/main_layout.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -26,28 +27,24 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: SizedBox(
-              height: height * 0.95,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  _TopPart(
-                    width: width,
-                  ),
-                  _MiddleLogin(
-                    width: width,
-                    idTextEditingController: idTextEditingController,
-                    pwTextEditingController: pwTextEditingController,
-                    onPressed: onLoginPressed,
-                  ),
-                  const _BottomPart(),
-                ],
+      child: SingleChildScrollView(
+        child: SizedBox(
+          height: height * 0.8,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _TopPart(
+                width: width,
               ),
-            ),
+              _MiddleLogin(
+                width: width,
+                idTextEditingController: idTextEditingController,
+                pwTextEditingController: pwTextEditingController,
+                onPressed: onLoginPressed,
+              ),
+              const _BottomPart(),
+            ],
           ),
         ),
       ),
