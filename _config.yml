@@ -1,7 +1,7 @@
 # ----
 # Site
 
-title: Capstone 08팀 가상피팅 서비스 Fit on, Fit me
+title: 가상피팅 서비스 Fit on, Fit me
 url: "https://kookmin-sw.github.io/capstone-2023-08/"
 baseurl: 
 # google_analytics_key:
@@ -84,16 +84,16 @@ exclude:
 # -----------
 # CloudCannon
 
-_select_data:
-  social_icons:
-    - Facebook
-    - Instagram
-    - LinkedIn
-    - Pinterest
-    - Tumblr
-    - Twitter
-    - YouTube
-    - RSS
+# _select_data:
+#   social_icons:
+#     - Facebook
+#     - Instagram
+#     - LinkedIn
+#     - Pinterest
+#     - Tumblr
+#     - Twitter
+#     - YouTube
+#     - RSS
 
 _comments:
   map: Update the map location and display settings.
