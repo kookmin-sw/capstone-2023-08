@@ -94,6 +94,10 @@ footer {
 		color: #ccc;
 	}
 
+	.footer-content {
+		text-align: center;
+	}
+
 	.footer-columns {
 		@extend %flexbox;
 		@include flex-flow(wrap);
