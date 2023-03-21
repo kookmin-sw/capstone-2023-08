@@ -6,6 +6,7 @@ import 'package:camera/camera.dart';
 
 class CameraResult extends StatelessWidget {
   final CameraDescription camera;
+  
   final String imagePath;
 
   const CameraResult({
