@@ -1,3 +1,4 @@
+import 'package:client/layout/main_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'clotheslist_screen.dart';
@@ -22,8 +23,7 @@ class HomeScreen extends StatelessWidget {
   // }
 
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Stack(
+    return Stack(
       alignment: Alignment.center,
       children: [
         Container(
@@ -124,29 +124,29 @@ class HomeScreen extends StatelessWidget {
           // ),
         )
       ],
-    ));
+    );
   }
 
-  // Widget _buildMiddle() {
-  //   return CarouselSlider(
-  //     options: CarouselOptions(autoPlay: true),
-  //     items: imageList.map((image) {
-  //       return Builder(
-  //         builder: (BuildContext context) {
-  //           return Container(
-  //             //Alignment(0, 0),
-  //             //width: MediaQuery.of(context).size.width,
-  //             //margin: EdgeInsets.symmetric(horizontal: 5.0),
-  //             child: ClipRRect(
-  //               borderRadius: BorderRadius.circular(10.0),
-  //               child: image,
-  //             ),
-  //           );
-  //         },
-  //       );
-  //     }).toList(),
-  //   );
-  // }
+// Widget _buildMiddle() {
+//   return CarouselSlider(
+//     options: CarouselOptions(autoPlay: true),
+//     items: imageList.map((image) {
+//       return Builder(
+//         builder: (BuildContext context) {
+//           return Container(
+//             //Alignment(0, 0),
+//             //width: MediaQuery.of(context).size.width,
+//             //margin: EdgeInsets.symmetric(horizontal: 5.0),
+//             child: ClipRRect(
+//               borderRadius: BorderRadius.circular(10.0),
+//               child: image,
+//             ),
+//           );
+//         },
+//       );
+//     }).toList(),
+//   );
+// }
 }
 
 // class HomeScreen extends StatefulWidget {
