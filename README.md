@@ -1,77 +1,80 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10031437&assignment_repo_type=AssignmentRepo)
-# Welcome to GitHub
+# Hydra
 
-캡스톤 팀 생성을 축하합니다.
+Marketing site template for Jekyll. Browse through a [live demo](https://proud-alligator.cloudvent.net/).
+Increase the web presence of your brand with this configurable theme.
 
-## 팀소개 및 페이지를 꾸며주세요.
+![Hydra template screenshot](images/_screenshot.png)
 
-- 프로젝트 소개
-  - 프로젝트 설치방법 및 데모, 사용방법, 프리뷰등을 readme.md에 작성.
-  - Api나 사용방법등 내용이 많을경우 wiki에 꾸미고 링크 추가.
+Hydra was made by [CloudCannon](http://cloudcannon.com/), the Cloud CMS for Jekyll.
 
-- 팀페이지 꾸미기
-  - 프로젝트 소개 및 팀원 소개
-  - index.md 예시보고 수정.
+Find more templates, themes and step-by-step Jekyll tutorials at [CloudCannon Academy](https://learn.cloudcannon.com/).
 
-- GitHub Pages 리파지토리 Settings > Options > GitHub Pages 
-  - Source를 marster branch
-  - Theme Chooser에서 태마선택
-  - 수정후 팀페이지 확인하여 점검.
+[![Deploy to CloudCannon](https://buttons.cloudcannon.com/deploy.svg)](https://app.cloudcannon.com/register#sites/connect/github/CloudCannon/hydra-jekyll-template)
 
-**팀페이지 주소** -> https://kookmin-sw.github.io/ '{{자신의 리파지토리 아이디}}'
+## Features
 
-**예시)** 2023년 0조  https://kookmin-sw.github.io/capstone-2023-00/
+* Contact form
+* Pre-built pages
+* Pre-styled components
+* Blog with pagination
+* Post category pages
+* Disqus comments for posts
+* Staff and author system
+* Configurable footer
+* Optimised for editing in [CloudCannon](http://cloudcannon.com/)
+* RSS/Atom feed
+* SEO tags
+* Google Analytics
 
+## Setup
 
-## 내용에 아래와 같은 내용들을 추가하세요.
+1. Add your site and author details in `_config.yml`.
+2. Add your Google Analytics and Disqus keys to `_config.yml`.
+3. Get a workflow going to see your site's output (with [CloudCannon](https://app.cloudcannon.com/) or Jekyll locally).
 
-### 1. 프로잭트 소개
+## Develop
 
-프로젝트
+Hydra was built with [Jekyll](http://jekyllrb.com/) version 3.3.1, but should support newer versions as well.
 
-### 2. 소개 영상
+Install the dependencies with [Bundler](http://bundler.io/):
 
-프로젝트 소개하는 영상을 추가하세요
+~~~bash
+$ bundle install
+~~~
 
-### 3. 팀 소개
+Run `jekyll` commands through Bundler to ensure you're using the right versions:
 
-팀을 소개하세요.
+~~~bash
+$ bundle exec jekyll serve
+~~~
 
-팀원정보 및 담당이나 사진 및 SNS를 이용하여 소개하세요.
+## Editing
 
-### 4. 사용법
+Hydra is already optimised for adding, updating and removing pages, staff, advice, company details and footer elements in CloudCannon.
 
-소스코드제출시 설치법이나 사용법을 작성하세요.
+### Posts
 
-### 5. 기타
+* Add, update or remove a post in the *Posts* collection.
+* The **Staff Author** field links to members in the **Staff** collection.
+* Documentation pages are organised in the navigation by category, with URLs based on the path inside the `_docs` folder.
+* Change the defaults when new posts are created in `_posts/_defaults.md`.
 
-추가적인 내용은 자유롭게 작성하세요.
+### Contact Form
 
+* Preconfigured to work with CloudCannon, but easily changed to another provider (e.g. [FormSpree](https://formspree.io/)).
+* Sends email to the address listed in company details.
 
-## Markdown을 사용하여 내용꾸미기
+### Staff
 
-Markdown은 작문을 스타일링하기위한 가볍고 사용하기 쉬운 구문입니다. 여기에는 다음을위한 규칙이 포함됩니다.
+* Reused around the site to save multiple editing locations.
+* Add `excluded_in_search: true` to any documentation page's front matter to exclude that page in the search results.
 
-```markdown
-Syntax highlighted code block
+### Navigation
 
-# Header 1
-## Header 2
-### Header 3
+* Exposed as a data file to give clients better access.
+* Set in the *Data* / *Navigation* section.
 
-- Bulleted
-- List
+### Footer
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-자세한 내용은 [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Support or Contact
-
-readme 파일 생성에 추가적인 도움이 필요하면 [도움말](https://help.github.com/articles/about-readmes/) 이나 [contact support](https://github.com/contact) 을 이용하세요.
+* Exposed as a data file to give clients better access.
+* Set in the *Data* / *Footer* section.
