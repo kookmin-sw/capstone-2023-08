@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'model_api',
     'accounts',
+    'musinsa_list',
 ]
 
 MIDDLEWARE = [
