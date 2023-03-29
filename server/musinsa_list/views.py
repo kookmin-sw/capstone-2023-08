@@ -5,9 +5,6 @@ from .models import Goods
 
 class RecieveCrawlingResultView(View):
     def post(self, request):
-        # make all is_latest value into False
-        ### TO-DO
-
         # get crawling result file and update DB
         data = json.loads(request.body)
         for k, v in data.items():
