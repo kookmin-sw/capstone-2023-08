@@ -10,12 +10,12 @@ class RecieveCrawlingResultView(View):
 
         # get crawling result file and update DB
         data = json.loads(request.body)
-        Goods(
-            id = data['id'],
-            goods_name = data['goods_name'],
-            s3_img_url = data['s3_img_url'],
-            detail_page_url = data['detail_page_url'],
-            is_latest = data['is_latest']
-        ).save()
+        for k, v in data.items():
+            Goods(
+                id = v["id"],
+                goods_name = v['goods_name'],
+                s3_img_url = v['s3_img_url'],
+                detail_page_url = v['detail_page_url'],
+            ).save()
 
         return JsonResponse({'message' : 'DB 업데이트 성공'}, status=200)
