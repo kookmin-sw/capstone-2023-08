@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import pymysql
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['35.84.85.252']
 
 # Application definition
 
@@ -74,7 +75,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'virtual_fitting_app.wsgi.application'
 
-
+pymysql.install_as_MySQLdb()
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
