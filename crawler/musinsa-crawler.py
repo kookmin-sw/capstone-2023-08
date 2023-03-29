@@ -2,9 +2,11 @@ import requests
 from urllib.request import urlretrieve, Request, urlopen
 import boto3
 from bs4 import BeautifulSoup
+import json
 
 MUSINSA_URL = "https://www.musinsa.com/ranking/best?"
 BUCKET = "application-list-img"
+POST_URL = "http://localhost:8000/goods/send-result"
 
 s3 = boto3.client('s3')
 
@@ -51,12 +53,20 @@ def crawl_image() :
         metadata_dict = {"id" : goods_id,
                      "goods_name" : goods_name,
                      "s3_img_url" : f"s3://{BUCKET}/musinsa-crawled-img/top/{goods_id}.jpg",
-                     "detail_page_url" : goods['detail_page_url'],
-                     "is_latest" : True
+                     "detail_page_url" : goods['detail_page_url']
         }
         goods_metadata[goods["goods_id"]] = metadata_dict
 
+    # make result file as json and post to server
+    result_json = json.dumps(goods_metadata, ensure_ascii=False)
+    with open('result.json', 'w') as f:
+        json.dump(goods_metadata, f)
+    response = requests.post(POST_URL, data=result_json.encode('utf-8'))
+    
+    return response    
+
 
 def lambda_handler(event, context):
-    crawl_image()
-    
+    crawling_result = crawl_image()
+
+    return(crawling_result)
