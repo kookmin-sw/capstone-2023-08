@@ -29,3 +29,4 @@ class ClassificationModel:
         # 0: bad, 1: good
         return prediction.item()
 
+

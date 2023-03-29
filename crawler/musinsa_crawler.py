@@ -7,7 +7,8 @@ from utils import ClassificationModel
 
 MUSINSA_URL = "https://www.musinsa.com/ranking/best?"
 BUCKET = "application-list-img"
-POST_URL = "http://localhost:8000/goods/send-result"
+POST_URL = "http://35.84.85.252:8000/goods/send-result"
+TMP_IMG_PATH = "/home/ubuntu/tmp/temp_img.jpg"
 
 s3 = boto3.client('s3')
 
@@ -37,7 +38,7 @@ def crawl_image() :
 
     goods_metadata = dict()
 
-    weight_path = "./model_weights.pth"
+    weight_path = "/home/ubuntu/capstone-2023-08/crawler/model_weights.pth"
     model = ClassificationModel(weight_path)
 
     # get goods name and image url from each detail page
@@ -52,29 +53,26 @@ def crawl_image() :
         goods_img_url = goods_info.attrs["src"]
 
         # download img from img_url and upload img as "{id}.jpg" in s3
-        img_path = "/tmp/temp_img.jpg"
-        urlretrieve("https:" + goods_img_url, img_path)
+        urlretrieve("https:" + goods_img_url, TMP_IMG_PATH)
 
-        if model.inference(img_path) == 1:
-            s3.upload_file("/tmp/temp_img.jpg", BUCKET, f"musinsa-crawled-img/top/{goods_id}.jpg")
+        try:
+            if model.inference(TMP_IMG_PATH) == 1:
+                s3.upload_file(TMP_IMG_PATH, BUCKET, f"musinsa-crawled-img/top/{goods_id}.jpg")
 
-            metadata_dict = {"id" : goods_id,
-                        "goods_name" : goods_name,
-                        "s3_img_url" : f"s3://{BUCKET}/musinsa-crawled-img/top/{goods_id}.jpg",
-                        "detail_page_url" : goods['detail_page_url']
-            }
-            goods_metadata[goods["goods_id"]] = metadata_dict
+                metadata_dict = {"id" : goods_id,
+                            "goods_name" : goods_name,
+                            "s3_img_url" : f"s3://{BUCKET}/musinsa-crawled-img/top/{goods_id}.jpg",
+                            "detail_page_url" : goods['detail_page_url']
+                }
+                goods_metadata[goods["goods_id"]] = metadata_dict
+        except:
+            continue
 
     # make result file as json and post to server
     result_json = json.dumps(goods_metadata, ensure_ascii=False)
-    with open('result.json', 'w') as f:
-        json.dump(goods_metadata, f)
     response = requests.post(POST_URL, data=result_json.encode('utf-8'))
-    
-    return response
 
 
-def lambda_handler(event, context):
+if __name__ == '__main__' :
     crawling_result = crawl_image()
 
-    return(crawling_result)
