@@ -3,6 +3,7 @@ from urllib.request import urlretrieve, Request, urlopen
 import boto3
 from bs4 import BeautifulSoup
 import json
+from utils import ClassificationModel
 
 MUSINSA_URL = "https://www.musinsa.com/ranking/best?"
 BUCKET = "application-list-img"
@@ -35,6 +36,10 @@ def crawl_image() :
         goods_list.append(temp_dict)
 
     goods_metadata = dict()
+
+    weight_path = "./model_weights.pth"
+    model = ClassificationModel(weight_path)
+
     # get goods name and image url from each detail page
     for goods in goods_list:
         req = Request(goods["detail_page_url"], headers={"User-Agent" : "Mozilla/5.9"})
@@ -47,15 +52,18 @@ def crawl_image() :
         goods_img_url = goods_info.attrs["src"]
 
         # download img from img_url and upload img as "{id}.jpg" in s3
-        urlretrieve("https:" + goods_img_url, "/tmp/temp_img.jpg")
-        s3.upload_file("/tmp/temp_img.jpg", BUCKET, f"musinsa-crawled-img/top/{goods_id}.jpg")
+        img_path = "/tmp/temp_img.jpg"
+        urlretrieve("https:" + goods_img_url, img_path)
 
-        metadata_dict = {"id" : goods_id,
-                     "goods_name" : goods_name,
-                     "s3_img_url" : f"s3://{BUCKET}/musinsa-crawled-img/top/{goods_id}.jpg",
-                     "detail_page_url" : goods['detail_page_url']
-        }
-        goods_metadata[goods["goods_id"]] = metadata_dict
+        if model.inference(img_path) == 1:
+            s3.upload_file("/tmp/temp_img.jpg", BUCKET, f"musinsa-crawled-img/top/{goods_id}.jpg")
+
+            metadata_dict = {"id" : goods_id,
+                        "goods_name" : goods_name,
+                        "s3_img_url" : f"s3://{BUCKET}/musinsa-crawled-img/top/{goods_id}.jpg",
+                        "detail_page_url" : goods['detail_page_url']
+            }
+            goods_metadata[goods["goods_id"]] = metadata_dict
 
     # make result file as json and post to server
     result_json = json.dumps(goods_metadata, ensure_ascii=False)
@@ -63,7 +71,7 @@ def crawl_image() :
         json.dump(goods_metadata, f)
     response = requests.post(POST_URL, data=result_json.encode('utf-8'))
     
-    return response    
+    return response
 
 
 def lambda_handler(event, context):
