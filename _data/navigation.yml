@@ -2,11 +2,11 @@
   link: /
   new_window: false
   highlight: false
-- name: Blog
+- name: About
   link: /blog/
   new_window: false
   highlight: false
-- name: About
+- name: Team
   link: /about/
   new_window: false
   highlight: false
