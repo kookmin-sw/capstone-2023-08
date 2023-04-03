@@ -1,80 +1,38 @@
-# Hydra
+<p align="center">
+  <h3 align="center">💻 Readme Capstone 08 💻</h3>
+</p>
 
-Marketing site template for Jekyll. Browse through a [live demo](https://proud-alligator.cloudvent.net/).
-Increase the web presence of your brand with this configurable theme.
+<p align="center">
+	<img src="https://readme-typing-svg.demolab.com/?lines=Welcome+To+%EC%B0%A9%EB%B6%99's+Github!&color=203864&font=Fira%20Code&center=true&width=380&height=50&duration=4000&pause=1000">
+</p>
 
-![Hydra template screenshot](images/_screenshot.png)
+<p align="center">
+	<a href="https://kookmin-sw.github.io/capstone-2023-08/"><img alt="Sponsor with Github" title="Sponsor with Github" src="https://img.shields.io/badge/-GitPages-203864?style=for-the-badge&logo=github&logoColor=white"/></a>
+</p>
 
-Hydra was made by [CloudCannon](http://cloudcannon.com/), the Cloud CMS for Jekyll.
+## ⚡ 프로젝트 소개
 
-Find more templates, themes and step-by-step Jekyll tutorials at [CloudCannon Academy](https://learn.cloudcannon.com/).
+**"집 밖을 나가지 않아도 다양한 옷을 직접 입어볼 수 있습니다!"**
 
-[![Deploy to CloudCannon](https://buttons.cloudcannon.com/deploy.svg)](https://app.cloudcannon.com/register#sites/connect/github/CloudCannon/hydra-jekyll-template)
+옷을 사러 나가지 않고 인터넷 쇼핑몰에서 사는 것이 평준화된 요즘, 직접 입어보지 않으니 옷 구매에 실패한 경험이 많이 있습니다.
+저희 팀은 이 점에 주목하여 **바로 지금! 👀** 보고 있는 옷을 입어보고 만족스러운 구매를 위한 가상 피팅 서비스를 기획하였습니다.
 
-## Features
+## 🎥 소개 영상
 
-* Contact form
-* Pre-built pages
-* Pre-styled components
-* Blog with pagination
-* Post category pages
-* Disqus comments for posts
-* Staff and author system
-* Configurable footer
-* Optimised for editing in [CloudCannon](http://cloudcannon.com/)
-* RSS/Atom feed
-* SEO tags
-* Google Analytics
+추후 업데이트 예정입니다...
 
-## Setup
 
-1. Add your site and author details in `_config.yml`.
-2. Add your Google Analytics and Disqus keys to `_config.yml`.
-3. Get a workflow going to see your site's output (with [CloudCannon](https://app.cloudcannon.com/) or Jekyll locally).
+## 📱 How To Use?
 
-## Develop
+추후 업데이트 예정입니다...
 
-Hydra was built with [Jekyll](http://jekyllrb.com/) version 3.3.1, but should support newer versions as well.
 
-Install the dependencies with [Bundler](http://bundler.io/):
+## 🙋‍♂️ Support
 
-~~~bash
-$ bundle install
-~~~
+서비스에 대한 문의 사항이 생기거나 수정할 부분이 있다면 [이메일]() 로 연락주세요.
 
-Run `jekyll` commands through Bundler to ensure you're using the right versions:
+---
 
-~~~bash
-$ bundle exec jekyll serve
-~~~
+Made with ❤️ and Flutter
 
-## Editing
-
-Hydra is already optimised for adding, updating and removing pages, staff, advice, company details and footer elements in CloudCannon.
-
-### Posts
-
-* Add, update or remove a post in the *Posts* collection.
-* The **Staff Author** field links to members in the **Staff** collection.
-* Documentation pages are organised in the navigation by category, with URLs based on the path inside the `_docs` folder.
-* Change the defaults when new posts are created in `_posts/_defaults.md`.
-
-### Contact Form
-
-* Preconfigured to work with CloudCannon, but easily changed to another provider (e.g. [FormSpree](https://formspree.io/)).
-* Sends email to the address listed in company details.
-
-### Staff
-
-* Reused around the site to save multiple editing locations.
-* Add `excluded_in_search: true` to any documentation page's front matter to exclude that page in the search results.
-
-### Navigation
-
-* Exposed as a data file to give clients better access.
-* Set in the *Data* / *Navigation* section.
-
-### Footer
-
-* Exposed as a data file to give clients better access.
-* Set in the *Data* / *Footer* section.
+<!-- ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=capstone-2023-08&show_icons=true&theme=radical) -->
