@@ -17,3 +17,12 @@ class AddDips(View):
     
         return JsonResponse({'message' : '찜 목록 추가 성공'}, status=200)
 
+class DeleteDips(View):
+    def post(self, request):
+        # need user_id, goods_id
+        data = json.loads(request.body)
+
+        item = Dips.objects.get(user_id=data['user_id'], goods_id=data['goods_id'])
+        item.delete()
+
+        return JsonResponse({'message' : '찜 목록 상품 삭제 성공'}, status=200)
