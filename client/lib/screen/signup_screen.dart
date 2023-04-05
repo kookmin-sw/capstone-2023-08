@@ -86,6 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+
             children: <Widget>[
               TextFormField(
                 key: ValueKey(1),
@@ -252,7 +253,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
-
   void _showDialog(String message) {
     showDialog<void>(
       context: context,
