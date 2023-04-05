@@ -2,7 +2,7 @@ import json
 from django.views import View
 from django.http import JsonResponse
 
-from .serializers import GoodsSerializer
+from .serializers import GoodsListSerializer, GoodsDetailSerializer
 from .models import Goods
 
 class RecieveCrawlingResultView(View):
@@ -23,7 +23,17 @@ class ShowClothListView(View):
     def get(self, request):
         # query id and s3_url from DB
         queryset = Goods.objects.values('id', 's3_img_url')
-        serializer = GoodsSerializer(queryset, many=True)
+        serializer = GoodsListSerializer(queryset, many=True)
 
         return JsonResponse({'data' : serializer.data }, safe=False)
 
+class ShowDetailView(View):
+    def get(self, request):
+        # query detail_page_url from DB
+        data = json.loads(request.body)
+        goods_id = data["id"]
+
+        queryset = Goods.objects.filter(id=goods_id)
+        serializer = GoodsDetailSerializer(queryset, many=True)
+        
+        return JsonResponse({'data' : serializer.data}, safe=False)
