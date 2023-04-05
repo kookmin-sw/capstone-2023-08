@@ -39,10 +39,7 @@ class _CameraScreenState extends State<CameraScreen> {
         }
       }
     });
-<<<<<<< HEAD
   }
-=======
->>>>>>> upstream/Frontend
 
   @override
   void dispose() {

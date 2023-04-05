@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class SignUpPage extends StatefulWidget {
+class SignUpScreen extends StatefulWidget {
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
@@ -23,7 +23,7 @@ class SignupFormData {
       };
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignUpPageState extends State<SignUpScreen> {
   FocusNode myFocusNode = new FocusNode();
   final _formKey = GlobalKey<FormState>();
   SignupFormData formData = SignupFormData();
