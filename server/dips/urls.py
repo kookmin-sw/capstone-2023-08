@@ -1,3 +1,6 @@
 from django.urls import path
+from .views import AddDips
 
-urlpatterns = []
+urlpatterns = [
+    path('add', AddDips.as_view()),
+]
