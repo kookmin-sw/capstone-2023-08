@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'accounts',
     'musinsa_list',
     's3_access',
+    'dips',
 ]
 
 MIDDLEWARE = [

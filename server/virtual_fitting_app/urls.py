@@ -21,4 +21,5 @@ urlpatterns = [
     path('account/', include('accounts.urls')),
     path('goods/', include('musinsa_list.urls')),
     path('storage/', include('s3_access.urls')),
+    path('dips/', include('dips.urls')),
 ]
