@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'model_api',
     'accounts',
     'musinsa_list',
+    's3_access',
 ]
 
 MIDDLEWARE = [
