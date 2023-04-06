@@ -13,6 +13,7 @@ class RecieveCrawlingResultView(View):
             Goods(
                 id = v["id"],
                 goods_name = v['goods_name'],
+                brand_name = v['brand_name'],
                 s3_img_url = v['s3_img_url'],
                 detail_page_url = v['detail_page_url'],
             ).save()
@@ -22,7 +23,7 @@ class RecieveCrawlingResultView(View):
 class ShowClothListView(View):
     def get(self, request):
         # query id and s3_url from DB
-        queryset = Goods.objects.values('id', 's3_img_url')
+        queryset = Goods.objects.values('id', 'goods_name', 'brand_name', 's3_img_url')
         serializer = GoodsListSerializer(queryset, many=True)
 
         return JsonResponse({'data' : serializer.data }, safe=False)
