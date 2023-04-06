@@ -49,7 +49,8 @@ def crawl_image() :
 
         goods_id = goods["goods_id"]
         goods_info = soup.select_one("div.product-img > img")
-        goods_name = goods_info.attrs["alt"]
+        goods_name = goods_info.attrs["alt"].split(")")[1].strip()
+        brand_name = goods_info.attrs["alt"].split("(")[0].strip()
         goods_img_url = goods_info.attrs["src"]
 
         # download img from img_url and upload img as "{id}.jpg" in s3
@@ -61,6 +62,7 @@ def crawl_image() :
 
                 metadata_dict = {"id" : goods_id,
                             "goods_name" : goods_name,
+                            "brand_name" : brand_name,
                             "s3_img_url" : f"s3://{BUCKET}/musinsa-crawled-img/top/{goods_id}.jpg",
                             "detail_page_url" : goods['detail_page_url']
                 }
