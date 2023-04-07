@@ -20,9 +20,7 @@
 
 ## 🎥 소개 영상
 
-<p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/h9aB7yKDZAM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</p>
+<img width="100%" src="https://user-images.githubusercontent.com/72314987/230554683-95f100a7-9397-4cd3-b963-288ec78fba92.mp4"/>
 
 ## 📱 How To Use?
 
