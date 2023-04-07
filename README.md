@@ -20,7 +20,7 @@
 
 ## 🎥 소개 영상
 
-추후 업데이트 예정입니다...
+<iframe width="560" height="315" src="https://www.youtube.com/embed/h9aB7yKDZAM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
 ## 📱 How To Use?
