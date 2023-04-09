@@ -77,6 +77,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'virtual_fitting_app.wsgi.application'
 
 pymysql.install_as_MySQLdb()
+pymysql.version_info = (1, 4, 3, "final", 0)
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
