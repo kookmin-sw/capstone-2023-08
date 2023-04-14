@@ -58,14 +58,14 @@ def crawl_image() :
 
         try:
             if model.inference(TMP_IMG_PATH) == 1:
-                s3.upload_file(TMP_IMG_PATH, BUCKET, f"musinsa-crawled-img/top/{goods_id}.jpg", ContentType='image/jpeg')
+                s3.upload_file(TMP_IMG_PATH, BUCKET, f"musinsa-crawled-img/top/{goods_id}.jpg", ExtraArgs={'ContentType': "image/jpeg", 'ACL': "public-read"})
 
                 metadata_dict = {"id" : goods_id,
-                            "goods_name" : goods_name,
-                            "brand_name" : brand_name,
-                            "s3_img_url" : f"https://{BUCKET}.s3.us-west-2.amazonaws.com/musinsa-crawled-img/top/{goods_id}.jpg",
-                            "detail_page_url" : goods['detail_page_url']
-                }
+                                    "goods_name" : goods_name,
+                                    "brand_name" : brand_name,
+                                    "s3_img_url" : f"https://{BUCKET}.s3.us-west-2.amazonaws.com/musinsa-crawled-img/top/{goods_id}.jpg",
+                                    "detail_page_url" : goods['detail_page_url']
+                        }
                 goods_metadata[goods["goods_id"]] = metadata_dict
         except:
             continue
