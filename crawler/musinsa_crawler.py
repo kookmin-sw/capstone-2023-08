@@ -58,7 +58,7 @@ def crawl_image() :
 
         try:
             if model.inference(TMP_IMG_PATH) == 1:
-                s3.upload_file(TMP_IMG_PATH, BUCKET, f"musinsa-crawled-img/top/{goods_id}.jpg")
+                s3.upload_file(TMP_IMG_PATH, BUCKET, f"musinsa-crawled-img/top/{goods_id}.jpg", ContentType='image/jpeg')
 
                 metadata_dict = {"id" : goods_id,
                             "goods_name" : goods_name,
