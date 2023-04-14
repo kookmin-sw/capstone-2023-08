@@ -1,39 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpPage extends StatefulWidget {
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
-
-class SignupFormData {
-  String? id;
-  String? password;
-  String? nickname;
-  String? img = 'images/test.jpg';
-
-  SignupFormData({this.id, this.password, this.nickname, this.img});
-
-  Map<String, dynamic> toJson() => {
-        'user_id': id,
-        'user_name': nickname,
-        'password': password,
-        'user_img_url': img
-      };
-}
-
-// class Mess{
-//   final String message;
-
-//   Mess({this.message});
-
-//   factory Mess.fromJson(Map<String, dynamic> json) {
-//     return Mess(
-//       message: json['message'],
-//     );
-//   }
-// }
 
 class _SignUpScreenState extends State<SignUpScreen> {
   FocusNode myFocusNode = new FocusNode();
@@ -86,7 +56,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-
             children: <Widget>[
               TextFormField(
                 key: ValueKey(1),
@@ -147,6 +116,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   return null;
                 },
               ),
+
               SizedBox(height: 5.0),
               TextFormField(
                 controller: _confirmPasswordController,
