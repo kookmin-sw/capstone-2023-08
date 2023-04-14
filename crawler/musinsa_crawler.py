@@ -63,7 +63,7 @@ def crawl_image() :
                 metadata_dict = {"id" : goods_id,
                             "goods_name" : goods_name,
                             "brand_name" : brand_name,
-                            "s3_img_url" : f"s3://{BUCKET}/musinsa-crawled-img/top/{goods_id}.jpg",
+                            "s3_img_url" : f"https://{BUCKET}.s3.us-west-2.amazonaws.com/musinsa-crawled-img/top/{goods_id}.jpg",
                             "detail_page_url" : goods['detail_page_url']
                 }
                 goods_metadata[goods["goods_id"]] = metadata_dict
