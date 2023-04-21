@@ -1,5 +1,6 @@
 import 'package:client/layout/main_layout.dart';
 import 'package:flutter/material.dart';
+import 'signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -166,7 +167,10 @@ class _BottomPart extends StatelessWidget {
           children: [
             TextButton(onPressed: () {}, child: const Text('아이디찾기')),
             TextButton(onPressed: () {}, child: const Text('비밀번호찾기')),
-            TextButton(onPressed: () {}, child: const Text('회원가입')),
+            TextButton(onPressed: () {
+              Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => SignUpScreen()));
+            }, child: const Text('회원가입')),
           ],
         ),
       ],

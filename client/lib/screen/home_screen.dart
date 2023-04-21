@@ -1,4 +1,5 @@
 import 'package:client/layout/main_layout.dart';
+import 'package:client/screen/result_all_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'clotheslist_screen.dart';
@@ -111,7 +112,11 @@ class HomeScreen extends StatelessWidget {
                     text: '옷 고르기',
                   ),
                 ])),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => FittingScreen())
+              );
+            },
             style: ElevatedButton.styleFrom(
               minimumSize: Size(100, 50),
               primary: Colors.black, // Background color
