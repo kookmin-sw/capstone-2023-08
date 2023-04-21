@@ -23,7 +23,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.initState();
     // myFocusNode에 포커스 인스턴스 저장.
     myFocusNode = FocusNode();
-    // respon_mess =
   }
 
   @override
@@ -40,7 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return DefaultLayout(
       title: '회원가입',
       child: Padding(
-        padding: EdgeInsets.all(5.0),
+        padding: EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(
@@ -178,7 +177,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               //   //style: TextStyle(color: Colors.black),
               //   cursorColor: Colors.black,
               // ),
-
               SizedBox(height: 16.0),
               SizedBox(
                 width: double.infinity,
