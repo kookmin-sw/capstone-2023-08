@@ -62,3 +62,13 @@ class DipsView(View):
         serializer = DipsListSerializer(queryset, many=True)
 
         return JsonResponse({'data' : serializer.data}, safe=False)
+
+    def delete(self, request):
+        # need user_id, goods_id
+        data = json.loads(request.body)
+
+        item = Dips.objects.get(user_id=data['user_id'], goods_id=data['goods_id'])
+        item.delete()
+
+        return JsonResponse({'message' : '찜 목록 상품 삭제 성공'}, status=200)
+
