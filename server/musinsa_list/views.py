@@ -2,7 +2,7 @@ import json
 from django.views import View
 from django.http import JsonResponse
 
-from .serializers import GoodsListSerializer, GoodsDetailSerializer
+from .serializers import GoodsListSerializer, GoodsDetailSerializer, DipsListSerializer
 from .models import Goods, Dips
 from accounts.models import User
 
@@ -54,4 +54,11 @@ class DipsView(View):
         return JsonResponse({'message' : '찜 목록 추가 성공'}, status=200)
     
     def get(self, request):
-        pass
+        # need user_id
+        data = json.loads(request.body)
+
+        queryset = Dips.objects.filter(user_id=data['user_id'])
+        
+        serializer = DipsListSerializer(queryset, many=True)
+
+        return JsonResponse({'data' : serializer.data}, safe=False)
