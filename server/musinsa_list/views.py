@@ -49,12 +49,15 @@ class DipsView(ModelViewSet):
         # need user_id, goods_id
         data = json.loads(request.body)
 
-        Dips(
-            user = User.objects.get(user_id=data['user_id']),
-            goods = Goods.objects.get(id=data['goods_id'])
-        ).save()
+        if Dips.objects.filter(user_id=data['user_id'], goods_id=data['goods_id']).exists():
+            return JsonResponse({'message' : 'Already Added Item'}, status=200)
+        else:
+            Dips(
+                user = User.objects.get(user_id=data['user_id']),
+                goods = Goods.objects.get(id=data['goods_id'])
+            ).save()
 
-        return JsonResponse({'message' : '찜 목록 추가 성공'}, status=200)
+            return JsonResponse({'message' : '찜 목록 추가 성공'}, status=200)
     
     @action(methods=['POST'], detail=False)
     def post_show(self, request):
