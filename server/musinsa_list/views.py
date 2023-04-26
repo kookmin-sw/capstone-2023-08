@@ -1,6 +1,8 @@
 import json
 from django.views import View
 from django.http import JsonResponse
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.decorators import action
 
 from .serializers import GoodsListSerializer, GoodsDetailSerializer, DipsListSerializer
 from .models import Goods, Dips
@@ -41,8 +43,9 @@ class ShowDetailView(View):
         return JsonResponse({'data' : serializer.data}, safe=False)
 
 
-class DipsView(View):
-    def post(self, request):
+class DipsView(ModelViewSet):
+    @action(methods=['POST'], detail=False)
+    def post_add(self, request):
         # need user_id, goods_id
         data = json.loads(request.body)
 
@@ -53,7 +56,8 @@ class DipsView(View):
 
         return JsonResponse({'message' : '찜 목록 추가 성공'}, status=200)
     
-    def get(self, request):
+    @action(methods=['POST'], detail=False)
+    def post_show(self, request):
         # need user_id
         data = json.loads(request.body)
 
@@ -63,6 +67,7 @@ class DipsView(View):
 
         return JsonResponse({'data' : serializer.data}, safe=False)
 
+    @action(methods=['DELETE'], detail=False)
     def delete(self, request):
         # need user_id, goods_id
         data = json.loads(request.body)
