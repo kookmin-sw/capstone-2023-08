@@ -2,6 +2,7 @@ from django.core import serializers
 from rest_framework import serializers
 from .models import StoragePath
 
+"""
 class StoragePathSerializer(serializers.ModelSerializer):
     class Meta:
         model = StoragePath
@@ -20,3 +21,4 @@ class StoragePathSerializer(serializers.ModelSerializer):
     preprocessing_cloth_img_path = serializers.CharField(max_length=100)
     human_parsing_keypoints_path = serializers.CharField(max_length=100)
     result_img_path = serializers.CharField(max_length=100)
+"""
