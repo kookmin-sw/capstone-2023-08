@@ -1,26 +1,25 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .utils import PreprocessingHumanImg, InferenceImg
-from .models import StoragePath
-from .serializers import StoragePathSerializer
+from .utils import S3Client, HumanImgPreprocessing, ImgInference
+
+import json
 
 
 class HumanParsing(APIView):
-    def get(self, request):
-        storage_path = StoragePath.objects.all()
-        serializer = StoragePathSerializer(storage_path, many=True)
-        return Response(serializer.data)
-
     def post(self, request):
-        info = StoragePathSerializer(data=request.data)
-        human = PreprocessingHumanImg(info['user_id'],
-                                      info['human_img_path'],
-                                      info['preprocessing_human_img_path'],
-                                      info['human_parsing_keypoints_path']
-                                      )
+        data = json.loads(request.body)
+
+        s3 = S3Client('bucket_name',
+                      data['user_id'])
+        
+        s3.load_human_image(data['human_img_path'])
+
+        human = HumanImgPreprocessing(data['user_id'])
+
         try:
             human.parsing_human_pose()
         except:  
@@ -30,18 +29,16 @@ class HumanParsing(APIView):
 
 
 class Inference(APIView):
-    def get(self, request):
-        storage_path = StoragePath.objects.all()
-        serializer = StoragePathSerializer(storage_path, many=True)
-        return Response(serializer.data)
-
     def post(self, request):
-        info = StoragePathSerializer(data=request.data)
-        cloth = InferenceImg(info['user_id'],
-                             info['cloth_img_path'],
-                             info['preprocessing_cloth_img_path'],
-                             info['result_img_path']
-                             )
+        data = json.loads(request.body)
+
+        s3 = S3Client('bucket_name',
+                      data['user_id'])
+        
+        s3.load_cloth_image(data['cloth_img_path'])
+
+        cloth = ImgInference(data['user_id'])
+        
         try:
             cloth.preprocessing_cloth()
             cloth.inference()
