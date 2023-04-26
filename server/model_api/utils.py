@@ -30,6 +30,18 @@ class S3Client:
         img_name = str(self.uid) + '_human.png'
         local_path = os.path.join(path, img_name)
         self.s3.download_file(self.bucket, s3_path, local_path)
+
+    def upload_cloth_image(self, s3_path):
+        path = '/home/ubuntu/capstone/capstone-2023-08/server/ACGPN/Data_preprocessing/test_color'
+        img_name = str(self.uid) + '_cloth.png'
+        local_path = os.path.join(path, img_name)
+        self.s3.upload_file(local_path, self.bucket, s3_path)
+
+    def upload_human_image(self, s3_path):
+        path = '/home/ubuntu/capstone/capstone-2023-08/server/ACGPN/Data_preprocessing/test_img'
+        img_name = str(self.uid) + '_human.png'
+        local_path = os.path.join(path, img_name)
+        self.s3.upload_file(local_path, self.bucket, s3_path)
         
 
 class HumanImgPreprocessing:
@@ -110,3 +122,15 @@ class ImgInference:
         subprocess.run("python3 ACGPN/test.py", shell=True)
         
         return True
+
+
+def store_img(user_id, cloth_img_path, human_img_path):
+    cloth_s3_path = ''
+    human_s3_path = ''
+
+    s3 = S3Client('bucket_name', user_id)
+
+    s3.upload_cloth_image(cloth_s3_path)
+    s3.upload_human_image(human_s3_path)
+
+    return True

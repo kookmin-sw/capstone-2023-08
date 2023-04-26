@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .utils import S3Client, HumanImgPreprocessing, ImgInference
+from .utils import S3Client, HumanImgPreprocessing, ImgInference, store_img
 
 import json
 
@@ -45,4 +45,18 @@ class Inference(APIView):
         except:  
             return Response("failed", status=status.HTTP_400_BAD_REQUEST)
 
-        return Response("success", status=status.HTTP_201_CREATED)  
+        return Response("success", status=status.HTTP_201_CREATED)
+
+
+class ResultFeedback(APIView):
+    def post(self, request):
+        data = json.load(request)
+
+        try:
+            store_img(data['user_id'],
+                      data['cloth_img_path'],
+                      data['human_img_path'])
+        except:  
+            return Response("failed", status=status.HTTP_400_BAD_REQUEST)
+
+        return Response("success", status=status.HTTP_201_CREATED)
