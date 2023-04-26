@@ -40,6 +40,7 @@ class UserManager(BaseUserManager) :
         return user
 
 class User(AbstractBaseUser) :
+    USERNAME_FIELD='user_id'
 
     objects = UserManager()
 
@@ -55,3 +56,4 @@ class User(AbstractBaseUser) :
 
     def _str_(self) :
         return "<%d %s %s>" %(self.pk, self.user_id, self.user_name)
+        
