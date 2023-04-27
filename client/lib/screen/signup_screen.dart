@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+<<<<<<< HEAD
+=======
+import '../data/account.dart';
+import '../layout/default_layout.dart';
+>>>>>>> upstream/Frontend
 
 class SignUpScreen extends StatefulWidget {
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
+<<<<<<< HEAD
 class SignupFormData {
   String? id;
   String? password;
@@ -27,9 +33,23 @@ class _SignUpPageState extends State<SignUpScreen> {
   FocusNode myFocusNode = new FocusNode();
   final _formKey = GlobalKey<FormState>();
   SignupFormData formData = SignupFormData();
+=======
+class _SignUpScreenState extends State<SignUpScreen> {
+  FocusNode myFocusNode = new FocusNode();
+  final _formKey = GlobalKey<FormState>();
+  Account formData = Account();
+>>>>>>> upstream/Frontend
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  // Mess respon_mess = Mess();
+
+  @override
+  void initState() {
+    super.initState();
+    // myFocusNode에 포커스 인스턴스 저장.
+    myFocusNode = FocusNode();
+  }
 
   @override
   void initState() {
@@ -49,12 +69,9 @@ class _SignUpPageState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Sign Up'),
-        backgroundColor: Colors.black,
-      ),
-      body: Padding(
+    return DefaultLayout(
+      title: '회원가입',
+      child: Padding(
         padding: EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
@@ -80,6 +97,10 @@ class _SignUpPageState extends State<SignUpScreen> {
                 cursorColor: Colors.black,
                 onChanged: (value) {
                   formData.id = value;
+<<<<<<< HEAD
+=======
+                  formData.img = value + ".jpg";
+>>>>>>> upstream/Frontend
                 },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -88,7 +109,7 @@ class _SignUpPageState extends State<SignUpScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 8.0),
               TextFormField(
                 key: ValueKey(2),
                 controller: _passwordController,
@@ -119,7 +140,7 @@ class _SignUpPageState extends State<SignUpScreen> {
                   return null;
                 },
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 8.0),
               TextFormField(
                 controller: _confirmPasswordController,
                 decoration: InputDecoration(
@@ -144,7 +165,11 @@ class _SignUpPageState extends State<SignUpScreen> {
                   return null;
                 },
               ),
+<<<<<<< HEAD
               SizedBox(height: 16.0),
+=======
+              SizedBox(height: 8.0),
+>>>>>>> upstream/Frontend
               TextFormField(
                 key: ValueKey(3),
                 //controller: _emailController,
@@ -164,6 +189,7 @@ class _SignUpPageState extends State<SignUpScreen> {
                 cursorColor: Colors.black,
                 onChanged: (value) {
                   formData.nickname = value;
+<<<<<<< HEAD
                 },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -213,6 +239,64 @@ class _SignUpPageState extends State<SignUpScreen> {
                   minimumSize: Size(100, 50),
                   primary: Colors.black, // Background color
                   alignment: Alignment.center,
+=======
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your Nickname';
+                  }
+                  return null;
+                },
+              ),
+
+              // SizedBox(height: 16.0),
+              // TextFormField(
+              //   key: ValueKey(4),
+              //   //controller: _emailController,
+              //   // focusNode: myFocusNode,
+              //   decoration: InputDecoration(
+              //     labelText: '이미지 url',
+              //     labelStyle: TextStyle(
+              //         color: myFocusNode.hasFocus ? Colors.black : Colors.grey),
+              //     // enabledBorder: UnderlineInputBorder(
+              //     //     borderSide: BorderSide(color: Colors.grey),
+              //     // ),
+              //     focusedBorder: UnderlineInputBorder(
+              //       borderSide: BorderSide(color: Colors.black),
+              //     ),
+              //   ),
+              //   //style: TextStyle(color: Colors.black),
+              //   cursorColor: Colors.black,
+              // ),
+              SizedBox(height: 16.0),
+              SizedBox(
+                width: double.infinity,
+                height: 45.0,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      // _showDialog(formData.toJson());
+                      var result = await http.post(
+                        Uri.parse('http://35.84.85.252:8000/account/sign-up'),
+                        body: json.encode(formData.toJson()),
+                      );
+                      if (result.statusCode == 200) {
+                        final response = await http.get(Uri.parse(
+                            'http://35.84.85.252:8000/account/sign-up'));
+                        print(response.body);
+                        //_showDialog(json.decode(response.body));
+                      } else {
+                        _showDialog('Failed to sign up');
+                      }
+                    }
+                  },
+                  child: Text('촬영하고 회원가입하기'),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(80, 25),
+                    primary: Colors.black, // Background color
+                    alignment: Alignment.center,
+                  ),
+>>>>>>> upstream/Frontend
                 ),
               ),
             ],
@@ -221,7 +305,10 @@ class _SignUpPageState extends State<SignUpScreen> {
       ),
     );
   }
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/Frontend
   void _showDialog(String message) {
     showDialog<void>(
       context: context,
@@ -236,6 +323,9 @@ class _SignUpPageState extends State<SignUpScreen> {
       ),
     );
   }
+<<<<<<< HEAD
 
   
+=======
+>>>>>>> upstream/Frontend
 }

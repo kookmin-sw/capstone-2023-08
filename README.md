@@ -20,6 +20,7 @@
 
 ## 🎥 소개 영상
 
+<<<<<<< HEAD
 추후 업데이트 예정입니다...
 
 
@@ -30,6 +31,17 @@
 
 ## 🙋‍♂️ Support
 
+=======
+[![Video Label](http://img.youtube.com/vi/h9aB7yKDZAM/0.jpg)](https://youtu.be/h9aB7yKDZAM)
+
+## 📱 How To Use?
+
+추후 업데이트 예정입니다...
+
+
+## 🙋‍♂️ Support
+
+>>>>>>> upstream/Frontend
 서비스에 대한 문의 사항이 생기거나 수정할 부분이 있다면 [이메일]() 로 연락주세요.
 
 ---
