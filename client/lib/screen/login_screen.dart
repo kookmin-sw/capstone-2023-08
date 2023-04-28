@@ -29,6 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: SingleChildScrollView(
+        physics: NeverScrollableScrollPhysics(),
         child: SizedBox(
           height: height * 0.8,
           child: Column(

@@ -1,4 +1,5 @@
-const String HOME_SCREEN = '/';
+const String SPLASH_SCREEN = '/';
+const String HOME_SCREEN = '/home';
 const String LOGIN_SCREEN = '/login';
 const String CAMERA_SCREEN = '/camera_screen';
 const String CAMERA_RESULT = '/camera_result';

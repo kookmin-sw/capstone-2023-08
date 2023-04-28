@@ -1,3 +1,6 @@
+import 'package:camera/camera.dart';
+import 'package:client/constant/page_name.dart';
+import 'package:client/screen/camera_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -16,6 +19,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+
   // Mess respon_mess = Mess();
 
   @override
@@ -47,15 +51,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
             children: <Widget>[
               TextFormField(
                 key: ValueKey(1),
-                //controller: _emailController,
                 focusNode: myFocusNode,
                 decoration: InputDecoration(
                   labelText: 'ID',
                   labelStyle: TextStyle(
                       color: myFocusNode.hasFocus ? Colors.black : Colors.grey),
-                  // enabledBorder: UnderlineInputBorder(
-                  //     borderSide: BorderSide(color: Colors.grey),
-                  // ),
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.black),
                   ),
@@ -81,9 +81,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   labelText: 'Password',
                   labelStyle: TextStyle(
                       color: myFocusNode.hasFocus ? Colors.black : Colors.grey),
-                  // enabledBorder: UnderlineInputBorder(
-                  //     borderSide: BorderSide(color: Colors.grey),
-                  // ),
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.black),
                   ),
@@ -130,6 +127,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 },
               ),
               SizedBox(height: 8.0),
+
               TextFormField(
                 key: ValueKey(3),
                 //controller: _emailController,
@@ -157,26 +155,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   return null;
                 },
               ),
-
-              // SizedBox(height: 16.0),
-              // TextFormField(
-              //   key: ValueKey(4),
-              //   //controller: _emailController,
-              //   // focusNode: myFocusNode,
-              //   decoration: InputDecoration(
-              //     labelText: '이미지 url',
-              //     labelStyle: TextStyle(
-              //         color: myFocusNode.hasFocus ? Colors.black : Colors.grey),
-              //     // enabledBorder: UnderlineInputBorder(
-              //     //     borderSide: BorderSide(color: Colors.grey),
-              //     // ),
-              //     focusedBorder: UnderlineInputBorder(
-              //       borderSide: BorderSide(color: Colors.black),
-              //     ),
-              //   ),
-              //   //style: TextStyle(color: Colors.black),
-              //   cursorColor: Colors.black,
-              // ),
               SizedBox(height: 16.0),
               SizedBox(
                 width: double.infinity,
@@ -184,19 +162,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      // _showDialog(formData.toJson());
-                      var result = await http.post(
-                        Uri.parse('http://35.84.85.252:8000/account/sign-up'),
-                        body: json.encode(formData.toJson()),
+                      print('camera start');
+                      List<CameraDescription> cameras = await availableCameras();
+                      CameraDescription firstCamera = cameras[0];
+
+                      print('available camera ${cameras.isEmpty}');
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => CameraScreen(
+                            camera: firstCamera,
+                            userInfo: formData))
                       );
-                      if (result.statusCode == 200) {
-                        final response = await http.get(Uri.parse(
-                            'http://35.84.85.252:8000/account/sign-up'));
-                        print(response.body);
-                        //_showDialog(json.decode(response.body));
-                      } else {
-                        _showDialog('Failed to sign up');
-                      }
                     }
                   },
                   child: Text('촬영하고 회원가입하기'),
@@ -210,20 +185,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ],
           ),
         ),
-      ),
-    );
-  }
-  void _showDialog(String message) {
-    showDialog<void>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(message),
-        actions: [
-          TextButton(
-            child: const Text('OK'),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-        ],
       ),
     );
   }

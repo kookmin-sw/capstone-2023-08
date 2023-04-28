@@ -2,7 +2,7 @@ class Account {
   String? id;
   String? password;
   String? nickname;
-  String? img = 'images/test.jpg';
+  String? img;
 
   Account({this.id, this.password, this.nickname, this.img});
 
@@ -10,6 +10,6 @@ class Account {
   'user_id': id,
   'user_name': nickname,
   'password': password,
-  'user_img_url': img
+  'user_img_url': img,
   };
 }
