@@ -18,6 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('dl/', include('model_api.urls'))
     path('account/', include('accounts.urls')),
     path('goods/', include('musinsa_list.urls')),
     path('storage/', include('s3_access.urls')),
