@@ -6,6 +6,7 @@ from rest_framework.decorators import api_view, permission_classes, authenticati
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from .models import User
+from .serializers import UserSerializer
 
 class SignUpView(View):
     def post(self, request):
@@ -49,8 +50,11 @@ class SignInView(View):
                 refresh_token = str(token)
                 access_token = str(token.access_token)
 
+                serializer = UserSerializer(user)
+
                 return JsonResponse({
                     'messge' : f'{user.user_name}님, 로그인 성공.',
+                    'User' : serializer.data,
                     'jwt_token': {
                         'access_token' : access_token,
                         'refresh_token' : refresh_token },
