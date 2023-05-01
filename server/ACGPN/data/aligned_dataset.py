@@ -11,6 +11,8 @@ from PIL import ImageDraw
 
 class AlignedDataset(BaseDataset):
     def initialize(self, opt):
+        opt.dataroot = os.path.join('ACGPN', opt.dataroot)
+        
         self.opt = opt
         self.root = opt.dataroot
         self.diction = {}
