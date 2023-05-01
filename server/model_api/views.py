@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse
+from django.http import FileResponse
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -46,18 +46,8 @@ class Inference(APIView):
             cloth.preprocessing_cloth()
             result_path = cloth.inference()
 
-            response = HttpResponse(mimetype="image/png")
-            img = Image.open(result_path)
-            img.save(response,'png')
-            return response
-            # try:
-            #     with open(valid_image, "rb") as f:
-            #         return HttpResponse(f.read(), content_type="image/jpeg")
-            # except IOError:
-            #     red = Image.new('RGBA', (1, 1), (255,0,0,0))
-            #     response = HttpResponse(content_type="image/jpeg")
-            #     red.save(response, "JPEG")
-            #     return response
+            return FileResponse(open(result_path, 'rb'), content_type='image/png')
+
         except:
             return Response("failed", status=status.HTTP_400_BAD_REQUEST)
 
