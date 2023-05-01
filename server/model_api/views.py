@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -7,13 +7,15 @@ from rest_framework.response import Response
 from .utils import S3Client, HumanImgPreprocessing, ImgInference, store_img
 
 import json
+from PIL import Image
 
 
 class HumanParsing(APIView):
     def post(self, request):
         data = json.loads(request.body)
 
-        s3 = S3Client('bucket_name',
+        bucket_name = "user-human-img"
+        s3 = S3Client(bucket_name,
                       data['user_id'])
         
         s3.load_human_image(data['human_img_path'])
@@ -32,20 +34,32 @@ class Inference(APIView):
     def post(self, request):
         data = json.loads(request.body)
 
-        s3 = S3Client('bucket_name',
+        bucket_name = 'user-cloth-img'
+        s3 = S3Client(bucket_name,
                       data['user_id'])
         
         s3.load_cloth_image(data['cloth_img_path'])
 
         cloth = ImgInference(data['user_id'])
-        
+
         try:
             cloth.preprocessing_cloth()
-            cloth.inference()
-        except:  
-            return Response("failed", status=status.HTTP_400_BAD_REQUEST)
+            result_path = cloth.inference()
 
-        return Response("success", status=status.HTTP_201_CREATED)
+            response = HttpResponse(mimetype="image/png")
+            img = Image.open(result_path)
+            img.save(response,'png')
+            return response
+            # try:
+            #     with open(valid_image, "rb") as f:
+            #         return HttpResponse(f.read(), content_type="image/jpeg")
+            # except IOError:
+            #     red = Image.new('RGBA', (1, 1), (255,0,0,0))
+            #     response = HttpResponse(content_type="image/jpeg")
+            #     red.save(response, "JPEG")
+            #     return response
+        except:
+            return Response("failed", status=status.HTTP_400_BAD_REQUEST)
 
 
 class ResultFeedback(APIView):
@@ -60,3 +74,4 @@ class ResultFeedback(APIView):
             return Response("failed", status=status.HTTP_400_BAD_REQUEST)
 
         return Response("success", status=status.HTTP_201_CREATED)
+        
