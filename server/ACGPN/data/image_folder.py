@@ -15,7 +15,6 @@ def is_image_file(filename):
 
 def make_dataset(dir):
     images = []
-    dir = os.path.join('ACGPN', dir)
     assert os.path.isdir(dir), '%s is not a valid directory' % dir
 
     f = dir.split('/')[-1].split('_')[-1]
@@ -31,7 +30,6 @@ def make_dataset(dir):
 
 def make_dataset_test(dir):
     images = []
-    dir = os.path.join('ACGPN', dir)
     assert os.path.isdir(dir), '%s is not a valid directory' % dir
 
     f = dir.split('/')[-1].split('_')[-1]
