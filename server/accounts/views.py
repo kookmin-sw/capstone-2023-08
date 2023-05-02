@@ -1,23 +1,42 @@
 import json
 from django.views import View
 from django.http import JsonResponse
+from django.contrib.auth.hashers import check_password
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
 from .models import User
+from .serializers import UserSerializer
 
 class SignUpView(View):
     def post(self, request):
         data = json.loads(request.body)
 
         if User.objects.filter(user_id = data['user_id']).exists():
-            return JsonResponse({'messge' : '이미 등록된 아이디입니다.'}, status=200)
+            return JsonResponse({'messge' : '이미 등록된 아이디입니다.'}, status=400)
 
-        User(
+        user = User(
             user_id = data['user_id'],
             user_name = data['user_name'],
             password = data['password'],
             user_img_url = data['user_img_url']
-        ).save()
+        )
+        user.save()
+        token = TokenObtainPairSerializer.get_token(user)
+        refresh_token = str(token)
+        access_token = str(token.access_token)
 
-        return JsonResponse({'message' : '회원가입이 완료되었습니다.'}, status=200)
+        res = JsonResponse({
+            'message' : '회원가입이 완료되었습니다.',
+            'jwt_token': {
+                'access_token' : access_token,
+                'refresh_token' : refresh_token },
+            },
+            status=200)
+        res.set_cookie('access_token', access_token, httponly=True)
+        res.set_cookie('refresh_token', refresh_token, httponly=True)
+
+        return res
 
 class SignInView(View):
     def post(self, request):
@@ -25,9 +44,28 @@ class SignInView(View):
 
         if User.objects.filter(user_id = data['user_id']).exists():
             user = User.objects.get(user_id = data['user_id'])
+
             if user.password == data['password']:
-                return JsonResponse({'messge' : f'{user.user_name}님, 로그인 성공.'}, status=200)
+                token = TokenObtainPairSerializer.get_token(user)
+                refresh_token = str(token)
+                access_token = str(token.access_token)
+
+                serializer = UserSerializer(user)
+
+                return JsonResponse({
+                    'messge' : f'{user.user_name}님, 로그인 성공.',
+                    'User' : serializer.data,
+                    'jwt_token': {
+                        'access_token' : access_token,
+                        'refresh_token' : refresh_token },
+                    },
+                    status=200)
             else:
-                return JsonResponse({'message' : '비밀번호가 틀립니다. 다시한번 확인해주세요'}, status=200)
+                return JsonResponse({'message' : '비밀번호가 틀립니다. 다시한번 확인해주세요'}, status=400)
         
-        return JsonResponse({'message' : '등록되지 않은 아이디입니다.'}, status=200)
+        res = JsonResponse({'message' : '등록되지 않은 아이디입니다.'}, status=400)
+        
+        res.set_cookie('access_token', access_token, httponly=True)
+        res.set_cookie('refresh_token', refresh_token, httponly=True)
+
+        return res
