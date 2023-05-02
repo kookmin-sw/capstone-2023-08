@@ -53,6 +53,7 @@ class SignUpView(View):
         
         except KeyError:
             return JsonResponse({'error' : 'all form must be filled.'}, status=status.HTTP_400_BAD_REQUEST)
+            
 
 class SignInView(View):
     def post(self, request):
