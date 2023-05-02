@@ -62,8 +62,8 @@ SIMPLE_JWT = {
     'SIGNING_KEY': SECRET_KEY,
     'ALGORITHM' : 'HS256',
     'JWT_ALLOW_REFRESH': True,
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=100),  # 액세스 토큰 유효기간
-    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=7),   # 새로고침 토큰 유효 기간
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=7),  # 액세스 토큰 유효기간
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=30),   # 새로고침 토큰 유효 기간
 
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
@@ -108,6 +108,7 @@ WSGI_APPLICATION = 'virtual_fitting_app.wsgi.application'
 
 pymysql.version_info = (1, 4, 3, "final", 0)
 pymysql.install_as_MySQLdb()
+pymysql.version_info = (1, 4, 3, "final", 0)
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
