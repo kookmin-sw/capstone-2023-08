@@ -1,8 +1,6 @@
 import json
 from django.views import View
 from django.http import JsonResponse
-from django.contrib.auth.hashers import check_password
-from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from .models import User

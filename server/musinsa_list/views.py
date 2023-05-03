@@ -3,6 +3,7 @@ from django.views import View
 from django.http import JsonResponse
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 
 from .serializers import GoodsListSerializer, GoodsDetailSerializer, DipsListSerializer
 from .models import Goods, Dips
@@ -23,7 +24,8 @@ class RecieveCrawlingResultView(View):
 
         return JsonResponse({'message' : 'DB 업데이트 성공'}, status=200)
 
-class ShowClothListView(View):
+class ShowClothListView(ModelViewSet):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         # query id and s3_url from DB
         queryset = Goods.objects.values('id', 'goods_name', 'brand_name', 's3_img_url')
@@ -31,7 +33,8 @@ class ShowClothListView(View):
 
         return JsonResponse({'data' : serializer.data }, safe=False)
 
-class ShowDetailView(View):
+class ShowDetailView(ModelViewSet):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         # query detail_page_url from DB
         data = json.loads(request.body)
@@ -44,6 +47,8 @@ class ShowDetailView(View):
 
 
 class DipsView(ModelViewSet):
+    permission_classes = [IsAuthenticated]
+
     @action(methods=['POST'], detail=False)
     def post_add(self, request):
         # need user_id, goods_id
