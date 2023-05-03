@@ -20,19 +20,7 @@ class SignUpView(View):
             user_img_url = data['user_img_url']
         )
         user.save()
-        token = TokenObtainPairSerializer.get_token(user)
-        refresh_token = str(token)
-        access_token = str(token.access_token)
-
-        res = JsonResponse({
-            'message' : '회원가입이 완료되었습니다.',
-            'jwt_token': {
-                'access_token' : access_token,
-                'refresh_token' : refresh_token },
-            },
-            status=200)
-        res.set_cookie('access_token', access_token, httponly=True)
-        res.set_cookie('refresh_token', refresh_token, httponly=True)
+        res = JsonResponse({'message' : '회원가입이 완료되었습니다.' }, status=200)
 
         return res
 
