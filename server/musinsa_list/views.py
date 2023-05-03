@@ -8,6 +8,7 @@ from rest_framework.permissions import IsAuthenticated
 from .serializers import GoodsListSerializer, GoodsDetailSerializer, DipsListSerializer
 from .models import Goods, Dips
 from accounts.models import User
+from virtual_fitting_app.utils import jwt_decode
 
 class RecieveCrawlingResultView(View):
     def post(self, request):
@@ -51,14 +52,17 @@ class DipsView(ModelViewSet):
 
     @action(methods=['POST'], detail=False)
     def post_add(self, request):
-        # need user_id, goods_id
+        # need goods_id
         data = json.loads(request.body)
 
-        if Dips.objects.filter(user_id=data['user_id'], goods_id=data['goods_id']).exists():
+        # get user_id from payload decoding
+        payload = jwt_decode.get_payload(request=request)
+
+        if Dips.objects.filter(user_id=payload['user_id'], goods_id=data['goods_id']).exists():
             return JsonResponse({'message' : 'Already Added Item'}, status=200)
         else:
             Dips(
-                user = User.objects.get(user_id=data['user_id']),
+                user = User.objects.get(user_id=payload['user_id']),
                 goods = Goods.objects.get(id=data['goods_id'])
             ).save()
 
@@ -66,21 +70,22 @@ class DipsView(ModelViewSet):
     
     @action(methods=['POST'], detail=False)
     def post_show(self, request):
-        # need user_id
-        data = json.loads(request.body)
-
-        queryset = Dips.objects.filter(user_id=data['user_id'])
-        
+        # get user_id from payload decoding
+        payload = jwt_decode.get_payload(request=request)
+    
+        queryset = Dips.objects.filter(user_id=payload['user_id'])
         serializer = DipsListSerializer(queryset, many=True)
-
-        return JsonResponse({'data' : serializer.data}, safe=False)
+        return JsonResponse({'data' : serializer.data}, safe=False, status=200)
 
     @action(methods=['DELETE'], detail=False)
     def delete(self, request):
-        # need user_id, goods_id
+        # need goods_id
         data = json.loads(request.body)
 
-        item = Dips.objects.get(user_id=data['user_id'], goods_id=data['goods_id'])
+        # get user_id from payload decoding
+        payload = jwt_decode.get_payload(request=request)
+
+        item = Dips.objects.get(user_id=payload['user_id'], goods_id=data['goods_id'])
         item.delete()
 
         return JsonResponse({'message' : '찜 목록 상품 삭제 성공'}, status=200)
