@@ -2,8 +2,9 @@ import json
 from django.views import View
 from django.http import JsonResponse
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.decorators import action
+from rest_framework.decorators import action, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from .serializers import GoodsListSerializer, GoodsDetailSerializer, DipsListSerializer
 from .models import Goods, Dips
@@ -25,8 +26,9 @@ class RecieveCrawlingResultView(View):
 
         return JsonResponse({'message' : 'DB 업데이트 성공'}, status=200)
 
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 class ShowClothListView(ModelViewSet):
-    permission_classes = [IsAuthenticated]
     def get(self, request):
         # query id and s3_url from DB
         queryset = Goods.objects.values('id', 'goods_name', 'brand_name', 's3_img_url')
@@ -34,8 +36,9 @@ class ShowClothListView(ModelViewSet):
 
         return JsonResponse({'data' : serializer.data }, safe=False)
 
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 class ShowDetailView(ModelViewSet):
-    permission_classes = [IsAuthenticated]
     def get(self, request):
         # query detail_page_url from DB
         data = json.loads(request.body)
@@ -46,23 +49,23 @@ class ShowDetailView(ModelViewSet):
         
         return JsonResponse({'data' : serializer.data}, safe=False)
 
-
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 class DipsView(ModelViewSet):
-    permission_classes = [IsAuthenticated]
 
     @action(methods=['POST'], detail=False)
     def post_add(self, request):
         # need goods_id
         data = json.loads(request.body)
 
-        # get user_id from payload decoding
-        payload = jwt_decode.get_payload(request=request)
+        # get user_id
+        user_id = request.user
 
-        if Dips.objects.filter(user_id=payload['user_id'], goods_id=data['goods_id']).exists():
+        if Dips.objects.filter(user_id=user_id, goods_id=data['goods_id']).exists():
             return JsonResponse({'message' : 'Already Added Item'}, status=200)
         else:
             Dips(
-                user = User.objects.get(user_id=payload['user_id']),
+                user = User.objects.get(user_id=user_id),
                 goods = Goods.objects.get(id=data['goods_id'])
             ).save()
 
@@ -70,10 +73,10 @@ class DipsView(ModelViewSet):
     
     @action(methods=['POST'], detail=False)
     def post_show(self, request):
-        # get user_id from payload decoding
-        payload = jwt_decode.get_payload(request=request)
+        # get user_id
+        user_id = request.user
     
-        queryset = Dips.objects.filter(user_id=payload['user_id'])
+        queryset = Dips.objects.filter(user_id=user_id)
         serializer = DipsListSerializer(queryset, many=True)
         return JsonResponse({'data' : serializer.data}, safe=False, status=200)
 
@@ -82,10 +85,10 @@ class DipsView(ModelViewSet):
         # need goods_id
         data = json.loads(request.body)
 
-        # get user_id from payload decoding
-        payload = jwt_decode.get_payload(request=request)
+        # get user_id
+        user_id = request.user
 
-        item = Dips.objects.get(user_id=payload['user_id'], goods_id=data['goods_id'])
+        item = Dips.objects.get(user_id=user_id, goods_id=data['goods_id'])
         item.delete()
 
         return JsonResponse({'message' : '찜 목록 상품 삭제 성공'}, status=200)
