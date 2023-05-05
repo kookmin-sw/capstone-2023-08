@@ -9,7 +9,6 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from .serializers import GoodsListSerializer, GoodsDetailSerializer, DipsListSerializer
 from .models import Goods, Dips
 from accounts.models import User
-from virtual_fitting_app.utils import jwt_decode
 
 class RecieveCrawlingResultView(View):
     def post(self, request):
