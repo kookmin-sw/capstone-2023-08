@@ -39,21 +39,22 @@ class _SignupSuccessState extends State<SignupSuccess> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
+      backgroundColor: PRIMARY_BLACK_COLOR,
       child: Stack(
         children: [
           Positioned.fill(
             child: Align(
               alignment: Alignment.topCenter,
               child: ConfettiWidget(
-                numberOfParticles: 8,
+                numberOfParticles: 10,
                 confettiController: controller,
                 shouldLoop: false,
                 blastDirectionality: BlastDirectionality.explosive,
                 colors: const [
-                  PRIMARY_COLOR,
-                  PRIMARY_COLOR_BRIGHT,
-                  PRIMARY_COLOR_BRIGHTER,
-                  PRIMARY_COLOR_BRIGHTEST,
+                  Color(0xFFFFC671),
+                  Color(0xFFFFAA29),
+                  Color(0xFF94ABFF),
+                  Color(0xFFC8FF53),
                 ],
               ),
             ),
@@ -64,13 +65,27 @@ class _SignupSuccessState extends State<SignupSuccess> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('착붙의 회원이 되신 것을 환영합니다', style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w700,
-                ),),
+                Text(
+                  '착붙의 회원이 되신 것을 환영합니다',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
                 SizedBox(height: 16.0),
-                Text('언제, 어디서든'),
-                Text('가상피팅으로 옷의 느낌을 확인해보세요.'),
+                Text(
+                  '언제, 어디서든',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  '가상피팅으로 옷의 느낌을 확인해보세요.',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ],
             ),
           ),

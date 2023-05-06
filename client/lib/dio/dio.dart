@@ -1,10 +1,12 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:client/constant/page_url.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:client/secure_storage/secure_storage.dart';
 
-final dioProvider = Provider<Dio>((ref) {
+/*final dioProvider = Provider<Dio>((ref) {
   final dio = Dio();
 
   final storage = ref.watch(secureStorageProvider);
@@ -14,7 +16,7 @@ final dioProvider = Provider<Dio>((ref) {
   );
 
   return dio;
-});
+});*/
 
 class CustomInterceptor extends Interceptor {
   final FlutterSecureStorage storage;
@@ -41,7 +43,7 @@ class CustomInterceptor extends Interceptor {
 
       // 실제 토큰으로 대체
       options.headers.addAll({
-        'authorization': 'Bearer $token',
+        'Authorization': 'Bearer $token',
       });
     }
 
@@ -53,7 +55,7 @@ class CustomInterceptor extends Interceptor {
 
       // 실제 토큰으로 대체
       options.headers.addAll({
-        'authorization': 'Bearer $token',
+        'Authorization': 'Bearer $token',
       });
     }
 
@@ -87,28 +89,29 @@ class CustomInterceptor extends Interceptor {
     }
 
     final isStatus401 = err.response?.statusCode == 401; // token이 잘못되었음
-    final isPathRefresh = err.requestOptions.path == '/auth/token';
+    final isPathRefresh = err.requestOptions.path == SIGN_IN_URL; // 다시 토큰 발행 = 로그인 시도
 
     // token을 refresh하려는 의도가 아니었는데, 401 에러 발생
-    /*if (isStatus401 && !isPathRefresh) {
+    if (isStatus401 && !isPathRefresh) {
       final dio = Dio();
 
       try {
         final resp = await dio.post(
-          'http://$ip/auth/token',
+          GET_ACCESS_TOKEN_URL,
           options: Options(
             headers: {
-              'authorization': 'Bearer $refreshToken',
+              'Authorization': 'Bearer $refreshToken',
             },
           ),
+          data: json.encode({"refresh" : refreshToken,}),
         );
 
-        final accessToken = resp.data['accessToken'];
+        final accessToken = resp.data['access'];
 
         final options = err.requestOptions;
 
         options.headers.addAll({
-          'authorization': 'Bearer $accessToken',
+          'Authorization': 'Bearer $accessToken',
         });
 
         // token 변경
@@ -122,7 +125,7 @@ class CustomInterceptor extends Interceptor {
       } on DioError catch (e) {
         return handler.reject(e);
       }
-    }*/
+    }
 
     return handler.reject(err);
   }

@@ -1,17 +1,21 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:client/layout/default_layout.dart';
+import 'package:client/screen/fail_screen.dart';
+import 'package:client/screen/signup_result_screen.dart';
 import 'package:client/screen/signup_success.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 
 import '../component/default_dialog.dart';
+import '../constant/colors.dart';
 import '../constant/page_url.dart';
-import '../data/account.dart';
+import '../data/account_model.dart';
 
 class CameraResult extends StatelessWidget {
-  final Account userInfo;
+  final AccountModel userInfo;
   final XFile image;
 
   const CameraResult({
@@ -27,13 +31,21 @@ class CameraResult extends StatelessWidget {
     double height = screenSize.height;
     final dio = Dio();
 
+    void goFailedScreen () {
+      Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (_) => FailScreen()),
+              (route) => false);
+    }
+
     Future<String> getPresignedUrl() async {
       try {
-        String userId = userInfo.id.toString();
+        String userImgUrl = userInfo.user_img_url.toString();
         String url = GET_PRESIGNED_URL;
         Response response = await dio.request(
           url,
-          data: <String, String>{'user_id': userId},
+          data: <String, String>{
+            'bucket_name': 'user-human-img',
+            'file_path': userImgUrl},
           options: Options(method: 'GET'),
         );
         print(response.data['data']);
@@ -41,6 +53,7 @@ class CameraResult extends StatelessWidget {
         return response.data['data'];
       } catch (e) {
         print(e);
+        goFailedScreen();
       }
       return '';
     }
@@ -53,16 +66,18 @@ class CameraResult extends StatelessWidget {
           url,
           data: file.openRead(),
           options: Options(
-            contentType: "image/jpeg",
+            contentType: "image/png",
             headers: {
               "Content-Length": file.lengthSync(),
             },
           ),
         );
         if (response.statusCode == 200) return true;
+        goFailedScreen();
         return false;
       } on DioError catch (e) {
         print(e.response);
+        goFailedScreen();
         return false;
       }
     }
@@ -78,75 +93,65 @@ class CameraResult extends StatelessWidget {
       print(isUploaded);
     }
 
-    Future<bool> requestSignUp() async {
-      Response response;
-      try {
-        response = await dio.post(
-          SIGN_UP_URL,
-          data: json.encode(userInfo.toJson()),
-        );
-        print(response.data);
-        if (response.statusCode == 200) {
-          response = await dio.get(SIGN_UP_URL);
-          print(response.data);
-        } else {
-          // todo: 실패 처리
-        }
-      } catch (e) {
-
-      }
-      return true;
-    }
-
-    void onReturnPressed() {
-      Navigator.of(context, rootNavigator: true).pop();
-      Navigator.of(context).pop();
-    }
-
     void onSignupPressed() async {
       await getImageAndUpload();
-      await requestSignUp();
 
       Navigator.of(context).push(
-        MaterialPageRoute(builder: (_) => SignupSuccess()),
+        MaterialPageRoute(builder: (_) => SignupResultScreen(userInfo: userInfo)),
       );
     }
 
-    return Stack(
-      children: [
-        Positioned.fill(
-          child: SizedBox(
-            width: width,
-            height: height,
-            child: Image.file(File(image.path)),
+    void onReturnPressed() {
+      Navigator.of(context).pop();
+    }
+
+    return DefaultLayout(
+      backgroundColor: Colors.black,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: Image.file(File(image.path), fit: BoxFit.fitWidth,),
           ),
-        ),
-        Positioned(
-          bottom: 24,
-          width: MediaQuery.of(context).size.width,
-          height: 50.0,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: ElevatedButton(
-              onPressed: () async {
-                return showDialog(
-                  context: context,
-                  builder: (context) {
-                    return BasicAlertDialog(
-                      title: '이 사진으로 가입할까요?',
-                      leftButtonText: '다시찍기',
-                      rightButtonText: '회원가입',
-                      onLeftButtonPressed: onReturnPressed,
-                      onRightButtonPressed: onSignupPressed,
-                    );
-                  },
-                );
-              },
-              child: const Text('다음'),
+          Container(
+            width: double.infinity,
+            height: height * 0.2,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: SizedBox(
+                    height: 50.0,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: PRIMARY_BLACK_COLOR,
+                      ),
+                      onPressed: () async {
+                        return showDialog(
+                          context: context,
+                          builder: (context) {
+                            return BasicAlertDialog(
+                              title: '이 사진으로 가입할까요?',
+                              leftButtonText: '다시찍기',
+                              rightButtonText: '회원가입',
+                              onLeftButtonPressed: onReturnPressed,
+                              onRightButtonPressed: onSignupPressed,
+                            );
+                          },
+                        );
+                      },
+                      child: const Text('다음'),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

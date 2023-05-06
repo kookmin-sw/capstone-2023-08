@@ -90,16 +90,16 @@ class BasicAlertDialog extends StatelessWidget {
                     children: [
                       AlertButton(
                         backgroundColor: Colors.white70,
-                        color: PRIMARY_COLOR,
+                        color: PRIMARY_BLACK_COLOR,
                         label: leftButtonText,
                         onPressed: this.onLeftButtonPressed,
-                        borderColor: INPUT_BORDER_COLOR,
+                        borderColor: BUTTON_BORDER_COLOR,
                       ),
                       SizedBox(
                         width: 16,
                       ),
                       AlertButton(
-                        backgroundColor: PRIMARY_COLOR,
+                        backgroundColor: PRIMARY_BLACK_COLOR,
                         color: Colors.white,
                         label: rightButtonText,
                         onPressed: this.onRightButtonPressed,
