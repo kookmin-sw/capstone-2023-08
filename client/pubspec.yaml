@@ -38,12 +38,10 @@ dependencies:
   camera: ^0.10.3+2
   carousel_slider: ^4.0.0
   dots_indicator: ^2.0.0
-<<<<<<< HEAD
-=======
   image_picker: ^0.8.7
   image_gallery_saver: ^1.7.1
->>>>>>> upstream/Frontend
   http: ^0.13.5
+  webview_flutter: ^2.8.0
 
 dev_dependencies:
   flutter_test:

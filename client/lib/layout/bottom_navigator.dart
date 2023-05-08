@@ -9,10 +9,6 @@ class BottomNavigation extends StatelessWidget {
       label: '홈',
     ),
     const BottomNavigationBarItem(
-      icon: Icon(Icons.shopping_bag_outlined),
-      label: '쇼핑몰',
-    ),
-    const BottomNavigationBarItem(
       icon: Icon(Icons.favorite),
       label: '찜',
     ),
@@ -32,7 +28,6 @@ class BottomNavigation extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       items: [
         _buildItem(TabItem.home),
-        _buildItem(TabItem.shoppingMall),
         _buildItem(TabItem.like),
         _buildItem(TabItem.myPage),
       ],
