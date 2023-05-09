@@ -5,6 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 
+import '../component/default_dialog.dart';
+import '../constant/colors.dart';
+
 class ResultScreen extends StatelessWidget {
   final File imageFile;
 
@@ -17,7 +20,6 @@ class ResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     void onFirstPagePressed() {
       Navigator.of(context, rootNavigator: true).pop();
-      print('pop pressed');
       Navigator.of(context).popUntil((route) => route.isFirst);
     }
 
@@ -50,14 +52,18 @@ class ResultScreen extends StatelessWidget {
                 child: ElevatedButton(
                   child: Text('다음'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.indigo,
+                    backgroundColor: PRIMARY_COLOR,
                   ),
                   onPressed: () => showDialog(
                       context: context,
                       builder: (context) {
                         return BasicAlertDialog(
-                          onFirstPagePressed: onFirstPagePressed,
-                          onGallerySavedPressed: onGallerySavedPressed,
+                          onLeftButtonPressed: onFirstPagePressed,
+                          onRightButtonPressed: onGallerySavedPressed,
+                          title: '피팅 사진이 마음에 들면,',
+                          bodyText: 'AI가 생성한 사진을 갤러리에 저장해주세요',
+                          leftButtonText: '처음으로',
+                          rightButtonText: '갤러리 저장',
                         );
                       }),
                 ),
@@ -65,128 +71,6 @@ class ResultScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class AlertButton extends StatelessWidget {
-  final Color backgroundColor;
-  final Color color;
-  final String label;
-  final VoidCallback onPressed;
-
-  const AlertButton({
-    Key? key,
-    required this.backgroundColor,
-    required this.color,
-    required this.label,
-    required this.onPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        height: 45.0,
-        child: ElevatedButton(
-          onPressed: onPressed,
-          child: Text(
-            label,
-            style: TextStyle(
-              color: color,
-              fontSize: 14,
-            ),
-          ),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: backgroundColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class BasicAlertDialog extends StatelessWidget {
-  final VoidCallback onFirstPagePressed;
-  final VoidCallback onGallerySavedPressed;
-
-  const BasicAlertDialog({
-    Key? key,
-    required this.onFirstPagePressed,
-    required this.onGallerySavedPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      insetPadding: EdgeInsets.symmetric(horizontal: 16.0),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10.0))),
-      content: Builder(
-        builder: (context) {
-          // Get available height and width of the build area of this widget. Make a choice depending on the size.
-          var height = MediaQuery.of(context).size.height;
-          var width = MediaQuery.of(context).size.width;
-          return Container(
-            height: height * 0.23,
-            width: width,
-            child: Column(
-              children: [
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '피팅 사진이 마음에 들면,',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.indigo,
-                          fontSize: 16,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Text(
-                        'AI가 생성한 사진을 갤러리에 저장해주세요',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      AlertButton(
-                        backgroundColor: Colors.white70,
-                        color: Colors.indigo,
-                        label: '처음으로',
-                        onPressed: this.onFirstPagePressed,
-                      ),
-                      SizedBox(
-                        width: 16,
-                      ),
-                      AlertButton(
-                        backgroundColor: Colors.indigo,
-                        color: Colors.white,
-                        label: '갤러리 저장',
-                        onPressed: this.onGallerySavedPressed,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
       ),
     );
   }
