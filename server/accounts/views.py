@@ -1,14 +1,19 @@
 import json
 from django.views import View
 from django.http import JsonResponse
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.decorators import action, permission_classes
+from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import status
 
 from .models import User
 from .serializers import UserSerializer
 
-class SignUpView(View):
-    def get(self, request):
+@permission_classes([AllowAny])
+class SignUpView(ModelViewSet):
+    @action(methods=['GET'], detail=False)
+    def id_validator(self, request):
         # check id already exists
         data = json.loads(request.body)
 
@@ -20,8 +25,23 @@ class SignUpView(View):
 
         except KeyError:    
            return JsonResponse({'error' : 'ID field is required.'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+    @action(methods=['GET'], detail=False)
+    def name_validator(self, request):
+        # check user_name already exists
+        data = json.loads(request.body)
 
+        try:
+            if User.objects.filter(user_name = data['user_name']).exists():
+                return JsonResponse({'message' : '이미 등록된 닉네임입니다.'}, status=status.HTTP_205_RESET_CONTENT)
+            else:
+                return JsonResponse({'message' : '사용 가능한 닉네임입니다.'}, status=status.HTTP_200_OK)
 
+        except KeyError:    
+           return JsonResponse({'error' : 'user_name field is required.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(methods=['POST'], detail=False)
     def post(self, request):
         data = json.loads(request.body)
         
