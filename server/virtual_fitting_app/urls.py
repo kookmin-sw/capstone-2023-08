@@ -19,6 +19,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenVerifyView,
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('dl/', include('model_api.urls')),
     path('account/', include('accounts.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),    # create token
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),      # verify token
