@@ -1,10 +1,7 @@
 import json
 from django.views import View
 from django.http import JsonResponse
-from django.contrib.auth.hashers import check_password
-from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework import status
 
 from .models import User
 from .serializers import UserSerializer
@@ -26,7 +23,7 @@ class SignUpView(View):
 
     def post(self, request):
         data = json.loads(request.body)
-
+        
         try:
             user = User(
                 user_id = data['user_id'],
@@ -35,20 +32,8 @@ class SignUpView(View):
                 user_img_url = data['user_img_url']
             )
             user.save()
-            token = TokenObtainPairSerializer.get_token(user)
-            refresh_token = str(token)
-            access_token = str(token.access_token)
-
-            res = JsonResponse({
-                'message' : '회원가입이 완료되었습니다.',
-                'jwt_token': {
-                    'access_token' : access_token,
-                    'refresh_token' : refresh_token },
-                },
-                status=status.HTTP_201_CREATED)
-            res.set_cookie('access_token', access_token, httponly=True)
-            res.set_cookie('refresh_token', refresh_token, httponly=True)
-
+            res = JsonResponse({'message' : '회원가입이 완료되었습니다.'}, status=status.HTTP_201_CREATED)
+            
             return res
         
         except KeyError:
@@ -68,7 +53,6 @@ class SignInView(View):
                 access_token = str(token.access_token)
 
                 serializer = UserSerializer(user)
-
                 res =  JsonResponse({
                     'message' : f'{user.user_name}님, 로그인 성공.',
                     'User' : serializer.data,
