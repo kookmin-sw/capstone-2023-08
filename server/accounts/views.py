@@ -2,6 +2,7 @@ import json
 from django.views import View
 from django.http import JsonResponse
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework import status
 
 from .models import User
 from .serializers import UserSerializer
