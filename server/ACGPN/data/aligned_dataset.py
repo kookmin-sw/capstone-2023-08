@@ -11,6 +11,9 @@ from PIL import ImageDraw
 
 class AlignedDataset(BaseDataset):
     def initialize(self, opt):
+
+        opt.dataroot = os.path.join('ACGPN', opt.dataroot)
+
         self.opt = opt
         self.root = opt.dataroot
         self.diction = {}
@@ -22,6 +25,7 @@ class AlignedDataset(BaseDataset):
         # load data list from pairs file
         human_names = []
         cloth_names = []
+        
         with open(os.path.join(opt.dataroot, opt.datapairs), 'r') as f:
             for line in f.readlines():
                 h_name, c_name = line.strip().split()
