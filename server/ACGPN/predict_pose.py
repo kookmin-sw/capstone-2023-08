@@ -81,9 +81,11 @@ class general_pose_model(object):
 
         return points
 
+
 def generate_pose_keypoints(img_file, pose_file, model_path):
 
     modelpath = model_path
+
     pose_model = general_pose_model(modelpath)
 
     res_points = pose_model.predict(img_file)

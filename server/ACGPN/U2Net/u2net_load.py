@@ -9,6 +9,7 @@ def model(model_name='u2net'):
 
     model_dir = os.path.join(os.getcwd(), 'ACGPN/U2Net/saved_models', model_name, model_name + '.pth')
 
+
     if(model_name=='u2net'):
         print("...load U2NET---173.6 MB")
         net = U2NET(3,1)

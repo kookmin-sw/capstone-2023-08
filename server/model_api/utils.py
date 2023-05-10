@@ -12,7 +12,9 @@ from ACGPN.predict_pose import generate_pose_keypoints
 
 class S3Client:
     def __init__(self, bucket, user_id):
+
         self.s3 = boto3.client('s3')
+
         self.bucket = bucket
         self.uid = user_id
     
@@ -53,6 +55,7 @@ class HumanImgPreprocessing:
     def parsing_human_pose(self):
         img_name = f'{self.uid}_human.png'
         img_path = os.path.join(self.human_img_path, img_name)
+
         
         try:
             img = Image.open(img_path)
@@ -121,6 +124,7 @@ class ImgInference:
         result_path = '/home/ubuntu/capstone/capstone-2023-08/server/results/test/try-on'
         user_result = os.path.join(result_path, img_name)
         return user_result
+
 
 
 def store_img(user_id, cloth_img_path, human_img_path):

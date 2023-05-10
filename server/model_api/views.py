@@ -7,6 +7,7 @@ from rest_framework.decorators import action, authentication_classes, permission
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
+
 from .utils import S3Client, HumanImgPreprocessing, ImgInference, store_img
 
 import json
@@ -76,4 +77,3 @@ class ResultFeedback(APIView):
             return Response("failed", status=status.HTTP_400_BAD_REQUEST)
 
         return Response("success", status=status.HTTP_201_CREATED)
-        
