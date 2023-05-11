@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:client/component/one_button_dialog.dart';
+import 'package:client/data/user_model.dart';
 import 'package:dio/dio.dart';
 import 'package:client/component/custom_text_form_field.dart';
 import 'package:client/constant/colors.dart';
@@ -48,30 +50,28 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             child: Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 32.0, horizontal: 32.0),
-              child: DefaultLayout(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    _TopPart(
-                      width: width,
-                    ),
-                    SizedBox(height: 16.0),
-                    _MiddleLogin(
-                      width: width,
-                      idTextEditingController: idTextEditingController,
-                      pwTextEditingController: pwTextEditingController,
-                      onLoginPressed: onLoginPressed,
-                      onIdChanged: onIdChanged,
-                      onpwChanged: onPwChanged,
-                      onSignUpPressed: onSignUpPressed,
-                    ),
-                    SizedBox(height: 24.0),
-                    _BottomPart(
-                      onTextPressed: onTextPressed,
-                    ),
-                  ],
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _TopPart(
+                    width: width,
+                  ),
+                  SizedBox(height: 16.0),
+                  _MiddleLogin(
+                    width: width,
+                    idTextEditingController: idTextEditingController,
+                    pwTextEditingController: pwTextEditingController,
+                    onLoginPressed: onLoginPressed,
+                    onIdChanged: onIdChanged,
+                    onpwChanged: onPwChanged,
+                    onSignUpPressed: onSignUpPressed,
+                  ),
+                  SizedBox(height: 24.0),
+                  _BottomPart(
+                    onTextPressed: onTextPressed,
+                  ),
+                ],
               ),
             ),
           ),
@@ -98,7 +98,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     String refreshToken;
     String accessToken;
     try {
-      resp = await dio.get(
+      resp = await dio.post(
         SIGN_IN_URL,
         options: Options(
           headers: {
@@ -110,6 +110,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           'password': pw,
         }),
       );
+
+      print(resp.data['User']);
       print(resp.data['jwt_token']['refresh_token']);
       print(resp.data['jwt_token']['access_token']);
 
@@ -117,13 +119,21 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       accessToken = resp.data['jwt_token']['access_token'];
     } catch (e) {
       print(e);
-      return;
+      return showDialog(context: context, builder: (BuildContext context) {
+        return OneButtonDialog(title: '오류가 발생했습니다, 다시 시도해주세요.', onPressed: () {
+          Navigator.of(context).pop();
+        },
+        );
+      }
+      );
     }
 
     final storage = ref.read(secureStorageProvider);
 
     await storage.write(key: REFRESH_TOKEN_KEY, value: refreshToken);
     await storage.write(key: ACCESS_TOKEN_KEY, value: accessToken);
+    await storage.write(key: USER_NAME, value: resp.data['User']['user_name']);
+    await storage.write(key: USER_ID, value: resp.data['User']['user_id']);
 
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
@@ -166,34 +176,31 @@ class _TopPart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 32.0,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Text(
-            '착붙에 오신 것을 환영합니다',
-            style: TextStyle(
-              color: PRIMARY_BLACK_COLOR,
-              fontSize: 20.0,
-              fontWeight: FontWeight.w700,
+    return SizedBox(
+      width: width,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset(
+              'asset/img/logo.png',
+              width: width * 0.3,
             ),
-          ),
-          SizedBox(
-            height: 4.0,
-          ),
-          Text(
-            '착붙에서 가상피팅을 체험해보세요',
-            style: TextStyle(
-              color: PRIMARY_BLACK_COLOR,
-              fontSize: 16.0, //default : 14
-              fontWeight: FontWeight.w700,
+            SizedBox(
+              height: 16.0,
             ),
-          ),
-        ],
+            Text(
+              '착붙에 로그인하고\n원하는 옷을 원하는 장소에서 입어보세요!',
+              style: TextStyle(
+                color: PRIMARY_BLACK_COLOR,
+                fontSize: 14.0, //default : 14
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -270,7 +277,7 @@ class _MiddleLogin extends StatelessWidget {
                     elevation: 0,
                     backgroundColor: PRIMARY_BLACK_COLOR,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                      borderRadius: BorderRadius.circular(0.0),
                     ),
                     disabledBackgroundColor: Colors.grey,
                     disabledForegroundColor: Colors.white,
@@ -300,7 +307,7 @@ class _MiddleLogin extends StatelessWidget {
               elevation: 0,
               shape: RoundedRectangleBorder(
                 side: const BorderSide(color: Colors.grey),
-                borderRadius: BorderRadius.circular(10.0),
+                //borderRadius: BorderRadius.circular(10.0),
               ),
               minimumSize: Size(80, 25),
               backgroundColor: Colors.white,

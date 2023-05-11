@@ -134,7 +134,7 @@ class BasicAlertDialog extends StatelessWidget {
             title,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: PRIMARY_COLOR,
+              color: PRIMARY_BLACK_COLOR,
               fontSize: 18,
               fontWeight: FontWeight.w500,
             ),

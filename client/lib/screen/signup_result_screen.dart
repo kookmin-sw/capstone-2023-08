@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:client/constant/colors.dart';
-import 'package:client/data/account_model.dart';
+import 'package:client/data/user_model.dart';
 import 'package:client/layout/default_layout.dart';
 import 'package:client/screen/signup_success.dart';
 import 'package:dio/dio.dart';
@@ -11,7 +11,7 @@ import '../constant/page_url.dart';
 import 'fail_screen.dart';
 
 class SignupResultScreen extends StatelessWidget {
-  final AccountModel userInfo;
+  final UserModel userInfo;
 
   const SignupResultScreen({
     Key? key,

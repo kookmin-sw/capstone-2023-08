@@ -62,6 +62,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         obscureText: isObscure,
         textInputAction: widget.textInputAction,
         decoration: InputDecoration(
+          focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(0.0), borderSide: BorderSide(color: POINT_COLOR)),
+          errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(0.0), borderSide: BorderSide(color: POINT_COLOR)),
+          errorStyle: TextStyle(color: POINT_COLOR),
           fillColor: INPUT_BG_COLOR,
           filled: true,
           labelText: widget.labelText,
@@ -72,21 +75,29 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           ),
           focusColor: Colors.black,
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(0.0),
             borderSide: BorderSide(
-              color: Colors.black,
+              color: PRIMARY_BLACK_COLOR,
               width: 1.3,
             ),
           ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(0.0),
             borderSide: BorderSide(
-              color: INPUT_BORDER_COLOR,
-              width: 1,
+              color: BUTTON_BORDER_COLOR,
+              width: 1.0,
+            ),
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(0.0),
+            borderSide: BorderSide(
+              color: BUTTON_BORDER_COLOR,
+              width: 1.0,
             ),
           ),
           suffixIcon: widget.obscureText? renderObscureButton() : null,
         ),
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         cursorColor: Colors.black,
         onChanged: widget.onTextChanged,
         validator: widget.validator,

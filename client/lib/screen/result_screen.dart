@@ -52,7 +52,7 @@ class ResultScreen extends StatelessWidget {
                 child: ElevatedButton(
                   child: Text('다음'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: PRIMARY_COLOR,
+                    backgroundColor: PRIMARY_BLACK_COLOR,
                   ),
                   onPressed: () => showDialog(
                       context: context,

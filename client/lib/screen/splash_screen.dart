@@ -1,34 +1,72 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:client/layout/default_layout.dart';
+import 'package:client/screen/my_page_screen.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../constant/page_url.dart';
 import '../layout/root_tab.dart';
+import 'package:client/secure_storage/secure_storage.dart';
 
-class SplashScreen extends StatefulWidget {
+import 'login_screen.dart';
+
+// StatefulScreen인 경우, 3번까지의 절차 필요
+// setState 사용 가능 (riverpod으로 관리하는 건 global 변수, setState는 loacal 변수라고 생각하면 됩니다!)
+class SplashScreen extends ConsumerStatefulWidget { // 1. ConsumerStatefulWidget으로 변경
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  ConsumerState<SplashScreen> createState() => _SplashScreenState(); // 2. State -> ConsumerState로 변경
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends ConsumerState<SplashScreen> { // 3. 이 부분도 ConsumerState로 변경
   @override
   void initState() {
     super.initState();
 
-    moveToRoot();
+    checkToken();
   }
 
-  void moveToRoot() {
-    Timer(Duration(milliseconds: 2000), () {
+  void checkToken() async {
+    final storage = ref.read(secureStorageProvider);
+
+    final refreshToken = await storage.read(key: REFRESH_TOKEN_KEY);
+    final accessToken = await storage.read(key: ACCESS_TOKEN_KEY);
+    print('refreshToken accessToken');
+    print('$refreshToken $accessToken');
+
+    final dio = Dio();
+
+    try {
+      final resp = await dio.post(
+        GET_ACCESS_TOKEN_URL,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $refreshToken',
+          },
+        ),
+        data: json.encode({"refresh" : refreshToken,}),
+      );
+
+      await storage.write(key: ACCESS_TOKEN_KEY, value: resp.data['access']);
+
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
           builder: (_) => RootTab(),
         ),
-        (route) => false,
+            (route) => false,
       );
-    });
+    } catch (e) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (_) => LoginScreen(),
+        ),
+            (route) => false,
+      );
+    }
   }
 
   @override
