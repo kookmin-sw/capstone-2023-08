@@ -2,7 +2,6 @@ import 'package:client/screen/fail_screen.dart';
 import 'package:client/screen/home_screen.dart';
 import 'package:client/screen/login_screen.dart';
 import 'package:client/screen/test_screen.dart';
-import 'package:client/screen/favorite_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../constant/colors.dart';
@@ -72,7 +71,7 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
         controller: tabController,
         children: [
           HomeScreen(),
-          FavoriteScreen(),
+          Center(child: Text('찜'),),
           LoginScreen(),
         ],
       ),

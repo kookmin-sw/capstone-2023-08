@@ -4,68 +4,6 @@ import 'package:flutter/services.dart';
 import 'home_screen.dart';
 import 'shoppingmall_screen.dart';
 import '../main.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'dart:async';
-import 'login_screen.dart';
-import 'test_detail_screen.dart';
-
-class cloth {
-  String id;
-  String goods_name;
-  String brand_name;
-  String s3_img_url;
-
-  cloth(
-      {required this.id,
-      required this.goods_name,
-      required this.brand_name,
-      required this.s3_img_url});
-
-  factory cloth.fromJson(Map<String, dynamic> json) {
-    return cloth(
-      id: json['id'],
-      goods_name: json['goods_name'],
-      brand_name: json['brand_name'],
-      s3_img_url: json['s3_img_url'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['goods_name'] = this.goods_name;
-    data['brand_name'] = this.brand_name;
-    data['s3_img_url'] = this.s3_img_url;
-    return data;
-  }
-}
-
-Future<List<cloth>> fetchcloth() async {
-  String token = '';
-  final response = await http.get(
-      Uri.parse('http://35.84.85.252:8000/goods/cloth-list'),
-      headers: {'Authorization': 'Bearer $token'});
-
-  if (response.statusCode == 200) {
-    Map body = json.decode(response.body);
-    List<dynamic> data = body['data'];
-    var allInfo = data.map((item) => cloth.fromJson(item)).toList();
-    return allInfo;
-  } else {
-    throw Exception('Failed to load album');
-  }
-}
-
-//찜 버튼
-// class FavoriteFormData {
-//   String? user_id;
-//   String? goods_id;
-
-//   FavoriteFormData({this.user_id, this.goods_id});
-
-//   Map<String, dynamic> toJson() => {'user_id': user_id, 'goods_id': goods_id};
-// }
 
 void main() {
   runApp(const ShoppingApp());
@@ -94,12 +32,6 @@ class ShoppingApp extends StatelessWidget {
 class ShoppingScreen extends StatelessWidget {
   const ShoppingScreen({Key? key}) : super(key: key);
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   futurecloth = fetchcloth();
-  // }
-
   @override
   Widget build(BuildContext context) {
     // iOS에서 StatusBar의 색상을 정해주기위해 설정
@@ -113,26 +45,39 @@ class ShoppingScreen extends StatelessWidget {
             headerSliverBuilder: (context, innerBoxIsScrolled) {
               return [
                 SliverAppBar(
-                  pinned: true,
-                  floating: true,
-                  forceElevated: innerBoxIsScrolled,
-                  toolbarHeight: 50,
-                  elevation: 0,
-                  backgroundColor: Colors.white,
-                  automaticallyImplyLeading: true,
-                  leading: IconButton(
-                    //alignment: Alignment.bottomLeft,
-                    icon: Icon(Icons.arrow_back_ios_new_rounded),
-                    color: Colors.black,
-                    // iconSize: 20.0,
-                    onPressed: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => MyApp()));
-                    },
-                  ),
-                ),
+                    pinned: false,
+                    floating: true,
+                    forceElevated: innerBoxIsScrolled,
+                    toolbarHeight: 48,
+                    elevation: 0,
+                    backgroundColor: Colors.white,
+                    title: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(children: [
+                          TextSpan(
+                              text: 'Fit on, ',
+                              style:
+                                  TextStyle(fontSize: 25, color: Colors.grey)),
+                          TextSpan(
+                              text: 'Fit me!',
+                              style:
+                                  TextStyle(fontSize: 25, color: Colors.black)),
+                        ])),
+                    actions: <Widget>[
+                      Container(
+                        alignment: Alignment.bottomLeft,
+                        child: IconButton(
+                          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                          //tooltip: 'Add new entry',
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen()));
+                          },
+                        ),
+                      ),
+                    ]),
                 // 변경사항
                 SliverOverlapAbsorber(
                   handle:
@@ -167,318 +112,150 @@ class ShoppingScreen extends StatelessWidget {
   }
 }
 
-class FirstTabScreen extends StatefulWidget {
+//상의 Tab Screen
+class FirstTabScreen extends StatelessWidget {
   const FirstTabScreen({Key? key}) : super(key: key);
 
   @override
-  _first createState() => _first();
-}
-
-//상의 Tab Screen
-class _first extends State<FirstTabScreen> {
-  //const FirstTabScreen({Key? key}) : super(key: key);
-  late Future<List<cloth>> futurecloth;
-
-  @override
-  void initState() {
-    futurecloth = fetchcloth();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<cloth>>(
-      future:
-          futurecloth, // this is a code smell. Make sure that the future is NOT recreated when build is called. Create the future in initState instead.
-      builder: (context, snapshot) {
-        Widget newsListSliver;
-        if (snapshot.hasData) {
-          newsListSliver = SliverGrid(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 0.7,
-              mainAxisSpacing: 30.0,
-              crossAxisSpacing: 20.0,
-            ),
-            delegate:
-                SliverChildBuilderDelegate((BuildContext context, int index) {
-              return ProductItem(
-                id: snapshot.data![index].id,
-                imageUrl: snapshot.data![index].s3_img_url,
-                productName: snapshot.data![index].goods_name,
-                brand: snapshot.data![index].brand_name,
-              );
-            }),
-          );
-        } else {
-          newsListSliver = SliverToBoxAdapter(
-            child: CircularProgressIndicator(),
-          );
-        }
+// 변경사항
+    return Column(
+      children: [
+        const SizedBox(height: 48),
+        Expanded(
+          child: CustomScrollView(
+            slivers: [
+              // SliverToBoxAdapter(
+              //   child: Container(
+              //     height: 400,
+              //     color: Colors.grey,
+              //   ),
+              // ),
 
-        return CustomScrollView(
-          slivers: <Widget>[
-            const SliverPersistentHeader(
-                pinned: true, delegate: CategoryBreadcrumbs()),
-            newsListSliver
-          ],
-        );
-      },
+              const SliverPersistentHeader(
+                  pinned: true, delegate: CategoryBreadcrumbs()),
+
+              // SliverList(
+              //     delegate: SliverChildBuilderDelegate(
+              //         (context, index) => Container(
+              //               height: 40,
+              //               // 보는 재미를 위해 인덱스에 아무 숫자나 곱한 뒤 255로
+              //               // 나눠 다른 색이 보이도록 함.
+              //               color: Color.fromRGBO((index * 45) % 255,
+              //                   (index * 70) % 255, (index * 25), 1.0),
+              //             ),
+              //         childCount: 40)
+              //         ),
+
+              // SliverGrid(
+              //   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              //     maxCrossAxisExtent: 200.0,
+              //     mainAxisSpacing: 10.0,
+              //     crossAxisSpacing: 10.0,
+              //     childAspectRatio: 4.0,
+              //   ),
+              //   delegate: SliverChildBuilderDelegate(
+              //     (BuildContext context, int index) {
+              //       return Container(
+              //         alignment: Alignment.center,
+              //         color: Colors.teal[100 * (index % 9)],
+              //         child: Text(
+              //           'Grid Item ${index + 1}',
+              //           style: TextStyle(fontSize: 20),
+              //         ),
+              //       );
+              //     },
+              //     childCount: 10,
+              //   ),
+              // ),
+              SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.7,
+                  mainAxisSpacing: 16.0,
+                  crossAxisSpacing: 16.0,
+                ),
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return ProductItem(
+                      imageUrl: 'assets/clothes/product-image.jpg',
+                      productName: 'Product Name $index',
+                      price: '\$${(index + 1) * 10}',
+                    );
+                  },
+                  childCount: 20,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
-
-//   @override
-//   Widget build(BuildContext context) {
-// // 변경사항
-//     return Column(
-//       children: [
-//         const SizedBox(height: 48),
-//         Expanded(
-//           child: CustomScrollView(
-//             slivers: [
-//               // SliverToBoxAdapter(
-//               //   child: Container(
-//               //     height: 400,
-//               //     color: Colors.grey,
-//               //   ),
-//               // ),
-
-//               const SliverPersistentHeader(
-//                   pinned: true, delegate: CategoryBreadcrumbs()),
-
-//               // SliverList(
-//               //     delegate: SliverChildBuilderDelegate(
-//               //         (context, index) => Container(
-//               //               height: 40,
-//               //               // 보는 재미를 위해 인덱스에 아무 숫자나 곱한 뒤 255로
-//               //               // 나눠 다른 색이 보이도록 함.
-//               //               color: Color.fromRGBO((index * 45) % 255,
-//               //                   (index * 70) % 255, (index * 25), 1.0),
-//               //             ),
-//               //         childCount: 40)
-//               //         ),
-
-//               // SliverGrid(
-//               //   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-//               //     maxCrossAxisExtent: 200.0,
-//               //     mainAxisSpacing: 10.0,
-//               //     crossAxisSpacing: 10.0,
-//               //     childAspectRatio: 4.0,
-//               //   ),
-//               //   delegate: SliverChildBuilderDelegate(
-//               //     (BuildContext context, int index) {
-//               //       return Container(
-//               //         alignment: Alignment.center,
-//               //         color: Colors.teal[100 * (index % 9)],
-//               //         child: Text(
-//               //           'Grid Item ${index + 1}',
-//               //           style: TextStyle(fontSize: 20),
-//               //         ),
-//               //       );
-//               //     },
-//               //     childCount: 10,
-//               //   ),
-//               // ),
-//               SliverList(
-//                 delegate: SliverChildListDelegate([
-//                   Container(
-//                       child: FutureBuilder(
-//                           future: futurecloth,
-//                           builder: (context, snapshot) {
-//                             if (snapshot.hasData) {
-//                               int index = snapshot.data!.length;
-//                               return ProductItem(
-//                                 imageUrl: snapshot.data![index].s3_img_url,
-//                                 productName: snapshot.data![index].goods_name,
-//                                 price: '\$${(index + 1) * 10}',
-//                               );
-//                             } else if (snapshot.hasError) {
-//                               return Text('${snapshot.hasError}');
-//                             }
-//                             return const CircularProgressIndicator();
-//                           }))
-//                 ]),
-//               ),
-
-//               // FutureBuilder<List<cloth>>(
-//               //     future: futurecloth,
-//               //     builder: (context, snapshot){
-//               //       if (snapshot.hasData) {
-//               //         return ListView.builder(
-//               //             itemCount: snapshot.data!.length,
-//               //             itemBuilder: (context, index) {
-//               //               cloth goods = snapshot.data![index];
-//               //               return Card(
-//               //                 child: ListTile(
-//               //                   title: Text(goods.id.toString()),
-//               //                 ),
-//               //               );
-//               //             });
-//               //       } else if (snapshot.hasError) {
-//               //         return Text('${snapshot.hasError}');
-//               //       }
-//               //       return const CircularProgressIndicator();
-//               //     }
-//               // ),
-//               SliverGrid(
-//                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                   crossAxisCount: 2,
-//                   childAspectRatio: 0.7,
-//                   mainAxisSpacing: 16.0,
-//                   crossAxisSpacing: 16.0,
-//                 ),
-//                 delegate: SliverChildBuilderDelegate(
-//                   (BuildContext context, int index) {
-//                     return ProductItem(
-//                       imageUrl: 'assets/clothes/product-image.jpg',
-//                       productName: 'Product Name $index',
-//                       price: '\$${(index + 1) * 10}',
-//                     );
-//                   },
-//                   childCount: 20,
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ],
-//     );
-//   }
 }
 
 class Product {
-  final String id;
   final String name;
-  final String brand;
+  final int price;
   final String imageUrl;
-  // final String favorite;
 
-  const Product({
-    required this.id,
-    required this.name,
-    required this.brand,
-    required this.imageUrl,
-    // required this.favorite
-  });
+  const Product(
+      {required this.name, required this.price, required this.imageUrl});
 }
 
 class ProductItem extends StatelessWidget {
-  final String id;
   final String imageUrl;
   final String productName;
-  final String brand;
-  // final String favorite;
+  final String price;
 
-  ProductItem({
+  const ProductItem({
     Key? key,
-    required this.id,
     required this.imageUrl,
     required this.productName,
-    required this.brand,
-    // required this.favorite,
+    required this.price,
   }) : super(key: key);
-
-  // FavoriteFormData formData = FavoriteFormData();
-  // bool isLiked = false;
-
-  // onFavorite() async {
-  //   //찜 API 연결
-  //   formData.user_id = "test";
-  //   formData.goods_id = id.toString();
-  //   setState((){
-  //     isLiked = !isLiked;
-  //   });
-  //   var result = await http.post(
-  //     Uri.parse('http://35.84.85.252:8000/goods/dips/add'),
-  //     body: json.encode(formData.toJson()),
-  //   );
-  //   if (result.statusCode != 200) {
-  //     print("찜 추가 실패");
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => DetailScreen(
-                      item: ProductItem(
-                          id: id,
-                          imageUrl: imageUrl,
-                          productName: productName,
-                          brand: brand))));
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(10.0),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 2,
-                blurRadius: 5,
-                offset: Offset(0, 3),
-              ),
-            ],
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 3),
           ),
-          child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 3,
-              ),
-              // Stack(
-              //   children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: Image.network(
-                  imageUrl,
-                  height: 170.0,
-                  width: 170.0,
-                ),
-              ),
-              SizedBox(height: 5.0),
-              Row(children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 7),
-                  child: Text(
-                    brand,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-                SizedBox(width: 60),
-                IconButton(
-                  onPressed: () {},
-                  //alignment: Alignment.centerLeft,
-                  color: Color.fromARGB(255, 255, 174, 53),
-                  icon: Icon(Icons.favorite),
-                  iconSize: 20.0,
-                ),
-              ]),
-              // SizedBox(height: 3.0),
-              Row(children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 7),
-                  child: Text(
-                    productName,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ]),
-            ],
+        ],
+      ),
+      child: Column(
+        children: [
+          Image.asset(
+            imageUrl,
+            height: 150.0,
+            width: 150.0,
           ),
-        ));
+          SizedBox(height: 10.0),
+          Text(
+            productName,
+            style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(height: 5.0),
+          Text(
+            price,
+            style: TextStyle(
+              fontSize: 14.0,
+              color: Colors.grey,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -520,6 +297,15 @@ class TabBarDelegate extends SliverPersistentHeaderDelegate {
               ),
             ),
           ),
+          // Tab(
+          //   child: Container(
+          //     padding: const EdgeInsets.symmetric(horizontal: 8),
+          //     color: Colors.white,
+          //     child: const Text(
+          //       "하의",
+          //     ),
+          //   ),
+          // ),
         ],
         indicatorWeight: 2,
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -582,3 +368,38 @@ class CategoryBreadcrumbs extends SliverPersistentHeaderDelegate {
     return false;
   }
 }
+
+// class ClothesPage extends StatelessWidget {
+//   const ClothesPage({Key? key}) : super(key: key);
+//   @override
+//   Widget build(BuildContext context) {
+//     return DefaultTabController(
+//       length: /*탭바의 수 만큼 */,
+//       child: CustomScrollView(
+//         slivers: [
+//           SliverAppBar(),
+//           SliverPersistentHeader(delegate: /*탭바*/ ),
+//           SliverFillRemaining(
+//             // 탭바 뷰 내부에는 스크롤이 되는 위젯이 들어옴.
+//             hasScrollBody: true,
+//             child: TabBarView(),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// return Scaffold(
+//       // appBar: AppBar(
+//       //   title: Text("Screen A page"),
+//       // ),
+//       body: Center(
+//         child: ElevatedButton(
+//           child: Text("Go to Screen A Page"),
+//           onPressed: () {
+//             Navigator.pop(context);
+//           },
+//         ),
+//       ),
+//     );

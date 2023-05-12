@@ -323,32 +323,6 @@ class _BottomPart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            TextButton(onPressed: () {}, child: const Text('아이디찾기')),
-            TextButton(onPressed: () {}, child: const Text('비밀번호찾기')),
-<<<<<<< HEAD
-            TextButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => SignUpScreen()));
-                },
-                child: const Text('회원가입')),
-=======
-            TextButton(onPressed: () {
-              Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => SignUpScreen()));
-            }, child: const Text('회원가입')),
->>>>>>> upstream/Frontend
-          ],
-        ),
-      ],
-=======
     return GestureDetector(
       onTap: onTextPressed,
       child: Row(
@@ -360,7 +334,6 @@ class _BottomPart extends StatelessWidget {
           ),
         ],
       ),
->>>>>>> upstream/Frontend
     );
   }
 }
