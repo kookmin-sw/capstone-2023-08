@@ -42,8 +42,7 @@ class cloth {
 }
 
 Future<List<cloth>> fetchcloth() async {
-  String token =
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0MjI3NjE3LCJpYXQiOjE2ODM2MjI4MTcsImp0aSI6IjU2ODk1ZWQxNDk1ZTRiMTY5Njc4MDZjYmU2NTkxZmZmIiwidXNlcl9pZCI6InRlc3QifQ.LreSws7aQTNVhfWZCyVhEH0FfND72OsFoGOfAqCKWCY';
+  String token = '';
   final response = await http.get(
       Uri.parse('http://35.84.85.252:8000/goods/cloth-list'),
       headers: {'Authorization': 'Bearer $token'});
@@ -114,26 +113,26 @@ class ShoppingScreen extends StatelessWidget {
             headerSliverBuilder: (context, innerBoxIsScrolled) {
               return [
                 SliverAppBar(
-                    pinned: true,
-                    floating: true,
-                    forceElevated: innerBoxIsScrolled,
-                    toolbarHeight: 50,
-                    elevation: 0,
-                    backgroundColor: Colors.white,
-                    automaticallyImplyLeading: true,
-                    leading: IconButton(
-                          //alignment: Alignment.bottomLeft,
-                          icon: Icon(Icons.arrow_back_ios_new_rounded),
-                          color: Colors.black,
-                          // iconSize: 20.0,
-                          onPressed: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => MyApp()));
-                          },
-                        ),
+                  pinned: true,
+                  floating: true,
+                  forceElevated: innerBoxIsScrolled,
+                  toolbarHeight: 50,
+                  elevation: 0,
+                  backgroundColor: Colors.white,
+                  automaticallyImplyLeading: true,
+                  leading: IconButton(
+                    //alignment: Alignment.bottomLeft,
+                    icon: Icon(Icons.arrow_back_ios_new_rounded),
+                    color: Colors.black,
+                    // iconSize: 20.0,
+                    onPressed: () {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => MyApp()));
+                    },
                   ),
+                ),
                 // 변경사항
                 SliverOverlapAbsorber(
                   handle:
@@ -433,55 +432,50 @@ class ProductItem extends StatelessWidget {
               // Stack(
               //   children: [
               ClipRRect(
-                    borderRadius: BorderRadius.circular(10.0),
-                    child: Image.network(
-                      imageUrl,
-                      height: 170.0,
-                      width: 170.0,
-                    ),
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image.network(
+                  imageUrl,
+                  height: 170.0,
+                  width: 170.0,
+                ),
               ),
               SizedBox(height: 5.0),
-              Row(
-                children:[
-                  
-              Padding(
-                padding: EdgeInsets.only(left: 7),
-                child: Text(
-                  brand,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    color: Colors.grey,
+              Row(children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 7),
+                  child: Text(
+                    brand,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      color: Colors.grey,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(width : 60),
-              IconButton(
-                            onPressed: (){},
-                            //alignment: Alignment.centerLeft,
-                            color: Color.fromARGB(255,255,174,53),
-                            icon: Icon(Icons.favorite),
-                            iconSize: 20.0,
-                          ),
-                ]
-              ),
+                SizedBox(width: 60),
+                IconButton(
+                  onPressed: () {},
+                  //alignment: Alignment.centerLeft,
+                  color: Color.fromARGB(255, 255, 174, 53),
+                  icon: Icon(Icons.favorite),
+                  iconSize: 20.0,
+                ),
+              ]),
               // SizedBox(height: 3.0),
-              Row(
-                children : [
-              Padding(
-                padding: EdgeInsets.only(left: 7),
-                child: Text(
-                  productName,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+              Row(children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 7),
+                  child: Text(
+                    productName,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-                ]
-              ),
+              ]),
             ],
           ),
         ));

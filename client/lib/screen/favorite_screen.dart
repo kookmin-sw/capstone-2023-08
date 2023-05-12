@@ -66,8 +66,7 @@ class ForFavorite {
 }
 
 Future<List<cloth>> fetchcloth() async {
-  String token =
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0MjI3NjE3LCJpYXQiOjE2ODM2MjI4MTcsImp0aSI6IjU2ODk1ZWQxNDk1ZTRiMTY5Njc4MDZjYmU2NTkxZmZmIiwidXNlcl9pZCI6InRlc3QifQ.LreSws7aQTNVhfWZCyVhEH0FfND72OsFoGOfAqCKWCY';
+  String token = '';
   ForFavorite formData = ForFavorite();
   formData.user = 'test';
   final response = await http.post(
@@ -341,9 +340,7 @@ class ProductItem extends StatelessWidget {
                   brand,
                   textAlign: TextAlign.left,
                   style: TextStyle(
-                    fontSize: 12.0,
-                    color: Color.fromARGB(255, 71, 71, 71)
-                  ),
+                      fontSize: 12.0, color: Color.fromARGB(255, 71, 71, 71)),
                 ),
               ),
               SizedBox(height: 3.0),

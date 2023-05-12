@@ -58,9 +58,7 @@ class _DetailScreenState extends State<DetailScreen> {
 
   onFavorite() async {
     //찜 API 연결
-    String token =
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg0MjI3NjE3LCJpYXQiOjE2ODM2MjI4MTcsImp0aSI6IjU2ODk1ZWQxNDk1ZTRiMTY5Njc4MDZjYmU2NTkxZmZmIiwidXNlcl9pZCI6InRlc3QifQ.LreSws7aQTNVhfWZCyVhEH0FfND72OsFoGOfAqCKWCY';
-
+    String token = '';
     formData.user_id = "test";
     formData.goods_id = widget.item.id.toString();
 
@@ -135,13 +133,12 @@ class _DetailScreenState extends State<DetailScreen> {
                           IconButton(
                             onPressed: onFavorite,
                             //alignment: Alignment.centerLeft,
-                            color: Color.fromARGB(255,255,174,53),
+                            color: Color.fromARGB(255, 255, 174, 53),
                             icon: Icon(isLiked
                                 ? Icons.favorite
                                 : Icons.favorite_outline_outlined),
                             iconSize: 20.0,
                           ),
-                          
                           SizedBox(width: 20),
                           Container(
                             //alignment: Alignment.centerRight,
