@@ -189,8 +189,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 try {
                                   response = await dio.get(
                                     SIGN_UP_URL,
-                                    data: json.encode(
-                                        {'user_id': _idController.text.toString()}),
+                                    data: json.encode({
+                                      'user_id': _idController.text.toString()
+                                    }),
                                   );
                                   if (response.statusCode == 205) {
                                   } else {
@@ -261,21 +262,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 45.0,
                       child: ElevatedButton(
                         onPressed: /*isValid()
-                            ? */() async {
-                                if (_formKey.currentState!.validate() &&
-                                    isIdValidate) {
-                                  print('camera start');
-                                  List<CameraDescription> cameras =
-                                      await availableCameras();
+                            ? */
+                            () async {
+                          if (_formKey.currentState!.validate() &&
+                              isIdValidate) {
+                            print('camera start');
+                            List<CameraDescription> cameras =
+                                await availableCameras();
 
-                                  print('available camera ${cameras.isEmpty}');
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (_) => CameraScreen(
-                                          cameras: cameras,
-                                          userInfo: userInfo)));
-                                }
-                              }
-                            /*: null*/,
+                            print('available camera ${cameras.isEmpty}');
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (_) => CameraScreen(
+                                    cameras: cameras, userInfo: userInfo)));
+                          }
+                        } /*: null*/,
+
                         child: Text('촬영하고 회원가입하기'),
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
