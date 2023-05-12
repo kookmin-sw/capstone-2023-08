@@ -276,6 +276,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     cameras: cameras, userInfo: userInfo)));
                           }
                         } /*: null*/,
+
                         child: Text('촬영하고 회원가입하기'),
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
