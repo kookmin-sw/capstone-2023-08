@@ -37,7 +37,7 @@ class AlertButton extends StatelessWidget {
             ),
             backgroundColor: backgroundColor,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(5.0),
             ),
           ),
         ),
@@ -69,7 +69,7 @@ class BasicAlertDialog extends StatelessWidget {
     return AlertDialog(
       insetPadding: EdgeInsets.symmetric(horizontal: 16.0),
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10.0))),
+          borderRadius: BorderRadius.all(Radius.circular(5.0))),
       content: Builder(
         builder: (context) {
           var height = MediaQuery.of(context).size.height;
@@ -134,7 +134,7 @@ class BasicAlertDialog extends StatelessWidget {
             title,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: PRIMARY_COLOR,
+              color: PRIMARY_BLACK_COLOR,
               fontSize: 18,
               fontWeight: FontWeight.w500,
             ),

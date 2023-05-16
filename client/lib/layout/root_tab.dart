@@ -1,10 +1,13 @@
 import 'package:client/screen/fail_screen.dart';
 import 'package:client/screen/home_screen.dart';
 import 'package:client/screen/login_screen.dart';
+import 'package:client/screen/my_page_screen.dart';
 import 'package:client/screen/test_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../constant/colors.dart';
+import '../screen/loading_screen.dart';
+import '../screen/loading_success_screen.dart';
 import 'default_layout.dart';
 
 class RootTab extends StatefulWidget {
@@ -42,7 +45,7 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return DefaultLayout(
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: PRIMARY_COLOR,
+        selectedItemColor: PRIMARY_BLACK_COLOR,
         unselectedItemColor: BODY_TEXT_COLOR,
         selectedFontSize: 12.0,
         unselectedFontSize: 12.0,
@@ -72,7 +75,7 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
         children: [
           HomeScreen(),
           Center(child: Text('찜'),),
-          LoginScreen(),
+          MyPageScreen(),
         ],
       ),
     );

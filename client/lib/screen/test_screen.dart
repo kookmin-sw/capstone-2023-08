@@ -38,6 +38,14 @@ class TestScreen extends ConsumerWidget { // 1. secure storage를 받아오기 �
                 );
                 // api 요청시 붙이기 끝 -----------------------------------------------
 
+                // dio를 한번만 생성하고 싶은 경우
+                /*
+                dio.options.headers = {'accessToken':'true'};
+                dio.interceptors.add(
+                  CustomInterceptor(storage: storage),
+                );
+                */
+
                 Response response;
                 try {
                   response = await dio.get(

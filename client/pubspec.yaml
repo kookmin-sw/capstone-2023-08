@@ -38,6 +38,7 @@ dependencies:
   camera: ^0.10.3+2
   carousel_slider: ^4.0.0
   dots_indicator: ^2.0.0
+  image: ^4.0.17
   image_picker: ^0.8.7
   image_gallery_saver: ^1.7.1
   http: ^0.13.5
@@ -51,7 +52,13 @@ dependencies:
   retrofit: ^4.0.1
   logger: any  #for logging purpose
   flutter_riverpod: ^2.3.6
+  path_provider:
   provider: ^6.0.5
+  webview_flutter: ^2.8.0
+  introduction_screen: ^3.1.8
+  flutter_native_splash: ^2.2.19
+  flutter_gif: ^0.0.4
+  animated_snack_bar: ^0.3.1
 
 dev_dependencies:
   flutter_test:
@@ -81,8 +88,31 @@ flutter:
 
   assets:
     - asset/img/
+    - asset/clothes/
     - assets/
     - assets/clothes/
+
+  fonts:
+    - family: pretendard
+      fonts:
+        - asset: asset/font/Pretendard-Thin.ttf
+          weight: 100
+        - asset: asset/font/Pretendard-ExtraLight.ttf
+          weight: 200
+        - asset: asset/font/Pretendard-Light.ttf
+          weight: 300
+        - asset: asset/font/Pretendard-Regular.ttf
+          weight: 400
+        - asset: asset/font/Pretendard-Medium.ttf
+          weight: 500
+        - asset: asset/font/Pretendard-SemiBold.ttf
+          weight: 600
+        - asset: asset/font/Pretendard-Bold.ttf
+          weight: 700
+        - asset: asset/font/Pretendard-ExtraBold.ttf
+          weight: 800
+        - asset: asset/font/Pretendard-Black.ttf
+          weight: 900
 
   # To add assets to your application, add an assets section, like this:
   # assets:

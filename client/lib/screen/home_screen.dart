@@ -3,6 +3,7 @@ import 'package:client/screen/result_all_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'clotheslist_screen.dart';
+import 'gallery_pick_screen.dart';
 
 final imageList = [
   Image.asset('assets/image1.jpg', fit: BoxFit.cover),
@@ -114,7 +115,7 @@ class HomeScreen extends StatelessWidget {
                 ])),
             onPressed: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => FittingScreen())
+                MaterialPageRoute(builder: (_) => GalleryPickScreen())
               );
             },
             style: ElevatedButton.styleFrom(

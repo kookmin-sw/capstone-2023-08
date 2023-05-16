@@ -1,51 +1,66 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:client/layout/default_layout.dart';
+import 'package:client/layout/root_tab.dart';
 import 'package:client/screen/fail_screen.dart';
-import 'package:client/screen/signup_result_screen.dart';
-import 'package:client/screen/signup_success.dart';
+import 'package:client/secure_storage/secure_storage.dart';
+import '../constant/page_url.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../component/default_dialog.dart';
-import '../constant/colors.dart';
-import '../constant/page_url.dart';
-import '../data/account_model.dart';
+import '../dio/dio.dart';
 
-class CameraResult extends StatelessWidget {
-  final AccountModel userInfo;
-  final XFile image;
+class CameraResult extends ConsumerWidget {
+  final File image;
 
-  const CameraResult({
-    required this.userInfo,
+  CameraResult({
     required this.image,
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     Size screenSize = MediaQuery.of(context).size;
     double width = screenSize.width;
     double height = screenSize.height;
     final dio = Dio();
+    final storage = ref.read(secureStorageProvider);
 
-    void goFailedScreen () {
+    void goFailedScreen() {
       Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (_) => FailScreen()),
-              (route) => false);
+          MaterialPageRoute(builder: (_) => FailScreen()), (route) => false);
     }
 
-    Future<String> getPresignedUrl() async {
+    Future<String> getUserInfoFromStorage() async {
+      String user_id = '';
+
+      final temp = await storage.read(key: USER_ID);
+      if (temp == null) return '';
+      user_id = temp;
+
+      return user_id;
+    }
+
+    Future<String> getPresignedUrl(String id) async {
       try {
-        String userImgUrl = userInfo.user_img_url.toString();
-        String url = GET_PRESIGNED_URL;
+        String bucket_name = 'user-human-img';
+        String image_name = '${id}_human.png';
+
+        dio.options.headers = {'accessToken':'true'};
+        dio.interceptors.add(
+          CustomInterceptor(storage: storage),
+        );
+
         Response response = await dio.request(
-          url,
+          GET_PRESIGNED_URL,
           data: <String, String>{
-            'bucket_name': 'user-human-img',
-            'file_path': userImgUrl},
+            'bucket_name': bucket_name,
+            'file_path': image_name
+          },
           options: Options(method: 'GET'),
         );
         print(response.data['data']);
@@ -55,11 +70,11 @@ class CameraResult extends StatelessWidget {
         print(e);
         goFailedScreen();
       }
+      goFailedScreen();
       return '';
     }
 
-    Future<bool> uploadToSignedURL(
-        {required File file, required String url}) async {
+    Future<bool> uploadToPresignedURL(File file, String url) async {
       Response response;
       try {
         response = await dio.put(
@@ -82,26 +97,79 @@ class CameraResult extends StatelessWidget {
       }
     }
 
-    Future<void> getImageAndUpload() async {
-      if (image == null) return; // 1. image 객체 null 처리
+    Future<bool> getImageAndUpload(String id) async {
+      if (image == null) return false; // 1. image 객체 null 처리
 
       // 2. presigned url 생성 확인
-      String url = await getPresignedUrl();
+      String url = await getPresignedUrl(id);
 
       // 3. S3 upload
-      bool isUploaded = await uploadToSignedURL(file: File(image.path), url: url);
-      print(isUploaded);
+      bool isUploaded = await uploadToPresignedURL(image, url);
+
+      return isUploaded;
     }
 
-    void onSignupPressed() async {
-      await getImageAndUpload();
+    Future<bool> requestHumanParsingData(String id) async {
+      try {
+        final storage = ref.read(secureStorageProvider);
+        dio.options.headers = {'accessToken': 'true'};
+        dio.interceptors.add(
+          CustomInterceptor(storage: storage),
+        );
+        await dio.post(
+          HUMAN_INFER_URL,
+          data: json.encode({
+            'human_img_path': '${id}_human.png',
+            'user_id': id,
+          }),
+        );
+      } on DioError catch (e) {
+        print(e.response);
+        return false;
+      }
+      return true;
+    }
 
-      Navigator.of(context).push(
-        MaterialPageRoute(builder: (_) => SignupResultScreen(userInfo: userInfo)),
-      );
+    void onPictureUpdatePressed() async {
+      String id = await getUserInfoFromStorage();
+      await getImageAndUpload(id);
+      // await requestHumanParsingData(id); todo: 주석 풀기 (완전 테스트용)
+
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => RootTab()), (route) => false);
+
+      AnimatedSnackBar(
+        duration: Duration(seconds: 2),
+        mobileSnackBarPosition: MobileSnackBarPosition.bottom,
+        builder: ((context) {
+          return Container(
+            width: width,
+            padding:
+            const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+            height: 50,
+            decoration: BoxDecoration(
+              color: Color(0xDD000000),
+              borderRadius: BorderRadius.all(
+                Radius.circular(5.0),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Icon(Icons.check, color: Colors.white,),
+                SizedBox(width: 16.0,),
+                const Text(
+                  '사진이 저장되었습니다!',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+          );
+        }),
+      ).show(context);
     }
 
     void onReturnPressed() {
+      Navigator.of(context).pop();
       Navigator.of(context).pop();
     }
 
@@ -112,7 +180,10 @@ class CameraResult extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: Image.file(File(image.path), fit: BoxFit.fitWidth,),
+            child: Image.file(
+              image,
+              fit: BoxFit.fitWidth,
+            ),
           ),
           Container(
             width: double.infinity,
@@ -127,18 +198,19 @@ class CameraResult extends StatelessWidget {
                     height: 50.0,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: PRIMARY_BLACK_COLOR,
+                        backgroundColor: Color(0xFF2c2c2c),
                       ),
                       onPressed: () async {
                         return showDialog(
                           context: context,
                           builder: (context) {
                             return BasicAlertDialog(
-                              title: '이 사진으로 가입할까요?',
+                              title: '이 사진으로 저장할까요?',
                               leftButtonText: '다시찍기',
-                              rightButtonText: '회원가입',
+                              rightButtonText:
+                                  '사진저장',
                               onLeftButtonPressed: onReturnPressed,
-                              onRightButtonPressed: onSignupPressed,
+                              onRightButtonPressed: onPictureUpdatePressed,
                             );
                           },
                         );
