@@ -138,3 +138,14 @@ class EditUserInfoView(ModelViewSet):
 
         return JsonResponse({'message' : '사진 등록이 완료되었습니다.'},
                             status = status.HTTP_200_OK)
+
+
+@permission_classes([IsAuthenticated])
+class LogoutView(ModelViewSet):
+    @action(methods=['POST'], detail=False)
+    def logout(self, request):
+        res = JsonResponse({'message' : 'success'})
+        res.delete_cookie('access_token')
+        res.delete_cookie('refresh_token')
+
+        return res

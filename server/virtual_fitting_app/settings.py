@@ -34,6 +34,8 @@ ALLOWED_HOSTS = ['35.84.85.252']
 
 AUTH_USER_MODEL = 'accounts.User'
 
+LOGOUT_REDIRECTED_URL = '/account/sign-in'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

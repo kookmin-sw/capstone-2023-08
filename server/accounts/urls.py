@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import SignUpView, SignInView, EditUserInfoView
+from .views import SignUpView, SignInView, EditUserInfoView, LogoutView
 
 urlpatterns = [
     path('check-id', SignUpView.as_view({'get' : 'id_validator'})),
@@ -9,4 +9,5 @@ urlpatterns = [
     path('edit-name', EditUserInfoView.as_view({'post' : 'edit_username'})),
     path('change-pw', EditUserInfoView.as_view({'post' : 'change_password'})),
     path('add-imgurl', EditUserInfoView.as_view({'post' : 'add_user_img_url'})),
+    path('logout', LogoutView.as_view({'post' : 'logout'}))
 ]
