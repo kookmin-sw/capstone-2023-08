@@ -3,7 +3,7 @@ from django.views import View
 from django.http import JsonResponse
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action, permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import status
@@ -93,3 +93,22 @@ class SignInView(View):
                 return JsonResponse({'message' : '비밀번호가 틀립니다. 다시한번 확인해주세요'}, status=status.HTTP_400_BAD_REQUEST)
         
         return JsonResponse({'message' : '등록되지 않은 아이디입니다.'}, status=status.HTTP_400_BAD_REQUEST)
+
+@permission_classes([IsAuthenticated])
+class EditUserInfoView(ModelViewSet):
+    @action(methods=['POST'], detail=False)
+    def edit_username(self, request):
+        user_id = request.user
+        data = json.loads(request.body)
+
+        # update username
+        user = User.objects.get(user_id=user_id)
+        user.user_name = data['new_username']
+        user.save()
+
+        # return new user info
+        serializer = UserSerializer(user)
+        return JsonResponse({
+                    'message' : '닉네임 변경이 완료되었습니다.',
+                    'User' : serializer.data},
+                    status = status.HTTP_200_OK)
