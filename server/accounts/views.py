@@ -112,3 +112,16 @@ class EditUserInfoView(ModelViewSet):
                     'message' : '닉네임 변경이 완료되었습니다.',
                     'User' : serializer.data},
                     status = status.HTTP_200_OK)
+
+    @action(methods=['POST'], detail=False)
+    def change_password(self, request):
+        user_id = request.user
+        data = json.loads(request.body)
+
+        # update username
+        user = User.objects.get(user_id=user_id)
+        user.password = data['new_password']
+        user.save()
+
+        return JsonResponse({'message' : '비밀번호 변경이 완료되었습니다.'},
+                            status = status.HTTP_200_OK)

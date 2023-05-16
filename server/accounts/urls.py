@@ -6,5 +6,6 @@ urlpatterns = [
     path('check-name', SignUpView.as_view({'get' : 'name_validator'})),
     path('sign-up', SignUpView.as_view({'post' : 'post'})),
     path('sign-in', SignInView.as_view()),
-    path('edit-name', EditUserInfoView.as_view({'post' : 'edit_username'}))
+    path('edit-name', EditUserInfoView.as_view({'post' : 'edit_username'})),
+    path('change-pw', EditUserInfoView.as_view({'post' : 'change_password'})),
 ]
