@@ -46,21 +46,25 @@ class SignUpView(ModelViewSet):
     def post(self, request):
         data = json.loads(request.body)
         
+        user = User()
         try:
-            user = User(
-                user_id = data['user_id'],
-                user_name = data['user_name'],
-                password = data['password'],
-                user_img_url = data['user_img_url']
-            )
+            user.user_img_url = data['user_img_url']
+        except KeyError:
+            pass
+        
+        try:
+            user.user_id = data['user_id']
+            user.user_name = data['user_name']
+            user.password = data['password']
+            
             user.save()
             res = JsonResponse({'message' : '회원가입이 완료되었습니다.'}, status=status.HTTP_201_CREATED)
             
             return res
-        
+
         except KeyError:
             return JsonResponse({'error' : 'all form must be filled.'}, status=status.HTTP_400_BAD_REQUEST)
-            
+
 
 class SignInView(View):
     def post(self, request):
