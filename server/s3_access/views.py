@@ -6,6 +6,7 @@ from rest_framework.decorators import action, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.http import JsonResponse
 
+
 @permission_classes([IsAuthenticated])
 class CreatePresignedUrl(ModelViewSet):
 
