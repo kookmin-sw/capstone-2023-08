@@ -118,13 +118,32 @@ class EditUserInfoView(ModelViewSet):
         user_id = request.user
         data = json.loads(request.body)
 
-        # update username
         user = User.objects.get(user_id=user_id)
+        # check password is valid
+        if user.password != data['origin_password']:
+            return JsonResponse({'message' : '현재 비밀번호가 일치하지 않습니다.'},
+                            status = status.HTTP_205_RESET_CONTENT)
+
+        # update password
         user.password = data['new_password']
         user.save()
 
-        return JsonResponse({'message' : '비밀번호 변경이 완료되었습니다.'},
+        # token reissue
+        token = TokenObtainPairSerializer.get_token(user)
+        refresh_token = str(token)
+        access_token = str(token.access_token)
+
+        res =  JsonResponse({'message' : '비밀번호 변경이 완료되었습니다.',
+                            'jwt_token': {
+                                            'access_token' : access_token,
+                                            'refresh_token' : refresh_token
+                                        }
+                            },
                             status = status.HTTP_200_OK)
+
+        res.set_cookie('access_token', access_token, httponly=True)
+        res.set_cookie('refresh_token', refresh_token, httponly=True)
+        return res
 
     @action(methods=['POST'], detail=False)
     def add_user_img_url(self, request):
