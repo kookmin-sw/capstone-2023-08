@@ -8,4 +8,5 @@ urlpatterns = [
     path('sign-in', SignInView.as_view()),
     path('edit-name', EditUserInfoView.as_view({'post' : 'edit_username'})),
     path('change-pw', EditUserInfoView.as_view({'post' : 'change_password'})),
+    path('add-imgurl', EditUserInfoView.as_view({'post' : 'add_user_img_url'})),
 ]

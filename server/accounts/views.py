@@ -125,3 +125,16 @@ class EditUserInfoView(ModelViewSet):
 
         return JsonResponse({'message' : '비밀번호 변경이 완료되었습니다.'},
                             status = status.HTTP_200_OK)
+
+    @action(methods=['POST'], detail=False)
+    def add_user_img_url(self, request):
+        user_id = request.user
+        data = json.loads(request.body)
+
+        # update user_img_url
+        user = User.objects.get(user_id=user_id)
+        user.user_img_url = data['user_img_url']
+        user.save()
+
+        return JsonResponse({'message' : '사진 등록이 완료되었습니다.'},
+                            status = status.HTTP_200_OK)
