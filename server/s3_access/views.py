@@ -1,10 +1,16 @@
 import json
 import boto3
 import botocore
-from django.views import View
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.decorators import action, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from django.http import JsonResponse
 
-class CreatePresignedUrl(View):
+
+@permission_classes([IsAuthenticated])
+class CreatePresignedUrl(ModelViewSet):
+
+    @action(methods=['get'], detail=False)
     def get(self, request):
         data = json.loads(request.body)
         
