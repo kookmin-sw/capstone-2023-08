@@ -55,6 +55,7 @@ dependencies:
   webview_flutter: ^2.8.0
   shared_preferences: ^2.0.10
   image: ^3.1.3
+  path_provider: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -84,7 +85,7 @@ flutter:
 
   assets:
     - asset/img/
-    - assets/
+    - asset/
     - assets/clothes/
 
   # To add assets to your application, add an assets section, like this:
@@ -103,17 +104,27 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  fonts:
+    - family: pretendard
+      fonts:
+        - asset: asset/font/Pretendard-Thin.ttf
+          weight: 100
+        - asset: asset/font/Pretendard-ExtraLight.ttf
+          weight: 200
+        - asset: asset/font/Pretendard-Light.ttf
+          weight: 300
+        - asset: asset/font/Pretendard-Regular.ttf
+          weight: 400
+        - asset: asset/font/Pretendard-Medium.ttf
+          weight: 500
+        - asset: asset/font/Pretendard-SemiBold.ttf
+          weight: 600
+        - asset: asset/font/Pretendard-Bold.ttf
+          weight: 700
+        - asset: asset/font/Pretendard-ExtraBold.ttf
+          weight: 800
+        - asset: asset/font/Pretendard-Black.ttf
+          weight: 900
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
