@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 class UserManager(BaseUserManager) :
     # define user creation
-
     use_in_migrations = True    # for serialization
 
     def create_user(self, user_id, password, user_name, user_img_url) :
@@ -13,8 +12,6 @@ class UserManager(BaseUserManager) :
             raise ValueError('must have password')
         if not user_name : 
             raise ValueError('must have user name')
-        if not user_img_url :
-            raise ValueError('must have your body img')
     
         user = self.model(user_id=user_id,  
                           user_name=user_name, 
@@ -40,13 +37,14 @@ class UserManager(BaseUserManager) :
         return user
 
 class User(AbstractBaseUser) :
+    USERNAME_FIELD='user_id'
 
     objects = UserManager()
 
     user_id = models.CharField(max_length=20, unique=True, primary_key=True)
     password = models.CharField(max_length=20)
     user_name = models.CharField(max_length=10, unique=True)
-    user_img_url = models.URLField(unique=True)
+    user_img_url = models.URLField(unique=True, null=True)
 
     is_admin = models.BooleanField(default=False)
 
@@ -55,3 +53,4 @@ class User(AbstractBaseUser) :
 
     def _str_(self) :
         return "<%d %s %s>" %(self.pk, self.user_id, self.user_name)
+        
