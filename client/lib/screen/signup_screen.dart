@@ -269,7 +269,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             print('camera start');
                             List<CameraDescription> cameras =
                                 await availableCameras();
-
                             print('available camera ${cameras.isEmpty}');
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => CameraScreen(
