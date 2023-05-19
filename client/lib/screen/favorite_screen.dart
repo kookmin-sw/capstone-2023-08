@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
@@ -14,6 +15,7 @@ import '../main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'test_detail_screen.dart';
+
 import '../constant/page_url.dart';
 
 class cloth {
@@ -284,6 +286,7 @@ class Product {
       {required this.name, required this.price, required this.imageUrl});
 }
 
+
 class ProductItem extends ConsumerStatefulWidget {
   const ProductItem({
     Key? key,
@@ -538,7 +541,6 @@ class _productitem extends ConsumerState<ProductItem> {
         ));
   }
 }
-
 // class ProductItem extends StatelessWidget {
 //   final int id;
 //   final String imageUrl;

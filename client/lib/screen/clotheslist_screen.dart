@@ -14,12 +14,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'home_screen.dart';
 import 'shoppingmall_screen.dart';
 import '../main.dart';
+
 import 'dart:convert';
 import 'dart:async';
 import 'login_screen.dart';
 import 'test_detail_screen.dart';
+
 import '../constant/page_url.dart';
 import 'package:client/layout/root_tab.dart';
+
 
 class cloth {
   String id;
@@ -105,6 +108,12 @@ class ShoppingApp extends ConsumerWidget {
 
 class ShoppingScreen extends ConsumerWidget {
   const ShoppingScreen({Key? key}) : super(key: key);
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   futurecloth = fetchcloth();
+  // }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
