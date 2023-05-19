@@ -2,6 +2,7 @@ import 'package:client/layout/default_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+// 어플 소개 탭에서 여기로 이동
 final String homeUri = 'https://kookmin-sw.github.io/capstone-2023-08/';
 
 class AppHomePageScreen extends StatelessWidget {

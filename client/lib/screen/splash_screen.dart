@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:client/layout/default_layout.dart';
-import 'package:client/screen/my_page_screen.dart';
+import 'package:client/screen/onboarding_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -39,13 +39,17 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     final storage = ref.read(secureStorageProvider);
 
     final firstLogin = await storage.read(key: FIRST_LOGIN);
-    if (firstLogin == 'true') { // todo : 백엔드 설정에 따라 바꾸기
+    final userId = await storage.read(key: USER_ID);
+    final userName = await storage.read(key: USER_NAME);
+
+    if (firstLogin == 'true') {
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
-          builder: (_) => LoginScreen(),
+          builder: (_) => OnBoardingPage(),
         ),
-            (route) => false,
+        (route) => false,
       );
+      return;
     }
 
     final refreshToken = await storage.read(key: REFRESH_TOKEN_KEY);
@@ -119,38 +123,40 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                       ),
                       SizedBox(width: 32),
                       ShowUp(
-                          child: Text(
-                            '어디서든',
-                            style: TextStyle(
-                                fontSize: 32,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white),
-                          ),
-                          delay: delayAmount,
-                          offset_dx: -0.35,
-                          offset_dy: 0.0),
+                        delay: delayAmount,
+                        offset_dx: -0.35,
+                        offset_dy: 0.0,
+                        child: const Text(
+                          '어디서든',
+                          style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white),
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(
-                    height: 16.0,
-                  ),
+                  const SizedBox(height: 16.0),
                   Row(
                     children: [
                       Image.asset(
                         'asset/img/long_line.png',
                         width: width * 0.15,
                       ),
-                      SizedBox(width: 32),
+                      const SizedBox(width: 32),
                       ShowUp(
-                          child: Text('입어보는',
-                              style: TextStyle(
-                                fontSize: 32,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                              )),
-                          delay: delayAmount,
-                          offset_dx: -0.35,
-                          offset_dy: 0.0),
+                        delay: delayAmount,
+                        offset_dx: -0.35,
+                        offset_dy: 0.0,
+                        child: const Text(
+                          '입어보는',
+                          style: TextStyle(
+                            fontSize: 28,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -173,6 +179,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 class ShowUp extends StatefulWidget {
   final Widget child;
   final int delay;
+  // ignore: non_constant_identifier_names
   final double offset_dx;
   final double offset_dy;
 
@@ -195,13 +202,14 @@ class _ShowUpState extends State<ShowUp> with TickerProviderStateMixin {
     super.initState();
 
     _animController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
     final curve =
         CurvedAnimation(curve: Curves.decelerate, parent: _animController);
     _animOffset = Tween<Offset>(
             begin: Offset(widget.offset_dx, widget.offset_dy), end: Offset.zero)
         .animate(curve);
 
+    // ignore: unnecessary_null_comparison
     if (widget.delay == null) {
       _animController.forward();
     } else {
@@ -220,11 +228,11 @@ class _ShowUpState extends State<ShowUp> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return FadeTransition(
+      opacity: _animController,
       child: SlideTransition(
         position: _animOffset,
         child: widget.child,
       ),
-      opacity: _animController,
     );
   }
 }

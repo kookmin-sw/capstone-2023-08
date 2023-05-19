@@ -4,13 +4,9 @@ import 'package:client/screen/camera_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
-import '../data/user_model.dart';
-
 class OnBoardingPage extends StatefulWidget {
-  final UserModel userInfo;
-  OnBoardingPage({
+  const OnBoardingPage({
     Key? key,
-    required this.userInfo,
   }) : super(key: key);
   @override
   State<OnBoardingPage> createState() => _OnBoardingPageState();

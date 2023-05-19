@@ -3,14 +3,15 @@ import 'package:client/constant/colors.dart';
 import 'package:client/layout/default_layout.dart';
 import 'package:client/screen/camera_screen.dart';
 import 'package:client/screen/splash_screen.dart';
-import 'package:client/screen/test_screen.dart';
 import 'package:client/screen/user_info_update_screen.dart';
 import 'package:client/secure_storage/secure_storage.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../component/default_dialog.dart';
 import '../constant/page_url.dart';
+import '../dio/dio.dart';
 import 'app_homepage_screen.dart';
 
 class MyPageScreen extends StatefulWidget {
@@ -29,55 +30,58 @@ class _MyPageScreenState extends State<MyPageScreen> {
     double height = screenSize.height;
 
     return DefaultLayout(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ProfileScreen(
-            width: width,
-            height: height,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 32.0, left: 16.0, right: 16.0),
-                  child: Text(
-                    '어플정보',
-                    style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF7C7C7C)),
-                  ),
-                ),
-                Divider(
-                  color: Color(0xFFF2F2F2),
-                  height: 24.0,
-                ),
-                ListTile(
-                  onTap: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) => AppHomePageScreen()));
-                  },
-                  title: Text('어플소개'),
-                  trailing: Icon(Icons.keyboard_arrow_right, color: Color(0xFFC6C6C6),),
-                ),
-                Divider(
-                  color: Color(0xFFF2F2F2),
-                  height: 10.0,
-                ),
-                LogoutButton(),
-                Divider(
-                  color: Color(0xFFF2F2F2),
-                  height: 16.0,
-                ),
-              ],
+      child: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ProfileScreen(
+              width: width,
+              height: height,
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 32.0, left: 16.0, right: 16.0),
+                    child: Text(
+                      '어플정보',
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF7C7C7C)),
+                    ),
+                  ),
+                  Divider(
+                    color: Color(0xFFF2F2F2),
+                    height: 24.0,
+                  ),
+                  ListTile(
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (_) => AppHomePageScreen()));
+                    },
+                    title: Text('어플소개'),
+                    trailing: Icon(Icons.keyboard_arrow_right, color: Color(0xFFC6C6C6),),
+                  ),
+                  Divider(
+                    color: Color(0xFFF2F2F2),
+                    height: 10.0,
+                  ),
+                  LogoutButton(),
+                  Divider(
+                    color: Color(0xFFF2F2F2),
+                    height: 16.0,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -221,9 +225,18 @@ class LogoutButton extends ConsumerWidget {
                 onLeftButtonPressed: () {
                   Navigator.of(context).pop();
                 },
-                onRightButtonPressed: () {
+                onRightButtonPressed: () async {
                   final storage = ref.watch(secureStorageProvider);
-                  storage.deleteAll();
+                  final dio = Dio();
+
+                  dio.options.headers = {'accessToken': 'true'};
+                  dio.interceptors.add(
+                    CustomInterceptor(storage: storage),
+                  );
+                  Response response = await dio.post(LOGOUT_URL);
+                  if (response.statusCode == 200) {
+                    await storage.deleteAll();
+                  }
 
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (_) => SplashScreen()),

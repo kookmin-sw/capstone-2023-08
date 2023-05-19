@@ -1,10 +1,9 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:animated_snack_bar/animated_snack_bar.dart';
+import 'package:client/data/upload_image.dart';
 import 'package:client/layout/default_layout.dart';
 import 'package:client/layout/root_tab.dart';
-import 'package:client/screen/fail_screen.dart';
 import 'package:client/secure_storage/secure_storage.dart';
 import '../constant/page_url.dart';
 import 'package:dio/dio.dart';
@@ -29,124 +28,57 @@ class CameraResult extends ConsumerWidget {
     double height = screenSize.height;
     final dio = Dio();
     final storage = ref.read(secureStorageProvider);
+    final upload = UploadImage(dio: dio, storage: storage, context: context, image: image);
 
-    void goFailedScreen() {
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (_) => FailScreen()), (route) => false);
-    }
+    void onPictureUpdatePressed() async {
+      String id = await upload.getUserInfoFromStorage();
+      await upload.getImageAndUpload(id);
+      // await upload.requestHumanParsingData(id); todo: 주석 풀기 (완전 테스트용)
 
-    Future<String> getUserInfoFromStorage() async {
-      String user_id = '';
+      final firstLogin = await storage.read(key: FIRST_LOGIN);
 
-      final temp = await storage.read(key: USER_ID);
-      if (temp == null) return '';
-      user_id = temp;
-
-      return user_id;
-    }
-
-    Future<String> getPresignedUrl(String id) async {
-      try {
-        String bucket_name = 'user-human-img';
-        String image_name = '${id}_human.png';
-
-        dio.options.headers = {'accessToken':'true'};
-        dio.interceptors.add(
-          CustomInterceptor(storage: storage),
-        );
-
-        Response response = await dio.request(
-          GET_PRESIGNED_URL,
-          data: <String, String>{
-            'bucket_name': bucket_name,
-            'file_path': image_name
-          },
-          options: Options(method: 'GET'),
-        );
-        print(response.data['data']);
-        print(response.statusCode);
-        return response.data['data'];
-      } catch (e) {
-        print(e);
-        goFailedScreen();
-      }
-      goFailedScreen();
-      return '';
-    }
-
-    Future<bool> uploadToPresignedURL(File file, String url) async {
-      Response response;
-      try {
-        response = await dio.put(
-          url,
-          data: file.openRead(),
-          options: Options(
-            contentType: "image/png",
-            headers: {
-              "Content-Length": file.lengthSync(),
-            },
-          ),
-        );
-        if (response.statusCode == 200) return true;
-        goFailedScreen();
-        return false;
-      } on DioError catch (e) {
-        print(e.response);
-        goFailedScreen();
-        return false;
-      }
-    }
-
-    Future<bool> getImageAndUpload(String id) async {
-      if (image == null) return false; // 1. image 객체 null 처리
-
-      // 2. presigned url 생성 확인
-      String url = await getPresignedUrl(id);
-
-      // 3. S3 upload
-      bool isUploaded = await uploadToPresignedURL(image, url);
-
-      return isUploaded;
-    }
-
-    Future<bool> requestHumanParsingData(String id) async {
-      try {
-        final storage = ref.read(secureStorageProvider);
+      // first_login -> 사진 저장한 경우
+      // 1. user_img_url update
+      // 2. first login = false로 변경
+      if (firstLogin == 'true') {
         dio.options.headers = {'accessToken': 'true'};
         dio.interceptors.add(
           CustomInterceptor(storage: storage),
         );
-        await dio.post(
-          HUMAN_INFER_URL,
-          data: json.encode({
-            'human_img_path': '${id}_human.png',
-            'user_id': id,
-          }),
-        );
-      } on DioError catch (e) {
-        print(e.response);
-        return false;
+
+        Response response;
+        try {
+          response = await dio.post(
+              UPDATE_IMG_URL,
+              data: {
+                'user_img_url': 's3://user-human-img/${id}_human.png',
+              }
+          );
+          if (response.statusCode == 200) {
+            await storage.write(key: FIRST_LOGIN, value: 'false');
+            print('first login and saved to s3');
+          }
+        } catch(e) {
+          print(e);
+        }
       }
-      return true;
-    }
 
-    void onPictureUpdatePressed() async {
-      String id = await getUserInfoFromStorage();
-      await getImageAndUpload(id);
-      // await requestHumanParsingData(id); todo: 주석 풀기 (완전 테스트용)
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (_) => RootTab()),
+            (route) => false,
+      );
 
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => RootTab()), (route) => false);
-
+      // ignore: use_build_context_synchronously
       AnimatedSnackBar(
-        duration: Duration(seconds: 2),
+        duration: const Duration(seconds: 2),
         mobileSnackBarPosition: MobileSnackBarPosition.bottom,
         builder: ((context) {
           return Container(
             width: width,
             padding:
-            const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
             height: 50,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color(0xDD000000),
               borderRadius: BorderRadius.all(
                 Radius.circular(5.0),
@@ -154,10 +86,15 @@ class CameraResult extends ConsumerWidget {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Icon(Icons.check, color: Colors.white,),
-                SizedBox(width: 16.0,),
-                const Text(
+              children: const [
+                Icon(
+                  Icons.check,
+                  color: Colors.white,
+                ),
+                SizedBox(
+                  width: 16.0,
+                ),
+                Text(
                   '사진이 저장되었습니다!',
                   style: TextStyle(color: Colors.white),
                 ),
@@ -207,8 +144,7 @@ class CameraResult extends ConsumerWidget {
                             return BasicAlertDialog(
                               title: '이 사진으로 저장할까요?',
                               leftButtonText: '다시찍기',
-                              rightButtonText:
-                                  '사진저장',
+                              rightButtonText: '사진저장',
                               onLeftButtonPressed: onReturnPressed,
                               onRightButtonPressed: onPictureUpdatePressed,
                             );

@@ -1,13 +1,8 @@
-import 'package:client/screen/fail_screen.dart';
 import 'package:client/screen/home_screen.dart';
-import 'package:client/screen/login_screen.dart';
 import 'package:client/screen/my_page_screen.dart';
-import 'package:client/screen/test_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../constant/colors.dart';
-import '../screen/loading_screen.dart';
-import '../screen/loading_success_screen.dart';
 import 'default_layout.dart';
 
 class RootTab extends StatefulWidget {

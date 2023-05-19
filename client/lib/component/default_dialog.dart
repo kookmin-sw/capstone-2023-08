@@ -21,14 +21,15 @@ class AlertButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: SizedBox(
-        height: 45.0,
+        height: 50.0,
         child: OutlinedButton(
           onPressed: onPressed,
           child: Text(
             label,
             style: TextStyle(
               color: color,
-              fontSize: 14,
+              fontSize: 13,
+              fontWeight: FontWeight.w400,
             ),
           ),
           style: OutlinedButton.styleFrom(
@@ -75,36 +76,40 @@ class BasicAlertDialog extends StatelessWidget {
           var height = MediaQuery.of(context).size.height;
           var width = MediaQuery.of(context).size.width;
           return Container(
-            height: bodyText == null ? height * 0.18 : height * 0.23,
+            height: bodyText == null ? height * 0.18 : height * 0.2,
             width: width,
             child: Column(
               children: [
                 Expanded(
+                  flex: 1,
                   child: renderText(),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      AlertButton(
-                        backgroundColor: Colors.white70,
-                        color: PRIMARY_BLACK_COLOR,
-                        label: leftButtonText,
-                        onPressed: this.onLeftButtonPressed,
-                        borderColor: BUTTON_BORDER_COLOR,
-                      ),
-                      SizedBox(
-                        width: 16,
-                      ),
-                      AlertButton(
-                        backgroundColor: PRIMARY_BLACK_COLOR,
-                        color: Colors.white,
-                        label: rightButtonText,
-                        onPressed: this.onRightButtonPressed,
-                      ),
-                    ],
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        AlertButton(
+                          backgroundColor: Colors.white70,
+                          color: PRIMARY_BLACK_COLOR,
+                          label: leftButtonText,
+                          onPressed: this.onLeftButtonPressed,
+                          borderColor: BUTTON_BORDER_COLOR,
+                        ),
+                        SizedBox(
+                          width: 16,
+                        ),
+                        AlertButton(
+                          backgroundColor: PRIMARY_BLACK_COLOR,
+                          color: Colors.white,
+                          label: rightButtonText,
+                          onPressed: this.onRightButtonPressed,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -129,21 +134,22 @@ class BasicAlertDialog extends StatelessWidget {
       );
     } else {
       return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            title,
+          bodyText!,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: PRIMARY_BLACK_COLOR,
-              fontSize: 18,
+              fontSize: 14,
               fontWeight: FontWeight.w500,
             ),
           ),
           SizedBox(height: 8),
           Text(
-            bodyText!,
+            title,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 14),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600,),
           ),
         ],
       );

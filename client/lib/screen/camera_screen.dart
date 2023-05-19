@@ -11,7 +11,6 @@ import 'package:camera/camera.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:image/image.dart' as img;
 
-
 class CameraScreen extends StatefulWidget {
   List<CameraDescription> cameras;
 
@@ -63,12 +62,17 @@ class _CameraScreenState extends State<CameraScreen>
   }
 
   void initializeController(CameraDescription description) {
-    _controller = CameraController(description, ResolutionPreset.medium);
+    _controller = CameraController(
+      description,
+      ResolutionPreset.medium,
+    );
     _controller.initialize().then((_) {
       if (!mounted) {
         return;
       }
       setState(() {});
+
+      _controller!.setFlashMode(FlashMode.off);
     }).catchError((Object e) {
       if (e is CameraException) {
         switch (e.code) {
@@ -91,6 +95,20 @@ class _CameraScreenState extends State<CameraScreen>
         setState(() {});
       });
     });
+
+    _controller!.setFlashMode(FlashMode.off);
+  }
+
+  void onViewFinderTap(TapDownDetails details, BoxConstraints constraints) {
+    if (_controller == null) {
+      return;
+    }
+    final offset = Offset(
+      details.localPosition.dx / constraints.maxWidth,
+      details.localPosition.dy / constraints.maxHeight,
+    );
+    _controller!.setExposurePoint(offset);
+    _controller!.setFocusPoint(offset);
   }
 
   // #docregion AppLifecycle
@@ -119,24 +137,7 @@ class _CameraScreenState extends State<CameraScreen>
     changedSeconds = 10;
     percentage = 1.0;
 
-    _controller = CameraController(widget.cameras[0], ResolutionPreset.max);
-    _controller.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {});
-    }).catchError((Object e) {
-      if (e is CameraException) {
-        switch (e.code) {
-          case 'CameraAccessDenied':
-            // Handle access errors here.
-            break;
-          default:
-            // Handle other errors here.
-            break;
-        }
-      }
-    });
+    initializeController(widget.cameras[0]);
 
     // 카메라 화면 시작 시 안내문구 창
     WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -227,7 +228,17 @@ class _CameraScreenState extends State<CameraScreen>
                   child: SizedBox(
                     width: width,
                     height: height,
-                    child: CameraPreview(_controller),
+                    child: CameraPreview(
+                      _controller,
+                      child: LayoutBuilder(builder:
+                          (BuildContext context, BoxConstraints constraints) {
+                        return GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          onTapDown: (details) =>
+                              onViewFinderTap(details, constraints),
+                        );
+                      }),
+                    ),
                   ),
                 ),
                 // timer
@@ -304,13 +315,16 @@ class _CameraScreenState extends State<CameraScreen>
 
                           if (selectedCamera == 1) {
                             final originalFile = _pictureFile;
-                            Uint8List imageBytes = await originalFile.readAsBytes();
+                            Uint8List imageBytes =
+                                await originalFile.readAsBytes();
                             final originalImage = img.decodeImage(imageBytes);
 
                             img.Image fixedImage;
-                            fixedImage = img.flipHorizontal(originalImage!); // 좌우 반전
+                            fixedImage =
+                                img.flipHorizontal(originalImage!); // 좌우 반전
 
-                            File flipedImage = await originalFile.writeAsBytes(img.encodePng(fixedImage)); // PNG 형태로 File 저장
+                            File flipedImage = await originalFile.writeAsBytes(
+                                img.encodePng(fixedImage)); // PNG 형태로 File 저장
                             _pictureFile = flipedImage;
                           }
 
@@ -320,20 +334,12 @@ class _CameraScreenState extends State<CameraScreen>
                             percentage = 1.0;
                           });
                           //if (widget.userInfo != null) {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => CameraResult(
-                                    image: _pictureFile),
-                              ),
-                            );
-                          //} else {
-/*                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (_) => UserPictureUpdateScreen(
-                                    image: ,
-                                  )),
-                            );*/
-                          //}
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  CameraResult(image: _pictureFile),
+                            ),
+                          );
                         });
                       },
                       child: Text(

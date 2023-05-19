@@ -18,7 +18,6 @@ class SignUpScreen extends ConsumerStatefulWidget {
 
 class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   final Dio dio = Dio();
-  FocusNode myFocusNode = FocusNode();
   final _formKey = GlobalKey<FormState>();
   UserModel userInfo = UserModel();
   final _idController = TextEditingController();
@@ -32,7 +31,6 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
 
   @override
   void dispose() {
-    myFocusNode.dispose();
     _idController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
@@ -108,7 +106,6 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
 
     void onIdChanged(value) async {
       userInfo.user_id = value;
-//      userInfo.user_img_url = value + "_human.png";
 
       // 모든 validation check 수행 = isIdValidate, 그거 초기화
       setState(() {
@@ -271,6 +268,8 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
         await storage.write(key: ACCESS_TOKEN_KEY, value: accessToken);
         await storage.write(key: USER_NAME, value: resp.data['User']['user_name']);
         await storage.write(key: USER_ID, value: resp.data['User']['user_id']);
+        await storage.write(key: FIRST_LOGIN, value: 'true');
+        await storage.write(key: FIRST_LOGIN, value: 'true');
 
         print('로그인 완료');
       } catch (e) {
@@ -298,13 +297,11 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                     CustomTextFormField(
                       width: width,
                       key: ValueKey(1),
-                      focusNode: myFocusNode,
                       controller: _idController,
                       labelText: '아이디',
                       onTextChanged: onIdChanged,
                       validator: (val) {return idText;},
                       textInputAction: TextInputAction.next,
-                      isFocused: myFocusNode.hasFocus,
                     ),
                     SizedBox(height: 24.0),
                     CustomTextFormField(
@@ -335,7 +332,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                       onTextChanged: nameChanged,
                       validator: (val) {return nameText;},
                     ),
-                    SizedBox(height: 40.0),
+                    SizedBox(height: 32.0),
                     SizedBox(
                       width: double.infinity,
                       height: 45.0,
@@ -347,7 +344,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                                   await requestSignin();
 
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (_) => OnBoardingPage(userInfo: userInfo)));
+                                      builder: (_) => OnBoardingPage()));
                                 }
                               },
                         child: Text('회원가입하기'),

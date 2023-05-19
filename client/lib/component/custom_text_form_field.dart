@@ -57,7 +57,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       width: widget.width,
       child: TextFormField(
         scrollPadding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.top + 45.0 * 3),
+            bottom: MediaQuery.of(context).viewInsets.top + 45.0 * 2),
         key: widget.myKey,
         focusNode: widget.focusNode,
         controller: widget.controller,

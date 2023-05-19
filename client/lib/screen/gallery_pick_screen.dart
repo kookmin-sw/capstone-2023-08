@@ -1,11 +1,12 @@
 import 'dart:io';
 
 import 'package:client/constant/colors.dart';
-import 'package:client/screen/result_all_screen.dart';
+import 'result_all_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import '../constant/page_url.dart';
+import '../dio/dio.dart';
 import '../layout/default_layout.dart';
 import 'package:dio/dio.dart';
 
@@ -47,16 +48,22 @@ class _GalleryPickScreenState extends ConsumerState<GalleryPickScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('이런 사진이 좋아요!',
+                          Text('이런 사진이 좋아요',
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w700)),
+                                  fontSize: 16, fontWeight: FontWeight.w600)),
                           SizedBox(height: 8.0),
-                          Text('배경이 없는 사진을 선택하면,더 나은 결과를 얻을 수 있습니다',
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w500)),
+                          Text(
+                            '배경이 없는 사진을 선택하면, 좋은 결과를 얻을 수 있어요',
+                            overflow: TextOverflow.visible,
+                            softWrap: false,
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
                           SizedBox(height: 8.0),
                           Image.asset(
-                            'asset/clothes/product-image.jpg',
+                            'asset/clothes/product-image.png',
                             width: 150,
                           ),
                         ],
@@ -94,6 +101,14 @@ class _GalleryPickScreenState extends ConsumerState<GalleryPickScreen> {
     try {
       String bucket_name = 'user-cloth-img';
       String image_name = '${id}_cloth.png';
+
+      final storage = ref.read(secureStorageProvider);
+
+      dio.options.headers = {'accessToken': 'true'};
+      dio.interceptors.add(
+        CustomInterceptor(storage: storage),
+      );
+
       Response response = await dio.request(
         GET_PRESIGNED_URL,
         data: <String, String>{
@@ -186,9 +201,11 @@ class _GalleryPickScreenState extends ConsumerState<GalleryPickScreen> {
               );
             } else {
               if (snapshot.data != null) {
-                return FittingScreen(image: snapshot.data!); // todo: 파라미터 없애기
+                return FittingScreen(
+//                  image: snapshot.data!, // todo: 이 부분 없애기
+                );
               } else {
-                return DefaultLayout(
+                return const DefaultLayout(
                     title: '이미지 선택',
                     child: Center(
                       child: Text('이미지 선택필요'),

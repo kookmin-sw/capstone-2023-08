@@ -21,11 +21,11 @@ import 'loading_success_screen.dart';
 import 'package:image/image.dart' as img;
 
 class FittingScreen extends ConsumerStatefulWidget {
-  final File image; // todo: 이 부분 없애기
+//  final File image; // todo: 이 부분 없애기
 
   FittingScreen({
     Key? key,
-    required this.image, // todo: 이 부분 없애기
+//    required this.image, // todo: 이 부분 없애기
   }) : super(key: key);
 
   @override
@@ -37,7 +37,7 @@ class _FittingScreenState extends ConsumerState<FittingScreen> {
 
   // 서버에서 이미지 결과를 가져오는 코드
   Future<File?> requestResult() async {
-    return widget.image; //todo: return 부분 없애기
+//    return widget.image; //todo: return 부분 없애기
     Response response;
     try {
       final storage = ref.read(secureStorageProvider);
