@@ -127,13 +127,14 @@ class ImgInference:
 
 
 
-def store_img(user_id, cloth_img_path, human_img_path):
-    cloth_s3_path = ''
-    human_s3_path = ''
+def store_img(user_id):
+    cloth_s3_path = str(int(time.time())) + '_' + str(user_id) + '_cloth.png'
+    human_s3_path = str(int(time.time())) + '_' + str(user_id) + '_human.png'
 
-    s3 = S3Client('bucket_name', user_id)
+    s3_cloth = S3Client('feedback-cloth-img', user_id)
+    s3_human = S3Client('feedback-human-img', user_id)
 
-    s3.upload_cloth_image(cloth_s3_path)
-    s3.upload_human_image(human_s3_path)
+    s3_cloth.upload_cloth_image(cloth_s3_path)
+    s3_human.upload_human_image(human_s3_path)
 
     return True
