@@ -194,7 +194,7 @@ class _UserInfoUpdateScreenState extends ConsumerState<UserInfoUpdateScreen> {
                       labelText: '닉네임',
                     );
                   } else {
-                    nameText = '';
+                    _nameTextEditingController.text = '';
                     return CustomTextFormField(
                       validator: (val) {
                         return nameText;
