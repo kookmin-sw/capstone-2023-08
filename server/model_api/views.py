@@ -70,9 +70,7 @@ class ResultFeedback(APIView):
         user_id = request.user
 
         try:
-            store_img(user_id,
-                      data['cloth_img_path'],
-                      data['human_img_path'])
+            store_img(user_id)
         except:  
             return Response("failed", status=status.HTTP_400_BAD_REQUEST)
 
