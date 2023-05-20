@@ -45,7 +45,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     if (firstLogin == 'true') {
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
-          builder: (_) => OnBoardingPage(),
+          builder: (_) => const OnBoardingPage(),
         ),
         (route) => false,
       );

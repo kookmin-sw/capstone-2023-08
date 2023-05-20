@@ -101,8 +101,7 @@ class UploadImage {
     return isUploaded;
   }
 
-  Future<bool> requestHumanParsingData() async {
-    String id = await getUserInfoFromStorage();
+  Future<bool> requestHumanParsingData(String id) async {
     try {
       dio.options.headers = {'accessToken': 'true'};
       dio.interceptors.add(

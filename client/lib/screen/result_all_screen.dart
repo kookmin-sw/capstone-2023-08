@@ -49,7 +49,6 @@ class _FittingScreenState extends ConsumerState<FittingScreen> {
       );
       dio.options = BaseOptions(
         responseType: ResponseType.bytes,
-
       );
       response = await dio.post(
         RESULT_INFER_URL,
@@ -80,6 +79,7 @@ class _FittingScreenState extends ConsumerState<FittingScreen> {
       child: FutureBuilder(
           future: requestResult(),
           builder: (BuildContext context, snapshot) {
+            //if (snapshot.)
             if (snapshot.hasData == false) {
               return const LoadingScreen();
             } else {

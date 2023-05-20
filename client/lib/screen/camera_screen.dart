@@ -66,13 +66,13 @@ class _CameraScreenState extends State<CameraScreen>
       description,
       ResolutionPreset.medium,
     );
+    _controller!.setFlashMode(FlashMode.off);
+    _controller.lockCaptureOrientation();
     _controller.initialize().then((_) {
       if (!mounted) {
         return;
       }
       setState(() {});
-
-      _controller!.setFlashMode(FlashMode.off);
     }).catchError((Object e) {
       if (e is CameraException) {
         switch (e.code) {
@@ -84,6 +84,63 @@ class _CameraScreenState extends State<CameraScreen>
             break;
         }
       }
+    });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await showModalBottomSheet<void>(
+        context: context,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(15.0),
+          ),
+        ),
+        builder: (BuildContext context) {
+          return Container(
+            height: 200,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 24.0, horizontal: 16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('가이드라인에 맞게 카메라를 이동해주세요'),
+                          SizedBox(height: 8.0),
+                          Text('촬영버튼을 누르면 타이머 시간 이후 촬영됩니다'),
+                          SizedBox(height: 16.0),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50.0,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: PRIMARY_BLACK_COLOR,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(
+                          '확인',
+                          style: TextStyle(fontSize: 14.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      );
     });
   }
 
@@ -326,6 +383,19 @@ class _CameraScreenState extends State<CameraScreen>
                             File flipedImage = await originalFile.writeAsBytes(
                                 img.encodePng(fixedImage)); // PNG 형태로 File 저장
                             _pictureFile = flipedImage;
+                          } else {
+                            final originalFile = _pictureFile;
+                            Uint8List imageBytes =
+                            await originalFile.readAsBytes();
+                            final originalImage = img.decodeImage(imageBytes);
+
+                            img.Image fixedImage;
+                            fixedImage =
+                                img.copyRotate(originalImage!, angle: 90); // 90도 회전
+
+                            File rotatedImage = await originalFile.writeAsBytes(
+                                img.encodePng(fixedImage)); // PNG 형태로 File 저장
+                            _pictureFile = rotatedImage;
                           }
 
                           setState(() {

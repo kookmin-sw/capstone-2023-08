@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:animated_snack_bar/animated_snack_bar.dart';
@@ -31,9 +32,10 @@ class CameraResult extends ConsumerWidget {
     final upload = UploadImage(dio: dio, storage: storage, context: context, image: image);
 
     void onPictureUpdatePressed() async {
+
       String id = await upload.getUserInfoFromStorage();
       await upload.getImageAndUpload(id);
-      // await upload.requestHumanParsingData(id); todo: 주석 풀기 (완전 테스트용)
+      await upload.requestHumanParsingData(id); //todo: 주석 풀기
 
       final firstLogin = await storage.read(key: FIRST_LOGIN);
 

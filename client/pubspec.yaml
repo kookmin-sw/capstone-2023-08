@@ -38,7 +38,6 @@ dependencies:
   camera: ^0.10.3+2
   carousel_slider: ^4.0.0
   dots_indicator: ^2.0.0
-  image: ^4.0.17
   image_picker: ^0.8.7
   image_gallery_saver: ^1.7.1
   http: ^0.13.5
@@ -52,14 +51,16 @@ dependencies:
   retrofit: ^4.0.1
   logger: any  #for logging purpose
   flutter_riverpod: ^2.3.6
-  path_provider:
-  provider: ^6.0.5
-  webview_flutter: ^2.8.0
   introduction_screen: ^3.1.8
   flutter_gif: ^0.0.4
   animated_snack_bar: ^0.3.1
   flutter_native_splash: ^2.2.19
   flutter_launcher_icons: ^0.13.1
+  provider: ^6.0.5
+  webview_flutter: ^2.8.0
+  shared_preferences: ^2.0.10
+  path_provider: ^2.0.5
+  image: ^4.0.15
 
 dev_dependencies:
   flutter_test:
@@ -90,6 +91,8 @@ flutter:
   assets:
     - asset/img/
     - asset/clothes/
+    - asset/font/
+    - asset/
     - assets/
     - assets/clothes/
 
@@ -131,17 +134,6 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

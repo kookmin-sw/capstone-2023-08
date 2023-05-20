@@ -35,7 +35,8 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
     final double width = MediaQuery.of(context).size.width;
 
     void onReturnPressed() {
-      Navigator.of(context).popUntil((route) => route.isFirst);
+      Navigator.of(context, rootNavigator: true).pop();
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => RootTab()), (route) => false);
     }
 
     void onGallerySavedPressed() async {

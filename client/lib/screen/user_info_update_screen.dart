@@ -43,13 +43,6 @@ class _UserInfoUpdateScreenState extends ConsumerState<UserInfoUpdateScreen> {
     final storage = ref.watch(secureStorageProvider);
     final update = UpdateUserInfo(dio: dio, storage: storage, context: context);
 
-    Future<bool> setName() async {
-      final firstName = await storage.read(key: USER_NAME);
-      if (firstName == null) return false;
-      _nameTextEditingController.text = firstName ?? '';
-      return true;
-    }
-
     bool textNullCheck(value) {
       if (value == null || value.isEmpty) {
         setState(() {
@@ -63,17 +56,9 @@ class _UserInfoUpdateScreenState extends ConsumerState<UserInfoUpdateScreen> {
     Future<void> isNameDuplicated() async {
       final value = _nameTextEditingController!.text;
 
-      bool textNullCheck(value) {
-        if (value == null || value.isEmpty) {
-          setState(() {
-            nameText = '닉네임을 입력해주세요';
-          });
-          return true;
-        }
-        return false;
-      }
-
       if (textNullCheck(value) == true) return;
+      final currentName = await storage.read(key: USER_NAME);
+      if (value == currentName) return;
 
       Response response;
       try {
@@ -180,33 +165,14 @@ class _UserInfoUpdateScreenState extends ConsumerState<UserInfoUpdateScreen> {
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 16.0),
-              FutureBuilder<Object>(
-                future: setName(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData == true) {
-                    return CustomTextFormField(
-                      validator: (val) {
-                        return nameText;
-                      },
-                      onTextChanged: nameChanged,
-                      width: MediaQuery.of(context).size.width,
-                      controller: _nameTextEditingController,
-                      labelText: '닉네임',
-                    );
-                  } else {
-                    _nameTextEditingController.text = '';
-                    return CustomTextFormField(
-                      validator: (val) {
-                        return nameText;
-                      },
-                      onTextChanged: nameChanged,
-                      width: MediaQuery.of(context).size.width,
-                      controller: _nameTextEditingController,
-                      labelText: '닉네임',
-                    );
-                  }
-
-                }
+              CustomTextFormField(
+                validator: (val) {
+                  return nameText;
+                },
+                onTextChanged: nameChanged,
+                width: MediaQuery.of(context).size.width,
+                controller: _nameTextEditingController,
+                labelText: '닉네임',
               ),
               const SizedBox(height: 16.0),
               SizedBox(
@@ -237,7 +203,9 @@ class _UserInfoUpdateScreenState extends ConsumerState<UserInfoUpdateScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('비밀번호 변경', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600)),
+              const Text('비밀번호 변경',
+                  style:
+                      TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600)),
               const SizedBox(height: 16.0),
               const Text('현재 비밀번호', style: TextStyle(fontSize: 16.0)),
               const SizedBox(height: 8.0),

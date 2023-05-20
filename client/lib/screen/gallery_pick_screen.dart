@@ -1,6 +1,13 @@
 import 'dart:io';
 
+import 'package:client/component/custom_snackbar.dart';
+import 'package:client/component/loading_screen.dart';
 import 'package:client/constant/colors.dart';
+import 'package:client/layout/root_tab.dart';
+import 'package:client/screen/fail_screen.dart';
+import 'package:client/screen/home_screen.dart';
+import '../data/upload_image.dart';
+import 'loading_screen.dart';
 import 'result_all_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,14 +19,14 @@ import 'package:dio/dio.dart';
 
 import '../secure_storage/secure_storage.dart';
 
-class GalleryPickScreen extends ConsumerStatefulWidget {
+class GalleryPickScreen extends StatefulWidget {
   const GalleryPickScreen({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<GalleryPickScreen> createState() => _GalleryPickScreenState();
+  State<GalleryPickScreen> createState() => _GalleryPickScreenState();
 }
 
-class _GalleryPickScreenState extends ConsumerState<GalleryPickScreen> {
+class _GalleryPickScreenState extends State<GalleryPickScreen> {
   XFile? image;
 
   @override
@@ -91,126 +98,111 @@ class _GalleryPickScreenState extends ConsumerState<GalleryPickScreen> {
             ),
           );
         },
-      ).whenComplete(() => pickImage());
+      ).whenComplete(() async {
+        final bool result = await pickImage();
+        if (result == false)
+          Navigator.of(context).pop();
+      });
     });
   }
 
-  final dio = Dio();
-
-  Future<String> getPresignedUrl(String id) async {
-    try {
-      String bucket_name = 'user-cloth-img';
-      String image_name = '${id}_cloth.png';
-
-      final storage = ref.read(secureStorageProvider);
-
-      dio.options.headers = {'accessToken': 'true'};
-      dio.interceptors.add(
-        CustomInterceptor(storage: storage),
-      );
-
-      Response response = await dio.request(
-        GET_PRESIGNED_URL,
-        data: <String, String>{
-          'bucket_name': bucket_name,
-          'file_path': image_name
-        },
-        options: Options(method: 'GET'),
-      );
-      return response.data['data'];
-    } catch (e) {
-      print(e);
-    }
-    return '';
-  }
-
-  Future<bool> uploadToPresignedURL(File file, String url) async {
-    Response response;
-    try {
-      response = await dio.put(
-        url,
-        data: file.openRead(),
-        options: Options(
-          contentType: "image/png",
-          // todo: image type에 따라 content type 변경..?????
-          headers: {
-            "Content-Length": file.lengthSync(),
-          },
-        ),
-      );
-      if (response.statusCode == 200) return true;
-      return false;
-    } on DioError catch (e) {
-      print(e.response);
-      return false;
-    }
-  }
-
-  Future<bool> getImageAndUpload(File image, String id) async {
-    // 1. presigned url 생성 확인
-    String url = await getPresignedUrl(id);
-
-    // 2. S3 upload
-    bool isUploaded = await uploadToPresignedURL(image, url);
-
-    return isUploaded;
-  }
-
-  Future<void> pickImage() async {
+  Future<bool> pickImage() async {
     // get image from gallery
     XFile? tempImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (tempImage == null) return;
+    if (tempImage == null) return false;
     setState(() {
       print('setState');
       image = tempImage;
     });
-  }
-
-  Future<File?> pickImageAndUpload() async {
-    try {
-      // get image(XFile) to file
-      final imageFile = File(image!.path);
-      return imageFile; // todo : 이 부분 없애기
-
-      // get id
-      final storage = ref.read(secureStorageProvider);
-      final id = await storage.read(key: USER_ID);
-      if (id == null) return null;
-
-      // upload image to s3
-      await getImageAndUpload(imageFile, id!);
-
-      return imageFile;
-    } catch (e) {
-      print('Failed to pick image: $e');
-      return null;
-    }
+    return true;
   }
 
   @override
   Widget build(BuildContext context) {
+    return image == null? Container() : PickedImageSendScreen(image: image!);
+  }
+}
+
+class PickedImageSendScreen extends ConsumerStatefulWidget {
+  final XFile image;
+
+  const PickedImageSendScreen({
+    Key? key,
+    required this.image,
+  }) : super(key: key);
+
+  @override
+  ConsumerState<PickedImageSendScreen> createState() =>
+      _PickedImageSendScreenState();
+}
+
+class _PickedImageSendScreenState extends ConsumerState<PickedImageSendScreen> {
+  @override
+  Widget build(BuildContext context) {
+    Future<bool> pickImageAndUpload() async {
+      try {
+        final imageFile = File(widget.image!.path);
+
+        final dio = Dio();
+        final storage = ref.read(secureStorageProvider);
+        final upload = UploadImage(
+            dio: dio, storage: storage, context: context, image: imageFile);
+
+        // get id
+        final id = await storage.read(key: USER_ID);
+        if (id == null) return false;
+
+        // upload image to s3
+        await upload.getImageAndUpload(id);
+
+        return true;
+      } catch (e) {
+        print('Failed to pick image: $e');
+        return false;
+      }
+    }
+
     return DefaultLayout(
       backgroundColor: PRIMARY_BLACK_COLOR,
       child: FutureBuilder(
           future: pickImageAndUpload(),
           builder: (BuildContext context, snapshot) {
-            if (snapshot.hasData == false) {
-              return Center(
-                child: CircularProgressIndicator(color: PRIMARY_BLACK_COLOR),
-              );
-            } else {
-              if (snapshot.data != null) {
-                return FittingScreen(
-//                  image: snapshot.data!, // todo: 이 부분 없애기
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasError) {
+                // not data
+                /*Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=> RootTab()), (route) => false);
+                CustomSnackBar(text: '이미지를 선택해주세요', context: context);*/
+                print('error');
+                return Container(
+                  color: Colors.black,
                 );
               } else {
-                return const DefaultLayout(
-                    title: '이미지 선택',
-                    child: Center(
-                      child: Text('이미지 선택필요'),
-                    ));
+                if (snapshot.hasData == false) {
+                  print('done & no data');
+                  // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=> RootTab()), (route) => false);
+                  return Container(
+                    color: Colors.black,
+                  );
+                } else {
+                  print('done & have data & ${snapshot.data}');
+                  return FittingScreen(
+//                  image: snapshot.data!, // todo: 이 부분 없애기
+                      );
+                }
               }
+            } else if (snapshot.connectionState == ConnectionState.waiting) {
+              if (snapshot.hasData == false)
+                print('waiting & no data');
+              else
+                print('waiting & have data');
+              return const DefaultLoadingScreen(
+                backgroundColor: Colors.black,
+              );
+            } else {
+              return Container(
+                color: Colors.black,
+              );
             }
           }),
     );

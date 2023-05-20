@@ -16,7 +16,7 @@ Future<void> main() async {
           primarySwatch: Colors.blue,
           fontFamily: 'pretendard',
         ),
-        debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: true,
         initialRoute: SPLASH_SCREEN,
         routes: {
           SPLASH_SCREEN: (context) => SplashScreen(),

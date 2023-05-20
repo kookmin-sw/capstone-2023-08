@@ -1,5 +1,6 @@
 import 'package:client/screen/home_screen.dart';
 import 'package:client/screen/my_page_screen.dart';
+import 'package:client/screen/favorite_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../constant/colors.dart';
@@ -69,7 +70,7 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
         controller: tabController,
         children: [
           HomeScreen(),
-          Center(child: Text('찜'),),
+          FavoriteScreen(),
           MyPageScreen(),
         ],
       ),
