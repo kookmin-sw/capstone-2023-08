@@ -9,7 +9,7 @@ class CustomTextFormField extends StatefulWidget {
   final bool isFocused;
   final TextEditingController controller;
   final ValueKey? myKey;
-  final String labelText;
+  final String? labelText;
   final ValueChanged<String>? onTextChanged; // text
   final FormFieldValidator? validator; // function
   final bool obscureText;
@@ -22,7 +22,7 @@ class CustomTextFormField extends StatefulWidget {
     this.isFocused = false,
     required this.controller,
     this.myKey,
-    required this.labelText,
+    this.labelText,
     this.onTextChanged,
     this.validator,
     this.obscureText = false,
@@ -56,12 +56,17 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return SizedBox(
       width: widget.width,
       child: TextFormField(
+        scrollPadding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.top + 45.0 * 2),
         key: widget.myKey,
         focusNode: widget.focusNode,
         controller: widget.controller,
         obscureText: isObscure,
         textInputAction: widget.textInputAction,
         decoration: InputDecoration(
+          focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0), borderSide: BorderSide(color: POINT_COLOR)),
+          errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0), borderSide: BorderSide(color: POINT_COLOR)),
+          errorStyle: TextStyle(color: POINT_COLOR),
           fillColor: INPUT_BG_COLOR,
           filled: true,
           labelText: widget.labelText,
@@ -72,21 +77,29 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           ),
           focusColor: Colors.black,
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(5.0),
             borderSide: BorderSide(
-              color: Colors.black,
+              color: PRIMARY_BLACK_COLOR,
               width: 1.3,
             ),
           ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5.0),
             borderSide: BorderSide(
-              color: INPUT_BORDER_COLOR,
-              width: 1,
+              color: Colors.transparent,
+              width: 1.0,
+            ),
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5.0),
+            borderSide: BorderSide(
+              color: Colors.transparent,
+              width: 1.0,
             ),
           ),
           suffixIcon: widget.obscureText? renderObscureButton() : null,
         ),
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         cursorColor: Colors.black,
         onChanged: widget.onTextChanged,
         validator: widget.validator,

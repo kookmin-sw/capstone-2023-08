@@ -1,14 +1,10 @@
-import 'package:client/layout/main_layout.dart';
+import 'package:client/constant/colors.dart';
+import 'package:client/layout/default_layout.dart';
 import 'package:client/screen/result_all_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'clotheslist_screen.dart';
 
-final imageList = [
-  Image.asset('assets/image1.jpg', fit: BoxFit.cover),
-  Image.asset('assets/image2.png', fit: BoxFit.cover),
-  Image.asset('assets/image3.png', fit: BoxFit.cover),
-];
+import 'clotheslist_screen.dart';
+import 'gallery_pick_screen.dart';
 
 class MyPainter extends CustomPainter {
   @override
@@ -39,16 +35,6 @@ class MyPainter extends CustomPainter {
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  @override
-  // Widget build(BuildContext context) {
-  //   return ListView(
-  //     children: <Widget>[
-  //       _buildTop(),
-  //      // _buildMiddle(),
-  //     ],
-  //   );
-  // }
-
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
@@ -76,6 +62,7 @@ class HomeScreen extends StatelessWidget {
                   "원하는 옷을\n원하는 장소에서 입어보세요!",
                   style: TextStyle(
                       color: Colors.white,
+                      height: 1.3,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       fontFamily: "Pretendard-Bold"),
@@ -94,25 +81,24 @@ class HomeScreen extends StatelessWidget {
           Positioned(
             top: 220 * (screenHeight / finalHeight),
             left: -5 * (screenWidth / finalWidth),
-            child: Stack(children: [
-              Image.asset(
-                'asset/image.png',
-                width: 400,
-                height: 400,
-              ),
-              Positioned(
-                  left: 30,
-                  bottom: 30,
-                  child: Text(
-                    "무신사 옷을 입어보거나\n직접 옷을 선택해서 입어볼 수 있어요!",
-                    style: TextStyle(
-                        color: Colors.white,
-                        height: 1.5,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: "Pretendard-Bold"),
-                  ))
-            ]),
+            child: Image.asset(
+              'asset/image.png',
+              width: 400,
+              height: 400,
+            ),
+          ),
+          Positioned(
+            left: 30,
+            bottom: screenHeight * 0.2,
+            child: Text(
+              "무신사 옷을 입어보거나\n직접 옷을 선택해서 입어볼 수 있어요!",
+              style: TextStyle(
+                  color: INPUT_BORDER_COLOR,
+                  height: 1.5,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: "Pretendard-Bold"),
+            ),
           ),
 
           // Container(
@@ -223,8 +209,10 @@ class HomeScreen extends StatelessWidget {
                               style: TextStyle(
                                   fontFamily: "Pretendard", fontSize: 17))),
                       onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => FittingScreen()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => GalleryPickScreen()));
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: Size(200, 100),
@@ -244,45 +232,4 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Colors.black,
     );
   }
-
-// Widget _buildMiddle() {
-//   return CarouselSlider(
-//     options: CarouselOptions(autoPlay: true),
-//     items: imageList.map((image) {
-//       return Builder(
-//         builder: (BuildContext context) {
-//           return Container(
-//             //Alignment(0, 0),
-//             //width: MediaQuery.of(context).size.width,
-//             //margin: EdgeInsets.symmetric(horizontal: 5.0),
-//             child: ClipRRect(
-//               borderRadius: BorderRadius.circular(10.0),
-//               child: image,
-//             ),
-//           );
-//         },
-//       );
-//     }).toList(),
-//   );
-// }
 }
-
-// class HomeScreen extends StatefulWidget {
-//   @override
-//   _HomeScreenState createState() => _HomeScreenState();
-// }
-
-// class _HomeScreenState extends State<HomeScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       child: RichText(
-//         text: TextSpan(children: [
-//       TextSpan(
-//           text: 'Fit on, ', style: TextStyle(fontSize: 35, color: Colors.grey)),
-//       TextSpan(
-//           text: 'Fit me!', style: TextStyle(fontSize: 35, color: Colors.black)),
-//     ])),
-//     );
-//   }
-// }

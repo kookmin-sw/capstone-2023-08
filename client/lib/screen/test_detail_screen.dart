@@ -210,7 +210,7 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
             child: Container(
               child: SizedBox(
                   width: 393 * (screenWidth / finalWidth),
-                  height: 110 * (screenHeight / finalHeight),
+                  height: 110 * (screenHeight / finalHeight) - 15,
                   child: ColoredBox(
                       color: Color.fromARGB(255, 242, 242, 242),
                       child: Row(
@@ -218,6 +218,8 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
                         children: [
                           SizedBox(width: 20),
                           IconButton(
+                            padding: EdgeInsets.zero,
+                            constraints: BoxConstraints(),
                             onPressed: onFavorite,
                             //alignment: Alignment.centerLeft,
                             color: Color.fromARGB(255, 255, 174, 53),
@@ -236,11 +238,13 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.black,
+                                elevation: 0,
                               ),
                               child: Text(
                                 '피팅하기',
                                 style: TextStyle(
                                   fontSize: 15,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                               onPressed: onFitting,

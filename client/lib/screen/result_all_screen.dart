@@ -1,49 +1,95 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:async';
+import 'dart:typed_data';
 
+import 'package:client/layout/default_layout.dart';
+import 'package:client/screen/fail_screen.dart';
+import 'package:client/screen/result_screen.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:path_provider/path_provider.dart';
 
+import '../constant/page_url.dart';
+import '../dio/dio.dart';
+import '../secure_storage/secure_storage.dart';
 import 'loading_screen.dart';
 import 'loading_success_screen.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:image/image.dart' as img;
 
-class FittingScreen extends StatefulWidget {
-  const FittingScreen({Key? key}) : super(key: key);
+class FittingScreen extends ConsumerStatefulWidget {
+//  final File image; // todo: 이 부분 없애기
+
+  FittingScreen({
+    Key? key,
+//    required this.image, // todo: 이 부분 없애기
+  }) : super(key: key);
 
   @override
-  State<FittingScreen> createState() => _FittingScreenState();
+  ConsumerState<FittingScreen> createState() => _FittingScreenState();
 }
 
-class _FittingScreenState extends State<FittingScreen> {
-  // todo: 서버에서 이미지 결과를 가져오는 코드 필요
-  // 일단 image picker, 갤러리에서 가져오도록 설정
-  Future<XFile?> pickImage() async {
+class _FittingScreenState extends ConsumerState<FittingScreen> {
+  final dio = Dio();
+
+  // 서버에서 이미지 결과를 가져오는 코드
+  Future<File?> requestResult() async {
+//    return widget.image; //todo: return 부분 없애기
+    Response response;
     try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      return image;
-    } catch (e) {
-      print('Failed to pick image: $e');
-      return null;
+      final storage = ref.read(secureStorageProvider);
+      final id = await storage.read(key: USER_ID);
+
+      dio.options.headers = {'accessToken': 'true'};
+      dio.interceptors.add(
+        CustomInterceptor(storage: storage),
+      );
+      dio.options = BaseOptions(
+        responseType: ResponseType.bytes,
+      );
+      response = await dio.post(
+        RESULT_INFER_URL,
+        data: json.encode({
+          'user_id': id,
+          'cloth_img_path': '${id}_cloth.png',
+        }),
+      );
+
+      print(response.requestOptions);
+      Directory tempDir = await getTemporaryDirectory();
+      String tempPath = tempDir.path;
+      String path = '$tempPath/${id}_result.png';
+      File file = File(path);
+      var raf = file.openSync(mode: FileMode.write);
+      raf.writeFromSync(response.data);
+      await raf.close();
+
+      return File(path);
+    } on DioError catch (e) {
+      print(e.response);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder(
-          future: pickImage(),
+    return DefaultLayout(
+      child: FutureBuilder(
+          future: requestResult(),
           builder: (BuildContext context, snapshot) {
+            //if (snapshot.)
             if (snapshot.hasData == false) {
               return const LoadingScreen();
             } else {
+              print('data : ${snapshot.data}');
               if (snapshot.data != null) {
                 return LoadingSuccessScreen(
-                  imageFile: File(snapshot.data!.path), //todo: image 객체 반환
+                  imageFile: snapshot.data!,
                 );
               } else {
-                return const Center(
-                  child: Text('image 선택 필요'),
-                );
+                return FailScreen();
               }
             }
           }),

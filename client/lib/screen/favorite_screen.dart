@@ -1,3 +1,4 @@
+import 'package:client/component/loading_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,7 +11,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home_screen.dart';
-import 'shoppingmall_screen.dart';
 import '../main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -236,6 +236,7 @@ class _favorite extends ConsumerState<Favorite> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return FutureBuilder<List<cloth>>(
       future:
           futurecloth, // this is a code smell. Make sure that the future is NOT recreated when build is called. Create the future in initState instead.
@@ -243,12 +244,12 @@ class _favorite extends ConsumerState<Favorite> {
         Widget newsListSliver;
         if (snapshot.hasData) {
           newsListSliver = SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               sliver: SliverGrid(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.62,
-                  mainAxisSpacing: 20.0,
+                  childAspectRatio: (width / 2) / (120 + 200),
+                  mainAxisSpacing: 10.0,
                   crossAxisSpacing: 10.0,
                 ),
                 delegate: SliverChildBuilderDelegate(
@@ -265,7 +266,7 @@ class _favorite extends ConsumerState<Favorite> {
               ));
         } else {
           newsListSliver = SliverToBoxAdapter(
-            child: CircularProgressIndicator(),
+            child: DefaultLoadingScreen(),
           );
         }
 
@@ -447,10 +448,10 @@ class _productitem extends ConsumerState<ProductItem> {
           });
         },
         child: Container(
-          padding: const EdgeInsets.all(6),
+          padding: const EdgeInsets.all(1),
           decoration: BoxDecoration(
             color: Color.fromARGB(255, 242, 242, 242),
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(5.0),
             // boxShadow: [
             //   BoxShadow(
             //     color: Colors.grey.withOpacity(0.5),
@@ -469,7 +470,7 @@ class _productitem extends ConsumerState<ProductItem> {
               // Stack(
               //   children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(6.0),
+                borderRadius: BorderRadius.circular(5.0),
                 child: Image.network(
                   widget.imageUrl,
                   height: 200.0,
@@ -480,7 +481,7 @@ class _productitem extends ConsumerState<ProductItem> {
               //SizedBox(height: 5.0),
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 8),
+                  padding: EdgeInsets.only(top: 16.0, left: 8.0),
                   child: Text(
                     widget.brand,
                     textAlign: TextAlign.left,
@@ -492,7 +493,7 @@ class _productitem extends ConsumerState<ProductItem> {
                 ),
                 //SizedBox(width: 0),
                 Padding(
-                  padding: EdgeInsets.only(top: 8),
+                  padding: EdgeInsets.only(top: 8, right: 8.0),
                   child: GestureDetector(
                     onTap: onFavorite,
                     child: Icon(
@@ -516,26 +517,23 @@ class _productitem extends ConsumerState<ProductItem> {
                 // ),
               ]),
               // SizedBox(height: 3.0),
-              Row(children: [
-                Padding(
-                    padding: EdgeInsets.only(top: 5),
-                    child: Container(
-                      width: 160,
-                      child: Flexible(
-                          child: RichText(
-                        textAlign: TextAlign.left,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        text: TextSpan(
-                            text: widget.productName,
-                            style: TextStyle(
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            )),
-                      )),
-                    )),
-              ]),
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 5, left: 8.0),
+                      child: Text(widget.productName,
+                          maxLines: 1,
+                          style: TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: 13.0,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                          )),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ));

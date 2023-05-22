@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:client/component/one_button_dialog.dart';
+import 'package:client/screen/onboarding_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:client/component/custom_text_form_field.dart';
 import 'package:client/constant/colors.dart';
@@ -10,7 +11,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../constant/page_url.dart';
 import '../layout/root_tab.dart';
 import '../secure_storage/secure_storage.dart';
-import 'find_account_screen.dart';
 import 'signup_screen.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -42,7 +42,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: SingleChildScrollView(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          physics: ClampingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           child: SizedBox(
             width: width,
             height: height * 0.95,
@@ -57,7 +57,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     width: width,
                     height: height,
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   _MiddleLogin(
                     width: width,
                     idTextEditingController: idTextEditingController,
@@ -67,10 +67,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     onpwChanged: onPwChanged,
                     onSignUpPressed: onSignUpPressed,
                   ),
-                  SizedBox(height: 24.0),
-                  _BottomPart(
-                    onTextPressed: onTextPressed,
-                  ),
+                  const SizedBox(height: 24.0),
                 ],
               ),
             ),
@@ -110,18 +107,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           'password': pw,
         }),
       );
-
-      // resp.data['url']
-      print(resp.data['User']);
-      print(resp.data['jwt_token']['refresh_token']);
-      print(resp.data['jwt_token']['access_token']);
-
       refreshToken = resp.data['jwt_token']['refresh_token'];
       accessToken = resp.data['jwt_token']['access_token'];
     } catch (e) {
       print(e);
       return showDialog(context: context, builder: (BuildContext context) {
-        return OneButtonDialog(title: '오류가 발생했습니다, 다시 시도해주세요.', onPressed: () {
+        return OneButtonDialog(title: '오류', onPressed: () {
           Navigator.of(context).pop();
         },
         );
@@ -133,10 +124,23 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     await storage.write(key: REFRESH_TOKEN_KEY, value: refreshToken);
     await storage.write(key: ACCESS_TOKEN_KEY, value: accessToken);
-    // await storage.write(key: USER_NAME, value: resp.data['User']['user_name']);
+    await storage.write(key: USER_NAME, value: resp.data['User']['user_name']);
     await storage.write(key: USER_ID, value: resp.data['User']['user_id']);
-    // await storage.write(key: FIRST_LOGIN, value: resp.data['']);
-    // todo : FIRST_LOGIN 여부 함께 저장
+
+    // first 여부 저장
+    print('[LOGIN] ${resp.data['User']['user_img_url']}');
+    String firstLogin = resp.data['User']['user_img_url'] == null? 'true' : 'false';
+    print('[LOGIN] firstLogin? ${firstLogin}');
+    await storage.write(key: FIRST_LOGIN, value: firstLogin);
+    if (firstLogin == 'true') {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (_) => OnBoardingPage(),
+        ),
+            (route) => false,
+      );
+      return;
+    }
 
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
@@ -149,12 +153,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   void onSignUpPressed() {
     Navigator.of(context).push(
       MaterialPageRoute(builder: (_) => SignUpScreen()),
-    );
-  }
-
-  void onTextPressed() {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => FindAccountScreen()),
     );
   }
 
@@ -321,31 +319,6 @@ class _MiddleLogin extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _BottomPart extends StatelessWidget {
-  final VoidCallback onTextPressed;
-
-  const _BottomPart({
-    Key? key,
-    required this.onTextPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTextPressed,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const Text(
-            '도움이 필요하신가요?',
-            style: TextStyle(color: PRIMARY_BLACK_COLOR),
-          ),
-        ],
-      ),
     );
   }
 }

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:client/constant/colors.dart';
-import 'package:client/data/account_model.dart';
+import 'package:client/data/user_model.dart';
 import 'package:client/layout/default_layout.dart';
 import 'package:client/screen/camera_result.dart';
 import 'package:flutter/material.dart';
@@ -12,12 +12,10 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:image/image.dart' as img;
 
 class CameraScreen extends StatefulWidget {
-  AccountModel userInfo;
   List<CameraDescription> cameras;
 
   CameraScreen({
     Key? key,
-    required this.userInfo,
     required this.cameras,
   }) : super(key: key);
 
@@ -64,63 +62,12 @@ class _CameraScreenState extends State<CameraScreen>
   }
 
   void initializeController(CameraDescription description) {
-    _controller = CameraController(description, ResolutionPreset.max);
-    _controller.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {});
-    }).catchError((Object e) {
-      if (e is CameraException) {
-        switch (e.code) {
-          case 'CameraAccessDenied':
-          // Handle access errors here.
-            break;
-          default:
-          // Handle other errors here.
-            break;
-        }
-      }
-    });
-  }
-
-  void updateController(CameraDescription description) {
-    _controller?.dispose().then((value) {
-      setState(() {});
-      _controller = CameraController(description, ResolutionPreset.max);
-      _controller!.initialize().then((_) {
-        setState(() {});
-      });
-    });
-  }
-
-  // #docregion AppLifecycle
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    final CameraController? cameraController = _controller;
-
-    // App state changed before we got the chance to initialize.
-    if (cameraController == null || !cameraController.value.isInitialized) {
-      return;
-    }
-
-    if (state == AppLifecycleState.inactive) {
-      cameraController.dispose();
-    } else if (state == AppLifecycleState.resumed) {
-      initializeController(cameraController.description);
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    isTimerStarted = false;
-    selectedCamera = 0;
-
-    changedSeconds = 10;
-    percentage = 1.0;
-
-    _controller = CameraController(widget.cameras[0], ResolutionPreset.max);
+    _controller = CameraController(
+      description,
+      ResolutionPreset.medium,
+    );
+    _controller!.setFlashMode(FlashMode.off);
+    _controller.lockCaptureOrientation();
     _controller.initialize().then((_) {
       if (!mounted) {
         return;
@@ -197,6 +144,117 @@ class _CameraScreenState extends State<CameraScreen>
     });
   }
 
+  void updateController(CameraDescription description) {
+    _controller?.dispose().then((value) {
+      setState(() {});
+      _controller = CameraController(description, ResolutionPreset.max);
+      _controller!.initialize().then((_) {
+        setState(() {});
+      });
+    });
+
+    _controller!.setFlashMode(FlashMode.off);
+  }
+
+  void onViewFinderTap(TapDownDetails details, BoxConstraints constraints) {
+    if (_controller == null) {
+      return;
+    }
+    final offset = Offset(
+      details.localPosition.dx / constraints.maxWidth,
+      details.localPosition.dy / constraints.maxHeight,
+    );
+    _controller!.setExposurePoint(offset);
+    _controller!.setFocusPoint(offset);
+  }
+
+  // #docregion AppLifecycle
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final CameraController? cameraController = _controller;
+
+    // App state changed before we got the chance to initialize.
+    if (cameraController == null || !cameraController.value.isInitialized) {
+      return;
+    }
+
+    if (state == AppLifecycleState.inactive) {
+      cameraController.dispose();
+    } else if (state == AppLifecycleState.resumed) {
+      initializeController(cameraController.description);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    isTimerStarted = false;
+    selectedCamera = 0;
+
+    changedSeconds = 10;
+    percentage = 1.0;
+
+    initializeController(widget.cameras[0]);
+
+    // 카메라 화면 시작 시 안내문구 창
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await showModalBottomSheet<void>(
+        context: context,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(5.0),
+          ),
+        ),
+        builder: (BuildContext context) {
+          return Container(
+            height: 200,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 24.0, horizontal: 16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('가이드라인에 맞게 카메라를 이동해주세요'),
+                          SizedBox(height: 8.0),
+                          Text('촬영버튼을 누르면 타이머 시간 이후 촬영됩니다'),
+                          SizedBox(height: 16.0),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50.0,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: PRIMARY_BLACK_COLOR,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(
+                          '확인',
+                          style: TextStyle(fontSize: 14.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    });
+  }
+
   @override
   void dispose() {
     _controller!.dispose();
@@ -209,10 +267,13 @@ class _CameraScreenState extends State<CameraScreen>
     double width = screenSize.width;
     double height = screenSize.height;
 
-    String strDigits(int n) => (n+1 == 11) ?  '10':  (n + 1).toString();
+    String strDigits(int n) => (n + 1 == 11) ? '10' : (n + 1).toString();
     String strSeconds = strDigits(changedSeconds);
 
     return DefaultLayout(
+      appBarColor: Colors.black,
+      appBarFontColor: Colors.white,
+      title: '사진 저장하기',
       backgroundColor: PRIMARY_BLACK_COLOR,
       child: Column(
         children: [
@@ -224,7 +285,17 @@ class _CameraScreenState extends State<CameraScreen>
                   child: SizedBox(
                     width: width,
                     height: height,
-                    child: CameraPreview(_controller),
+                    child: CameraPreview(
+                      _controller,
+                      child: LayoutBuilder(builder:
+                          (BuildContext context, BoxConstraints constraints) {
+                        return GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          onTapDown: (details) =>
+                              onViewFinderTap(details, constraints),
+                        );
+                      }),
+                    ),
                   ),
                 ),
                 // timer
@@ -279,7 +350,10 @@ class _CameraScreenState extends State<CameraScreen>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconButton(onPressed: null, icon: Icon(Icons.add),),
+                  IconButton(
+                    onPressed: null,
+                    icon: Icon(Icons.add),
+                  ),
                   SizedBox(
                     width: 75.0,
                     height: 75.0,
@@ -290,31 +364,50 @@ class _CameraScreenState extends State<CameraScreen>
 
                         Timer(Duration(seconds: 11), () async {
                           final _picture = await _controller.takePicture();
+
                           if (_picture == null) {
                             return;
                           }
-                          /*if (selectedCamera == 1) {
-                            final originalFile = File(_picture.path);
-                            Uint8List imageBytes = await originalFile.readAsBytes();
+                          File _pictureFile = File(_picture.path);
+
+                          if (selectedCamera == 1) {
+                            final originalFile = _pictureFile;
+                            Uint8List imageBytes =
+                                await originalFile.readAsBytes();
                             final originalImage = img.decodeImage(imageBytes);
 
                             img.Image fixedImage;
-                            fixedImage = img.flipHorizontal(originalImage!); // 좌우 반전
+                            fixedImage =
+                                img.flipHorizontal(originalImage!); // 좌우 반전
 
-                            Uint8List flipedImage = await originalFile.writeAsBytes(img.encodePng(fixedImage)); // JPG 형태로 File 저장
-                          _picture = flipedImage.
-                          }*/
+                            File flipedImage = await originalFile.writeAsBytes(
+                                img.encodePng(fixedImage)); // PNG 형태로 File 저장
+                            _pictureFile = flipedImage;
+                          } else {
+                            final originalFile = _pictureFile;
+                            Uint8List imageBytes =
+                            await originalFile.readAsBytes();
+                            final originalImage = img.decodeImage(imageBytes);
+
+                            img.Image fixedImage;
+                            fixedImage =
+                                img.copyRotate(originalImage!, angle: 90); // 90도 회전
+
+                            File rotatedImage = await originalFile.writeAsBytes(
+                                img.encodePng(fixedImage)); // PNG 형태로 File 저장
+                            _pictureFile = rotatedImage;
+                          }
 
                           setState(() {
                             isTimerStarted = false;
                             changedSeconds = 10;
                             percentage = 1.0;
                           });
+                          //if (widget.userInfo != null) {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => CameraResult(
-                                  userInfo: widget.userInfo,
-                                  image: _picture),
+                              builder: (context) =>
+                                  CameraResult(image: _pictureFile),
                             ),
                           );
                         });
@@ -338,7 +431,10 @@ class _CameraScreenState extends State<CameraScreen>
                       selectedCamera = selectedCamera == 0 ? 1 : 0;
                       updateController(widget.cameras[selectedCamera]);
                     },
-                    icon: Icon(Icons.cameraswitch, color: Colors.white,),
+                    icon: Icon(
+                      Icons.cameraswitch,
+                      color: Colors.white,
+                    ),
                   )
                 ],
               ),
