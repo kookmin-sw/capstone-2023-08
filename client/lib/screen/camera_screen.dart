@@ -6,8 +6,10 @@ import 'package:client/constant/colors.dart';
 import 'package:client/data/user_model.dart';
 import 'package:client/layout/default_layout.dart';
 import 'package:client/screen/camera_result.dart';
+import 'package:client/screen/gallery_pick_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:image/image.dart' as img;
 
@@ -67,12 +69,12 @@ class _CameraScreenState extends State<CameraScreen>
       ResolutionPreset.medium,
     );
     _controller!.setFlashMode(FlashMode.off);
-    _controller.lockCaptureOrientation();
     _controller.initialize().then((_) {
       if (!mounted) {
         return;
       }
       setState(() {});
+      print(_controller!.value.aspectRatio);
     }).catchError((Object e) {
       if (e is CameraException) {
         switch (e.code) {
@@ -85,87 +87,17 @@ class _CameraScreenState extends State<CameraScreen>
         }
       }
     });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await showModalBottomSheet<void>(
-        context: context,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(15.0),
-          ),
-        ),
-        builder: (BuildContext context) {
-          return Container(
-            height: 200,
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 24.0, horizontal: 16.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('가이드라인에 맞게 카메라를 이동해주세요'),
-                          SizedBox(height: 8.0),
-                          Text('촬영버튼을 누르면 타이머 시간 이후 촬영됩니다'),
-                          SizedBox(height: 16.0),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 50.0,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: PRIMARY_BLACK_COLOR,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text(
-                          '확인',
-                          style: TextStyle(fontSize: 14.0),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
-      );
-    });
   }
 
   void updateController(CameraDescription description) {
     _controller?.dispose().then((value) {
       setState(() {});
       _controller = CameraController(description, ResolutionPreset.max);
+      _controller!.setFlashMode(FlashMode.off);
       _controller!.initialize().then((_) {
         setState(() {});
       });
     });
-
-    _controller!.setFlashMode(FlashMode.off);
-  }
-
-  void onViewFinderTap(TapDownDetails details, BoxConstraints constraints) {
-    if (_controller == null) {
-      return;
-    }
-    final offset = Offset(
-      details.localPosition.dx / constraints.maxWidth,
-      details.localPosition.dy / constraints.maxHeight,
-    );
-    _controller!.setExposurePoint(offset);
-    _controller!.setFocusPoint(offset);
   }
 
   // #docregion AppLifecycle
@@ -194,7 +126,7 @@ class _CameraScreenState extends State<CameraScreen>
     changedSeconds = 10;
     percentage = 1.0;
 
-    initializeController(widget.cameras[0]);
+    initializeController(widget.cameras[1]);
 
     // 카메라 화면 시작 시 안내문구 창
     WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -218,7 +150,7 @@ class _CameraScreenState extends State<CameraScreen>
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Text('가이드라인에 맞게 카메라를 이동해주세요'),
                           SizedBox(height: 8.0),
                           Text('촬영버튼을 누르면 타이머 시간 이후 촬영됩니다'),
@@ -239,7 +171,7 @@ class _CameraScreenState extends State<CameraScreen>
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text(
+                        child: const Text(
                           '확인',
                           style: TextStyle(fontSize: 14.0),
                         ),
@@ -276,72 +208,68 @@ class _CameraScreenState extends State<CameraScreen>
       title: '사진 저장하기',
       backgroundColor: PRIMARY_BLACK_COLOR,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
-            flex: 8,
-            child: Stack(
-              children: [
-                Positioned.fill(
-                  child: SizedBox(
-                    width: width,
-                    height: height,
-                    child: CameraPreview(
-                      _controller,
-                      child: LayoutBuilder(builder:
-                          (BuildContext context, BoxConstraints constraints) {
-                        return GestureDetector(
-                          behavior: HitTestBehavior.opaque,
-                          onTapDown: (details) =>
-                              onViewFinderTap(details, constraints),
-                        );
-                      }),
-                    ),
-                  ),
-                ),
-                // timer
-                if (isTimerStarted == true)
-                  Positioned.fill(
-                    child: Container(
-                      width: width,
-                      height: height,
-                      child: Center(
-                        child: CircularPercentIndicator(
-                          animateFromLastPercent: true,
-                          reverse: true,
-                          animation: true,
-                          radius: 50.0,
-                          lineWidth: 12.0,
-                          animationDuration: 1000,
-                          progressColor: Colors.white,
-                          backgroundColor: Colors.transparent,
-                          percent: percentage,
-                          center: Text(
-                            strSeconds,
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 36),
+          Transform.scale(
+            scale: 1.0,
+            child: AspectRatio(
+              aspectRatio: 3.0 / 4.0,
+              child: OverflowBox(
+                alignment: Alignment.center,
+                child: Container(
+                  width: width,
+                  height: width / 1.333,
+                  child: Stack(
+                    children: [
+                      Positioned.fill(
+                        child: CameraPreview(_controller),
+                      ),
+                      // timer
+                      if (isTimerStarted == true)
+                        Positioned.fill(
+                          child: SizedBox(
+                            width: width,
+                            height: height,
+                            child: Center(
+                              child: CircularPercentIndicator(
+                                animateFromLastPercent: true,
+                                reverse: true,
+                                animation: true,
+                                radius: 50.0,
+                                lineWidth: 12.0,
+                                animationDuration: 1000,
+                                progressColor: Colors.white,
+                                backgroundColor: Colors.transparent,
+                                percent: percentage,
+                                center: Text(
+                                  strSeconds,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 36,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      Positioned.fill(
+                        child: Opacity(
+                          opacity: 0.8,
+                          child: Image.asset(
+                            'asset/img/user.png', // 사람 실루엣 사진
+                            fit: BoxFit.fitHeight,
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                Positioned.fill(
-                  child: Opacity(
-                    opacity: 0.8,
-                    child: Image.asset(
-                      'asset/img/user.png', // 사람 실루엣 사진
-                      fit: BoxFit.fitHeight,
-                    ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
           ),
-          Container(
-            width: width,
-            height: height * 0.2,
-            color: Color(0x99000000),
+          SizedBox(
+            height: 150,
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
@@ -349,10 +277,26 @@ class _CameraScreenState extends State<CameraScreen>
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   IconButton(
-                    onPressed: null,
-                    icon: Icon(Icons.add),
+                    onPressed: () async {
+                      // get image from gallery
+                      XFile? tempImage =
+                      await ImagePicker().pickImage(source: ImageSource.gallery);
+                      if (tempImage == null) return;
+
+                      File imageFile = File(tempImage!.path);
+
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => CameraResult(image: imageFile),
+                        ),
+                      );
+                    },
+                    iconSize: 40.0,
+                    icon: const Icon(Icons.image),
+                    color: Colors.white,
                   ),
                   SizedBox(
                     width: 75.0,
@@ -362,7 +306,7 @@ class _CameraScreenState extends State<CameraScreen>
                       onPressed: () async {
                         await startTimer();
 
-                        Timer(Duration(seconds: 11), () async {
+                        Timer(const Duration(seconds: 11), () async {
                           final _picture = await _controller.takePicture();
 
                           if (_picture == null) {
@@ -374,28 +318,17 @@ class _CameraScreenState extends State<CameraScreen>
                             final originalFile = _pictureFile;
                             Uint8List imageBytes =
                                 await originalFile.readAsBytes();
-                            final originalImage = img.decodeImage(imageBytes);
+                            final originalImage =
+                                img.decodeImage(imageBytes);
 
                             img.Image fixedImage;
                             fixedImage =
                                 img.flipHorizontal(originalImage!); // 좌우 반전
 
-                            File flipedImage = await originalFile.writeAsBytes(
-                                img.encodePng(fixedImage)); // PNG 형태로 File 저장
+                            File flipedImage = await originalFile
+                                .writeAsBytes(img.encodePng(
+                                    fixedImage)); // PNG 형태로 File 저장
                             _pictureFile = flipedImage;
-                          } else {
-                            final originalFile = _pictureFile;
-                            Uint8List imageBytes =
-                            await originalFile.readAsBytes();
-                            final originalImage = img.decodeImage(imageBytes);
-
-                            img.Image fixedImage;
-                            fixedImage =
-                                img.copyRotate(originalImage!, angle: 90); // 90도 회전
-
-                            File rotatedImage = await originalFile.writeAsBytes(
-                                img.encodePng(fixedImage)); // PNG 형태로 File 저장
-                            _pictureFile = rotatedImage;
                           }
 
                           setState(() {
@@ -412,28 +345,28 @@ class _CameraScreenState extends State<CameraScreen>
                           );
                         });
                       },
-                      child: Text(
-                        isTimerStarted ? '' : '10',
-                        style: TextStyle(
-                            color: PRIMARY_BLACK_COLOR, fontSize: 24.0),
-                      ),
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
-                        fixedSize: Size(28, 28),
+                        fixedSize: const Size(28, 28),
                         backgroundColor: Colors.white,
                         shape: const CircleBorder(),
                       ),
+                      child: Text(
+                        isTimerStarted ? '' : '10',
+                        style: const TextStyle(
+                            color: PRIMARY_BLACK_COLOR, fontSize: 24.0),
+                      ),
                     ),
                   ),
-                  IconButton(
+                  const IconButton(
                     iconSize: 40.0,
-                    onPressed: () {
+                    onPressed: /*() {
                       selectedCamera = selectedCamera == 0 ? 1 : 0;
                       updateController(widget.cameras[selectedCamera]);
-                    },
+                    }*/null,
                     icon: Icon(
                       Icons.cameraswitch,
-                      color: Colors.white,
+                      color: Colors.transparent,
                     ),
                   )
                 ],

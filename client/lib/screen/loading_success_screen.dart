@@ -28,10 +28,10 @@ class _LoadingSuccessScreenState extends State<LoadingSuccessScreen>
     super.initState();
 
     controller = FlutterGifController(vsync: this);
-    controller.repeat(min: 0, max: 130, period:const Duration(milliseconds: 1500));
+    controller.repeat(
+        min: 0, max: 130, period: const Duration(milliseconds: 1500));
 
-    Timer(
-        Duration(milliseconds: 1500), () {
+    Timer(const Duration(milliseconds: 1500), () {
       Navigator.of(context).push(MaterialPageRoute(
         builder: (_) => ResultScreen(
           imageFile: widget.imageFile,
@@ -56,7 +56,7 @@ class _LoadingSuccessScreenState extends State<LoadingSuccessScreen>
       child: Container(
         width: width,
         height: height,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
             image: AssetImage('asset/img/loading.png'),
@@ -74,16 +74,14 @@ class _LoadingSuccessScreenState extends State<LoadingSuccessScreen>
               SizedBox(
                 height: height * 0.1,
               ),
-              Text(
+              const Text(
                 '피팅 사진 생성 완료!',
                 style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 21.0,
                     color: Colors.white),
               ),
-              SizedBox(
-                height: 16.0,
-              ),
+              const SizedBox(height: 16.0),
               SizedBox(
                 height: height * 0.05,
               ),

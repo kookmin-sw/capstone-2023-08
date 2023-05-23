@@ -138,17 +138,11 @@ class ShoppingScreen extends ConsumerWidget {
                 title: Transform(
                     transform: Matrix4.translationValues(-20.0, 0.0, 10),
                     child: ElevatedButton(
-                      child: Image.asset(
-                        "asset/logo_black.png",
-                        width: 70,
-                        height: 70,
-                        //alignment: Alignment.bottomCenter,
-                      ),
                       style: ElevatedButton.styleFrom(
                         //alignment: Alignment.bottomLeft,
                         backgroundColor: Colors.white,
-                        padding: EdgeInsets.only(left: 30),
-                        minimumSize: Size(70, 70),
+                        padding: const EdgeInsets.only(left: 30),
+                        minimumSize: const Size(70, 70),
                         elevation: 0,
                       ),
                       onPressed: () {
@@ -156,6 +150,12 @@ class ShoppingScreen extends ConsumerWidget {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => RootTab()));
                       },
+                      child: Image.asset(
+                        "asset/logo_black.png",
+                        width: 70,
+                        height: 70,
+                        //alignment: Alignment.bottomCenter,
+                      ),
                     ))),
             // 변경사항
             // SliverOverlapAbsorber(
@@ -168,7 +168,7 @@ class ShoppingScreen extends ConsumerWidget {
         },
         body: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Expanded(child: FirstTabScreen()),
@@ -659,7 +659,7 @@ class _productitem extends ConsumerState<ProductItem> {
         child: Container(
           padding: const EdgeInsets.all(1),
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 242, 242, 242),
+            color: const Color.fromARGB(255, 242, 242, 242),
             borderRadius: BorderRadius.circular(5.0),
             // boxShadow: [
             //   BoxShadow(
@@ -690,11 +690,11 @@ class _productitem extends ConsumerState<ProductItem> {
               //SizedBox(height: 5.0),
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 16.0, left: 8.0),
+                  padding: const EdgeInsets.only(top: 16.0, left: 8.0),
                   child: Text(
                     widget.brand,
                     textAlign: TextAlign.left,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 13.0,
                       fontWeight: FontWeight.w400,
                       color: Color.fromARGB(255, 71, 71, 71),
@@ -703,7 +703,7 @@ class _productitem extends ConsumerState<ProductItem> {
                 ),
                 //SizedBox(width: 0),
                 Padding(
-                  padding: EdgeInsets.only(top: 8, right: 8.0),
+                  padding: const EdgeInsets.only(top: 8, right: 8.0),
                   child: GestureDetector(
                     onTap: onFavorite,
                     child: Icon(
@@ -711,7 +711,7 @@ class _productitem extends ConsumerState<ProductItem> {
                           ? Icons.favorite
                           : Icons.favorite_outline_outlined,
                       size: 20,
-                      color: Color.fromARGB(255, 255, 174, 53),
+                      color: const Color.fromARGB(255, 255, 174, 53),
                     ),
                   ),
                 ),
@@ -732,11 +732,11 @@ class _productitem extends ConsumerState<ProductItem> {
                   Expanded(
                     flex: 1,
                     child: Padding(
-                      padding: EdgeInsets.only(top: 5, left: 8.0),
+                      padding: const EdgeInsets.only(top: 5, left: 8.0),
                       child: Text(widget.productName,
                           maxLines: 1,
                           textAlign: TextAlign.start,
-                          style: TextStyle(
+                          style: const TextStyle(
                             overflow: TextOverflow.ellipsis,
                             fontSize: 13.0,
                             fontWeight: FontWeight.w600,

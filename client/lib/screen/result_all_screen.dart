@@ -21,11 +21,9 @@ import 'loading_success_screen.dart';
 import 'package:image/image.dart' as img;
 
 class FittingScreen extends ConsumerStatefulWidget {
-//  final File image; // todo: 이 부분 없애기
 
   FittingScreen({
     Key? key,
-//    required this.image, // todo: 이 부분 없애기
   }) : super(key: key);
 
   @override
@@ -37,16 +35,15 @@ class _FittingScreenState extends ConsumerState<FittingScreen> {
 
   // 서버에서 이미지 결과를 가져오는 코드
   Future<File?> requestResult() async {
-//    return widget.image; //todo: return 부분 없애기
     Response response;
     try {
       final storage = ref.read(secureStorageProvider);
       final id = await storage.read(key: USER_ID);
 
-      dio.options.headers = {'accessToken': 'true'};
+      /*dio.options.headers = {'accessToken': 'true'};
       dio.interceptors.add(
         CustomInterceptor(storage: storage),
-      );
+      );*/
       dio.options = BaseOptions(
         responseType: ResponseType.bytes,
       );
@@ -58,7 +55,6 @@ class _FittingScreenState extends ConsumerState<FittingScreen> {
         }),
       );
 
-      print(response.requestOptions);
       Directory tempDir = await getTemporaryDirectory();
       String tempPath = tempDir.path;
       String path = '$tempPath/${id}_result.png';
@@ -79,17 +75,13 @@ class _FittingScreenState extends ConsumerState<FittingScreen> {
       child: FutureBuilder(
           future: requestResult(),
           builder: (BuildContext context, snapshot) {
-            //if (snapshot.)
             if (snapshot.hasData == false) {
               return const LoadingScreen();
             } else {
-              print('data : ${snapshot.data}');
               if (snapshot.data != null) {
-                return LoadingSuccessScreen(
-                  imageFile: snapshot.data!,
-                );
+                return LoadingSuccessScreen(imageFile: snapshot.data!);
               } else {
-                return FailScreen();
+                return const FailScreen();
               }
             }
           }),

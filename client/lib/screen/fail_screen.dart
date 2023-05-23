@@ -27,12 +27,12 @@ class _FailScreenState extends State<FailScreen> {
   Widget build(BuildContext context) {
     return DefaultLayout(
       backgroundColor: PRIMARY_BLACK_COLOR,
-      child: Container(
+      child: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: const [
             Text(
               '😥',
               style: TextStyle(

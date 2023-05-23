@@ -5,8 +5,11 @@ const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';
 const REFRESH_TOKEN_KEY = 'REFRESH_TOKEN';
 const FIRST_LOGIN = 'FIRST_LOGIN';
 
-const String IP = 'http://35.84.85.252:8000';
+// deprecated
 const String GPU_IP = 'http://44.229.114.135:8000';
+
+//using
+const String IP = 'http://35.84.85.252:8000';
 
 // token
 const String GET_ACCESS_TOKEN_URL = '$IP/api/token/refresh';
@@ -34,6 +37,6 @@ const String GOODS_DELETE_URL = '$GOODS_BASE_URL/delete';
 const String GOODS_SHOW_URL = '$GOODS_BASE_URL/show';
 
 // gpu api
-const String HUMAN_INFER_URL = '$GPU_IP/dl/human';
-const String RESULT_INFER_URL = '$GPU_IP/dl/infer';
-const String FEEDBACK_URL = '$GPU_IP/dl/feedback';
+const String HUMAN_INFER_URL = '$IP/dl/human';
+const String RESULT_INFER_URL = '$IP/dl/infer';
+const String FEEDBACK_URL = '$IP/dl/feedback';

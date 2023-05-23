@@ -61,6 +61,7 @@ dependencies:
   shared_preferences: ^2.0.10
   path_provider: ^2.0.5
   image: ^4.0.15
+  async_button_builder: ^3.0.0+1
 
 dev_dependencies:
   flutter_test:

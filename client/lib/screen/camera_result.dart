@@ -1,7 +1,9 @@
-import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:animated_snack_bar/animated_snack_bar.dart';
+import 'package:client/component/custom_snackbar.dart';
+import 'package:client/component/loading_screen.dart';
 import 'package:client/data/upload_image.dart';
 import 'package:client/layout/default_layout.dart';
 import 'package:client/layout/root_tab.dart';
@@ -10,32 +12,45 @@ import '../constant/page_url.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image/image.dart' as img;
 
 import '../component/default_dialog.dart';
 import '../dio/dio.dart';
 
-class CameraResult extends ConsumerWidget {
+class CameraResult extends ConsumerStatefulWidget {
   final File image;
+  bool? isBack;
 
   CameraResult({
     required this.image,
+    this.isBack = false,
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    Size screenSize = MediaQuery.of(context).size;
+  ConsumerState<CameraResult> createState() => _CameraResultState();
+}
+
+class _CameraResultState extends ConsumerState<CameraResult> {
+  @override
+  Widget build(BuildContext context) {
+    Size screenSize = MediaQuery
+        .of(context)
+        .size;
     double width = screenSize.width;
     double height = screenSize.height;
     final dio = Dio();
     final storage = ref.read(secureStorageProvider);
-    final upload = UploadImage(dio: dio, storage: storage, context: context, image: image);
 
-    void onPictureUpdatePressed() async {
+    final upload = UploadImage(
+        dio: dio, storage: storage, context: context, image: widget.image);
 
+
+
+    Future<bool> onPictureUpdatePressed() async {
       String id = await upload.getUserInfoFromStorage();
       await upload.getImageAndUpload(id);
-      await upload.requestHumanParsingData(id); //todo: 주석 풀기
+      upload.requestHumanParsingData(id);
 
       final firstLogin = await storage.read(key: FIRST_LOGIN);
 
@@ -60,71 +75,40 @@ class CameraResult extends ConsumerWidget {
             await storage.write(key: FIRST_LOGIN, value: 'false');
             print('first login and saved to s3');
           }
-        } catch(e) {
+        } catch (e) {
           print(e);
         }
       }
 
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => RootTab()),
-            (route) => false,
-      );
+      // Root로 이동
+      Navigator.of(context, rootNavigator: true).pop();
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=> RootTab()), (route) => false);
 
       // ignore: use_build_context_synchronously
-      AnimatedSnackBar(
-        duration: const Duration(seconds: 2),
-        mobileSnackBarPosition: MobileSnackBarPosition.bottom,
-        builder: ((context) {
-          return Container(
-            width: width,
-            padding:
-                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-            height: 50,
-            decoration: const BoxDecoration(
-              color: Color(0xDD000000),
-              borderRadius: BorderRadius.all(
-                Radius.circular(5.0),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
-                Icon(
-                  Icons.check,
-                  color: Colors.white,
-                ),
-                SizedBox(
-                  width: 16.0,
-                ),
-                Text(
-                  '사진이 저장되었습니다!',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
-          );
-        }),
-      ).show(context);
+      final snackBar = CustomSnackBar(text: '사진이 저장되었습니다!', context: context);
+      snackBar.renderSnackBar();
+
+      return true;
     }
 
     void onReturnPressed() {
-      Navigator.of(context).pop();
+      Navigator.of(context, rootNavigator: true).pop();
       Navigator.of(context).pop();
     }
 
     return DefaultLayout(
       backgroundColor: Colors.black,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Image.file(
-              image,
-              fit: BoxFit.fitWidth,
+              widget.image,
+              fit: BoxFit.cover,
             ),
           ),
-          Container(
+          SizedBox(
             width: double.infinity,
             height: height * 0.2,
             child: Column(
@@ -145,7 +129,7 @@ class CameraResult extends ConsumerWidget {
                           builder: (context) {
                             return BasicAlertDialog(
                               title: '이 사진으로 저장할까요?',
-                              leftButtonText: '다시찍기',
+                              leftButtonText: '다시고르기',
                               rightButtonText: '사진저장',
                               onLeftButtonPressed: onReturnPressed,
                               onRightButtonPressed: onPictureUpdatePressed,

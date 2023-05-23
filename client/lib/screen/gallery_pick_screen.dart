@@ -55,11 +55,11 @@ class _GalleryPickScreenState extends State<GalleryPickScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('이런 사진이 좋아요',
+                          const Text('이런 사진이 좋아요',
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w600)),
-                          SizedBox(height: 8.0),
-                          Text(
+                          const SizedBox(height: 8.0),
+                          const Text(
                             '배경이 없는 사진을 선택하면, 좋은 결과를 얻을 수 있어요',
                             overflow: TextOverflow.visible,
                             softWrap: false,
@@ -68,7 +68,7 @@ class _GalleryPickScreenState extends State<GalleryPickScreen> {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          SizedBox(height: 8.0),
+                          const SizedBox(height: 8.0),
                           Image.asset(
                             'asset/clothes/product-image.png',
                             width: 150,
@@ -89,7 +89,7 @@ class _GalleryPickScreenState extends State<GalleryPickScreen> {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text('확인'),
+                        child: const Text('확인'),
                       ),
                     ),
                   ],
@@ -100,8 +100,7 @@ class _GalleryPickScreenState extends State<GalleryPickScreen> {
         },
       ).whenComplete(() async {
         final bool result = await pickImage();
-        if (result == false)
-          Navigator.of(context).pop();
+        if (result == false) Navigator.of(context).pop();
       });
     });
   }
@@ -112,7 +111,6 @@ class _GalleryPickScreenState extends State<GalleryPickScreen> {
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (tempImage == null) return false;
     setState(() {
-      print('setState');
       image = tempImage;
     });
     return true;
@@ -120,7 +118,7 @@ class _GalleryPickScreenState extends State<GalleryPickScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return image == null? Container() : PickedImageSendScreen(image: image!);
+    return image == null ? Container() : PickedImageSendScreen(image: image!);
   }
 }
 
@@ -146,7 +144,7 @@ class _PickedImageSendScreenState extends ConsumerState<PickedImageSendScreen> {
 
         final dio = Dio();
         final storage = ref.read(secureStorageProvider);
-        final upload = UploadImage(
+        final upload = UploadImage(isCloth: true,
             dio: dio, storage: storage, context: context, image: imageFile);
 
         // get id
@@ -170,39 +168,20 @@ class _PickedImageSendScreenState extends ConsumerState<PickedImageSendScreen> {
           builder: (BuildContext context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasError) {
-                // not data
-                /*Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=> RootTab()), (route) => false);
-                CustomSnackBar(text: '이미지를 선택해주세요', context: context);*/
-                print('error');
-                return Container(
-                  color: Colors.black,
-                );
+                return Container(color: Colors.black);
               } else {
                 if (snapshot.hasData == false) {
-                  print('done & no data');
-                  // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=> RootTab()), (route) => false);
-                  return Container(
-                    color: Colors.black,
-                  );
+                  return Container(color: Colors.black);
                 } else {
-                  print('done & have data & ${snapshot.data}');
-                  return FittingScreen(
-//                  image: snapshot.data!, // todo: 이 부분 없애기
-                      );
+                  return FittingScreen();
                 }
               }
             } else if (snapshot.connectionState == ConnectionState.waiting) {
-              if (snapshot.hasData == false)
-                print('waiting & no data');
-              else
-                print('waiting & have data');
               return const DefaultLoadingScreen(
                 backgroundColor: Colors.black,
               );
             } else {
-              return Container(
-                color: Colors.black,
-              );
+              return Container(color: Colors.black);
             }
           }),
     );
