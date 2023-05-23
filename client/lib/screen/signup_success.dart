@@ -64,7 +64,7 @@ class _SignupSuccessState extends State<SignupSuccess> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 Text(
                   '착붙의 회원이 되신 것을 환영합니다',
                   style: TextStyle(

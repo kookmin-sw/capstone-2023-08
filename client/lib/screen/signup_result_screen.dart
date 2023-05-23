@@ -44,7 +44,6 @@ class SignupResultScreen extends StatelessWidget {
       }
     }
 
-    // todo : request Human Parse Data
     Future<void> requestHumanParseData() async {
       try {
         String userId = userInfo.user_id.toString();
@@ -75,7 +74,7 @@ class SignupResultScreen extends StatelessWidget {
       future: requestSignupAll(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.hasData == false) {
-          return DefaultLayout(
+          return const DefaultLayout(
             backgroundColor: PRIMARY_BLACK_COLOR,
             child: Center(
               child: CircularProgressIndicator(

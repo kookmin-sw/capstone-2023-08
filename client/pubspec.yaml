@@ -51,9 +51,17 @@ dependencies:
   retrofit: ^4.0.1
   logger: any  #for logging purpose
   flutter_riverpod: ^2.3.6
+  introduction_screen: ^3.1.8
+  flutter_gif: ^0.0.4
+  animated_snack_bar: ^0.3.1
+  flutter_native_splash: ^2.2.19
+  flutter_launcher_icons: ^0.13.1
   provider: ^6.0.5
   webview_flutter: ^2.8.0
   shared_preferences: ^2.0.10
+  path_provider: ^2.0.5
+  image: ^4.0.15
+  async_button_builder: ^3.0.0+1
 
 dev_dependencies:
   flutter_test:
@@ -83,8 +91,33 @@ flutter:
 
   assets:
     - asset/img/
+    - asset/clothes/
+    - asset/font/
+    - asset/
     - assets/
     - assets/clothes/
+
+  fonts:
+    - family: pretendard
+      fonts:
+        - asset: asset/font/Pretendard-Thin.ttf
+          weight: 100
+        - asset: asset/font/Pretendard-ExtraLight.ttf
+          weight: 200
+        - asset: asset/font/Pretendard-Light.ttf
+          weight: 300
+        - asset: asset/font/Pretendard-Regular.ttf
+          weight: 400
+        - asset: asset/font/Pretendard-Medium.ttf
+          weight: 500
+        - asset: asset/font/Pretendard-SemiBold.ttf
+          weight: 600
+        - asset: asset/font/Pretendard-Bold.ttf
+          weight: 700
+        - asset: asset/font/Pretendard-ExtraBold.ttf
+          weight: 800
+        - asset: asset/font/Pretendard-Black.ttf
+          weight: 900
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -102,17 +135,6 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -5,24 +5,30 @@ import 'dart:convert';
 import '../data/account.dart';
 =======
 
-import 'package:camera/camera.dart';
-import 'package:client/component/one_button_dialog.dart';
 import 'package:client/constant/colors.dart';
 import 'package:client/constant/page_url.dart';
-import 'package:client/screen/camera_screen.dart';
+import 'package:client/screen/onboarding_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../component/custom_text_form_field.dart';
+<<<<<<< HEAD
 import '../data/account_model.dart';
 >>>>>>> upstream/Frontend
 import '../layout/default_layout.dart';
 >>>>>>> upstream/Frontend
+=======
+import '../data/user_model.dart';
+import '../layout/default_layout.dart';
+import '../secure_storage/secure_storage.dart';
+>>>>>>> upstream/Frontend
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends ConsumerStatefulWidget {
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  ConsumerState<SignUpScreen> createState() => _SignUpScreenState();
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 class SignupFormData {
   String? id;
@@ -54,13 +60,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _emailController = TextEditingController();
 =======
   AccountModel userInfo = AccountModel();
+=======
+class _SignUpScreenState extends ConsumerState<SignUpScreen> {
+  final Dio dio = Dio();
+  final _formKey = GlobalKey<FormState>();
+  UserModel userInfo = UserModel();
+>>>>>>> upstream/Frontend
   final _idController = TextEditingController();
 >>>>>>> upstream/Frontend
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   final _nicknameController = TextEditingController();
   bool isIdValidate = false;
-  String validateText = '중복확인';
+  String? idText;
+  bool isNameValidate = false;
+  String? nameText;
 
   @override
   void initState() {
@@ -71,7 +85,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   void dispose() {
-    myFocusNode.dispose();
     _idController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
@@ -85,29 +98,75 @@ class _SignUpScreenState extends State<SignUpScreen> {
     double width = screenSize.width;
     double height = screenSize.height;
 
-    void onIdChanged(value) {
-      userInfo.user_id = value;
-      userInfo.user_img_url = value + "_human.png";
-      setState(() {
-        isIdValidate = false;
-        validateText = '중복확인';
-      });
+    bool textNullCheck(value, String category) {
+      if (value == null || value.isEmpty) {
+        setState(() {
+          switch (category) {
+            case '아이디' : idText = '$category를 입력해주세요'; break;
+            case '닉네임' : nameText = '$category를 입력해주세요'; break;
+          }
+        });
+        return true;
+      }
+      return false;
     }
 
-    String? idValidator(value) {
-      if (value == null || value.isEmpty) {
-        return '아이디를 입력해주세요';
+    Future<void> isIdDuplicated() async {
+      final dio = Dio();
+      final value = _idController.text;
+
+      if (textNullCheck(value, '아이디') == true) return;
+
+      Response response;
+      try {
+        response = await dio.get(
+          SIGN_UP_ID_CHECK_URL,
+          data: json.encode(
+              {'user_id': value.toString()}),
+        );
+
+        if (response.statusCode == 205) {
+          setState(() {
+            idText = '중복되는 아이디가 있습니다. 다른 아이디로 시도해주세요';
+          });
+        } else {
+          setState(() {
+            isIdValidate = true;
+            idText = null;
+          });
+          print('아이디 중복 x');
+        }
+      } catch (e) {
+        print(e);
       }
+    }
+
+    Future<void> idValidator() async {
+      final value = _idController.text;
+      if (textNullCheck(value, '아이디') == true) return;
+
       // validate string이 아니면 제외.
       final validStr = RegExp(r'[A-Za-z0-9]$');
       if (!validStr.hasMatch(value)) {
-        return '아이디는 알파벳, 숫자만 사용할 수 있습니다';
+        setState(() {
+          idText = '아이디는 알파벳, 숫자만 사용해주세요';
+          print(idText);
+        });
+        return;
       }
 
-      if (isIdValidate == false) {
-        return '아이디 중복확인 후 회원가입 해주세요';
-      }
-      return null;
+      await isIdDuplicated();
+    }
+
+    void onIdChanged(value) async {
+      userInfo.user_id = value;
+
+      // 모든 validation check 수행 = isIdValidate, 그거 초기화
+      setState(() {
+        isIdValidate = false;
+      });
+
+      await idValidator();
     }
 
     void onpwChanged(value) {
@@ -141,26 +200,129 @@ class _SignUpScreenState extends State<SignUpScreen> {
       return null;
     }
 
-    void nickNameChanged(value) {
-      userInfo.user_name = value;
+    Future<void> isNameDuplicated() async {
+      final dio = Dio();
+      final value = _nicknameController.text;
+
+      if (textNullCheck(value, '닉네임') == true) return;
+
+      Response response;
+      try {
+        response = await dio.get(
+          SIGN_UP_NAME_CHECK_URL,
+          data: json.encode(
+              {'user_name': value.toString()}),
+        );
+
+        if (response.statusCode == 205) {
+          setState(() {
+            nameText = '중복되는 닉네임이 있습니다. 다른 닉네임으로 시도해주세요';
+          });
+        } else {
+          setState(() {
+            isNameValidate = true;
+            nameText = null;
+          });
+          print('닉네임 중복 x');
+        }
+      } catch (e) {
+        print(e);
+      }
     }
 
-    String? nickNameValidator(value) {
-      if (value == null || value.isEmpty) {
-        return '닉네임을 입력해주세요';
-      }
+    Future<void> nameValidator() async {
+      final value = _nicknameController.text;
+      if (textNullCheck(value, '닉네임') == true) return;
+
       if (value.length > 10) {
-        return '닉네임은 10자 이하로 입력해주세요';
+        setState(() {
+          nameText = '닉네임은 10자 이하로 입력해주세요';
+        });
+        return;
       }
-      return null;
+
+      await isNameDuplicated();
     }
 
-    bool isValid() {
-      return (_idController.text.length > 0) &&
-          (_passwordController.text.length > 0) &&
-          (_confirmPasswordController.text.length > 0) &&
-          (_nicknameController.text.length > 0) &&
-          isIdValidate;
+    void nameChanged(value) async {
+      userInfo.user_name = value;
+
+      setState(() {
+        isNameValidate = false;
+      });
+
+      await nameValidator();
+    }
+
+    Future<bool> requestSignUp() async {
+      Response response;
+      try {
+        response = await dio.post(
+          SIGN_UP_URL,
+          data: json.encode(userInfo.toJson()),
+        );
+        print(response.data);
+
+        if (response.statusCode == 200) {
+          response = await dio.get(SIGN_UP_URL);
+          print(response.data);
+          return true;
+        } else {
+          print(response.data);
+          print(response.statusCode);
+          return false;
+        }
+      } catch (e) {
+        print(e);
+        return false;
+      }
+    }
+
+    Future<void> requestSignin () async {
+      final String? id = userInfo.user_id;
+      final String? pw = userInfo.password;
+
+      final rawString = '${id}:${pw}';
+      print(rawString);
+
+      Codec<String, String> stringToBase64 = utf8.fuse(base64); // encoding 방식 정의
+
+      String token = stringToBase64.encode(rawString); // 어떤걸 encoding 할지 정의
+
+      final Dio dio = Dio();
+
+      Response resp;
+      String refreshToken;
+      String accessToken;
+      try {
+        resp = await dio.post(
+          SIGN_IN_URL,
+          options: Options(
+            headers: {
+              'Authorization': 'Basic $token',
+            },
+          ),
+          data: json.encode({
+            'user_id': id,
+            'password': pw,
+          }),
+        );
+
+        refreshToken = resp.data['jwt_token']['refresh_token'];
+        accessToken = resp.data['jwt_token']['access_token'];
+
+        final storage = ref.read(secureStorageProvider);
+
+        await storage.write(key: REFRESH_TOKEN_KEY, value: refreshToken);
+        await storage.write(key: ACCESS_TOKEN_KEY, value: accessToken);
+        await storage.write(key: USER_NAME, value: resp.data['User']['user_name']);
+        await storage.write(key: USER_ID, value: resp.data['User']['user_id']);
+        await storage.write(key: FIRST_LOGIN, value: 'true');
+
+        print('로그인 완료');
+      } catch (e) {
+        print(e);
+      }
     }
 
     return DefaultLayout(
@@ -401,104 +563,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
             width: width,
             height: height * 0.9,
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 32.0),
+              padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
               child: Form(
                 key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    IntrinsicHeight(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CustomTextFormField(
-                            width: width * 0.6,
-                            key: ValueKey(1),
-                            focusNode: myFocusNode,
-                            controller: _idController,
-                            labelText: '아이디',
-                            onTextChanged: onIdChanged,
-                            validator: idValidator,
-                            textInputAction: TextInputAction.next,
-                            isFocused: myFocusNode.hasFocus,
-                          ),
-                          SizedBox(
-                            width: 4.0,
-                          ),
-                          SizedBox(
-                            width: 70.0,
-                            height: 45.0,
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                elevation: 0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                backgroundColor: PRIMARY_BLACK_COLOR,
-                              ),
-                              onPressed: () async {
-                                // id = null인 경우 요청 전송 x
-                                if (_idController.text.isEmpty) {
-                                  return showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return OneButtonDialog(
-                                        title: '아이디를 입력해주세요',
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      );
-                                    },
-                                  );
-                                }
-
-                                final dio = Dio();
-                                print(_idController.text);
-                                Response response;
-                                try {
-                                  response = await dio.get(
-                                    SIGN_UP_URL,
-                                    data: json.encode(
-                                        {'user_id': _idController.text.toString()}),
-                                  );
-                                  if (response.statusCode == 205) {
-                                  } else {
-                                    setState(() {
-                                      isIdValidate = true;
-                                      validateText = '✔';
-                                    });
-                                  }
-                                  return showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return OneButtonDialog(
-                                        title: response.data['message'],
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      );
-                                    },
-                                  );
-                                } catch (e) {
-                                  print(e);
-                                }
-                              },
-                              child: Text(
-                                validateText,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 24.0),
                     CustomTextFormField(
-                      key: ValueKey(2),
+                      width: width,
+                      key: const ValueKey(1),
+                      controller: _idController,
+                      labelText: '아이디',
+                      onTextChanged: onIdChanged,
+                      validator: (val) {return idText;},
+                      textInputAction: TextInputAction.next,
+                    ),
+                    const SizedBox(height: 24.0),
+                    CustomTextFormField(
+                      key: const ValueKey(2),
                       width: width,
                       controller: _passwordController,
                       labelText: '비밀번호',
@@ -507,7 +589,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       validator: pwValidator,
                       textInputAction: TextInputAction.next,
                     ),
-                    SizedBox(height: 24.0),
+                    const SizedBox(height: 24.0),
                     CustomTextFormField(
                       width: width,
                       controller: _confirmPasswordController,
@@ -516,47 +598,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       validator: pwConfirmValidator,
                       textInputAction: TextInputAction.next,
                     ),
-                    SizedBox(height: 24.0),
+                    const SizedBox(height: 24.0),
                     CustomTextFormField(
-                      key: ValueKey(3),
+                      key: const ValueKey(3),
                       width: width,
                       controller: _nicknameController,
                       labelText: '닉네임',
-                      onTextChanged: nickNameChanged,
-                      validator: nickNameValidator,
+                      onTextChanged: nameChanged,
+                      validator: (val) {return nameText;},
                     ),
-                    SizedBox(height: 40.0),
+                    const SizedBox(height: 32.0),
                     SizedBox(
                       width: double.infinity,
                       height: 45.0,
                       child: ElevatedButton(
-                        onPressed: /*isValid()
-                            ? */() async {
+                        onPressed: () async {
                                 if (_formKey.currentState!.validate() &&
-                                    isIdValidate) {
-                                  print('camera start');
-                                  List<CameraDescription> cameras =
-                                      await availableCameras();
+                                    isIdValidate && isNameValidate) {
+                                  await requestSignUp();
+                                  await requestSignin();
 
-                                  print('available camera ${cameras.isEmpty}');
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (_) => CameraScreen(
-                                          cameras: cameras,
-                                          userInfo: userInfo)));
+                                      builder: (_) => const OnBoardingPage()));
                                 }
-                              }
-                            /*: null*/,
-                        child: Text('촬영하고 회원가입하기'),
+                              },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
+                            borderRadius: BorderRadius.circular(5.0),
                           ),
-                          minimumSize: Size(80, 25),
+                          minimumSize: const Size(80, 25),
                           backgroundColor: PRIMARY_BLACK_COLOR,
                           alignment: Alignment.center,
-                          disabledBackgroundColor: Colors.grey,
-                          disabledForegroundColor: Colors.white,
                         ),
+                        child: const Text('회원가입하기'),
                       ),
                     ),
                   ],
@@ -569,6 +643,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -596,3 +671,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 =======
 >>>>>>> upstream/Frontend
 }
+=======
+}
+>>>>>>> upstream/Frontend
