@@ -4,11 +4,11 @@
 </p>
 
 <p align="center">
-	<img src="https://readme-typing-svg.demolab.com/?lines=Welcome+To+%EC%B0%A9%EB%B6%99's+Github!&color=203864&font=Fira%20Code&center=true&width=380&height=50&duration=4000&pause=1000">
+	<img src="https://readme-typing-svg.demolab.com/?lines=Welcome+To+%EC%B0%A9%EB%B6%99's+Github!&color=FFAE35&font=Fira%20Code&center=true&width=380&height=50&duration=4000&pause=1000">
 </p>
 
 <p align="center">
-	<a href="https://kookmin-sw.github.io/capstone-2023-08/"><img alt="Sponsor with Github" title="Sponsor with Github" src="https://img.shields.io/badge/-GitPages-203864?style=for-the-badge&logo=github&logoColor=white"/></a>
+	<a href="https://kookmin-sw.github.io/capstone-2023-08/"><img alt="Sponsor with Github" title="Sponsor with Github" src="https://img.shields.io/badge/-GitPages-FFAE35?style=for-the-badge&logo=github&logoColor=white"/></a>
 </p>
 
 ## ⚡ 프로젝트 소개
