@@ -187,6 +187,117 @@ class _CameraScreenState extends State<CameraScreen>
     });
   }
 
+  void updateController(CameraDescription description) {
+    _controller?.dispose().then((value) {
+      setState(() {});
+      _controller = CameraController(description, ResolutionPreset.max);
+      _controller!.initialize().then((_) {
+        setState(() {});
+      });
+    });
+
+    _controller!.setFlashMode(FlashMode.off);
+  }
+
+  void onViewFinderTap(TapDownDetails details, BoxConstraints constraints) {
+    if (_controller == null) {
+      return;
+    }
+    final offset = Offset(
+      details.localPosition.dx / constraints.maxWidth,
+      details.localPosition.dy / constraints.maxHeight,
+    );
+    _controller!.setExposurePoint(offset);
+    _controller!.setFocusPoint(offset);
+  }
+
+  // #docregion AppLifecycle
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final CameraController? cameraController = _controller;
+
+    // App state changed before we got the chance to initialize.
+    if (cameraController == null || !cameraController.value.isInitialized) {
+      return;
+    }
+
+    if (state == AppLifecycleState.inactive) {
+      cameraController.dispose();
+    } else if (state == AppLifecycleState.resumed) {
+      initializeController(cameraController.description);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    isTimerStarted = false;
+    selectedCamera = 0;
+
+    changedSeconds = 10;
+    percentage = 1.0;
+
+    initializeController(widget.cameras[0]);
+
+    // 카메라 화면 시작 시 안내문구 창
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await showModalBottomSheet<void>(
+        context: context,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(5.0),
+          ),
+        ),
+        builder: (BuildContext context) {
+          return Container(
+            height: 200,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 24.0, horizontal: 16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('가이드라인에 맞게 카메라를 이동해주세요'),
+                          SizedBox(height: 8.0),
+                          Text('촬영버튼을 누르면 타이머 시간 이후 촬영됩니다'),
+                          SizedBox(height: 16.0),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 50.0,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: PRIMARY_BLACK_COLOR,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(
+                          '확인',
+                          style: TextStyle(fontSize: 14.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    });
+  }
+
   @override
   void dispose() {
     _controller!.dispose();

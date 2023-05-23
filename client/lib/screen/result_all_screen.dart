@@ -75,9 +75,11 @@ class _FittingScreenState extends ConsumerState<FittingScreen> {
       child: FutureBuilder(
           future: requestResult(),
           builder: (BuildContext context, snapshot) {
+            //if (snapshot.)
             if (snapshot.hasData == false) {
               return const LoadingScreen();
             } else {
+              print('data : ${snapshot.data}');
               if (snapshot.data != null) {
                 return LoadingSuccessScreen(imageFile: snapshot.data!);
               } else {

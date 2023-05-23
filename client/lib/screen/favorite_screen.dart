@@ -450,7 +450,11 @@ class _productitem extends ConsumerState<ProductItem> {
         child: Container(
           padding: const EdgeInsets.all(1),
           decoration: BoxDecoration(
+<<<<<<< HEAD
             color: const Color.fromARGB(255, 242, 242, 242),
+=======
+            color: Color.fromARGB(255, 242, 242, 242),
+>>>>>>> 7d82951581ea105ee150a5cc61110560a7f35532
             borderRadius: BorderRadius.circular(5.0),
             // boxShadow: [
             //   BoxShadow(

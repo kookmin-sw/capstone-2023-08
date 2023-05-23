@@ -94,6 +94,7 @@ class _CameraResultState extends ConsumerState<CameraResult> {
     void onReturnPressed() {
       Navigator.of(context, rootNavigator: true).pop();
       Navigator.of(context).pop();
+      Navigator.of(context).pop();
     }
 
     return DefaultLayout(
@@ -129,7 +130,7 @@ class _CameraResultState extends ConsumerState<CameraResult> {
                           builder: (context) {
                             return BasicAlertDialog(
                               title: '이 사진으로 저장할까요?',
-                              leftButtonText: '다시고르기',
+                              leftButtonText: '돌아가기',
                               rightButtonText: '사진저장',
                               onLeftButtonPressed: onReturnPressed,
                               onRightButtonPressed: onPictureUpdatePressed,
