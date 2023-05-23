@@ -114,14 +114,17 @@ class ImgInference:
         img_name = str(self.uid) + '_human.png'
         cloth_name = self.cloth_name
 
-        subprocess.run("rm -rf ACGPN/Data_preprocessing/test_pairs.txt", shell=True)
+        datapair_path = 'test_pairs_' + str(self.uid) + '.txt'
 
-        with open('ACGPN/Data_preprocessing/test_pairs.txt', 'w') as f:
+        if os.path.isfile('/home/ubuntu/capstone/capstone-2023-08/server/ACGPN/Data_preprocessing/' + datapair_path):
+            subprocess.run('rm -rf /home/ubuntu/capstone/capstone-2023-08/server/ACGPN/Data_preprocessing/' + datapair_path, shell=True)
+
+        with open('/home/ubuntu/capstone/capstone-2023-08/server/ACGPN/Data_preprocessing/' + datapair_path, 'w') as f:
             f.write(f'{img_name} {cloth_name}')
 
-        subprocess.run("python3 ACGPN/test.py", shell=True)
+        subprocess.run(f"python3 /home/ubuntu/capstone/capstone-2023-08/server/ACGPN/test.py --datapairs {datapair_path}", shell=True)
         
-        result_path = '/home/ubuntu/capstone/capstone-2023-08/server/results/test/try-on'
+        result_path = '/home/ubuntu/results/test/try-on'
         user_result = os.path.join(result_path, img_name)
         return user_result
 
