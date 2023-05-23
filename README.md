@@ -20,20 +20,19 @@
 
 ## 🎥 소개 영상
 
-[![Video Label](http://img.youtube.com/vi/h9aB7yKDZAM/0.jpg)](https://youtu.be/h9aB7yKDZAM)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/z_zzDvQsTQE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## 📱 How To Use?
 
-추후 업데이트 예정입니다...
+[튜토리얼 보러가기](https://github.com/kookmin-sw/capstone-2023-08/blob/master/Tutorial.pdf)
 
 
 ## 🙋‍♂️ Support
 
-서비스에 대한 문의 사항이 생기거나 수정할 부분이 있다면 [이메일]() 로 연락주세요.
+서비스에 대한 문의 사항이 생기거나 수정할 부분이 있다면 [이메일](kmucapstone08@gmail.com) 로 연락주세요.
 
 ---
 
 Made with ❤️ and Flutter
 
 <!-- ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=capstone-2023-08&show_icons=true&theme=radical) -->
-
