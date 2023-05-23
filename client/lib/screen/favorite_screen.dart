@@ -450,7 +450,11 @@ class _productitem extends ConsumerState<ProductItem> {
         child: Container(
           padding: const EdgeInsets.all(1),
           decoration: BoxDecoration(
+<<<<<<< HEAD
+            color: const Color.fromARGB(255, 242, 242, 242),
+=======
             color: Color.fromARGB(255, 242, 242, 242),
+>>>>>>> 7d82951581ea105ee150a5cc61110560a7f35532
             borderRadius: BorderRadius.circular(5.0),
             // boxShadow: [
             //   BoxShadow(
@@ -481,11 +485,11 @@ class _productitem extends ConsumerState<ProductItem> {
               //SizedBox(height: 5.0),
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 16.0, left: 8.0),
+                  padding: const EdgeInsets.only(top: 16.0, left: 8.0),
                   child: Text(
                     widget.brand,
                     textAlign: TextAlign.left,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 13.0,
                       color: Color.fromARGB(255, 71, 71, 71),
                     ),
@@ -493,7 +497,7 @@ class _productitem extends ConsumerState<ProductItem> {
                 ),
                 //SizedBox(width: 0),
                 Padding(
-                  padding: EdgeInsets.only(top: 8, right: 8.0),
+                  padding: const EdgeInsets.only(top: 8, right: 8.0),
                   child: GestureDetector(
                     onTap: onFavorite,
                     child: Icon(
@@ -501,7 +505,7 @@ class _productitem extends ConsumerState<ProductItem> {
                           ? Icons.favorite
                           : Icons.favorite_outline_outlined,
                       size: 20,
-                      color: Color.fromARGB(255, 255, 174, 53),
+                      color: const Color.fromARGB(255, 255, 174, 53),
                     ),
                   ),
                 ),
@@ -521,10 +525,10 @@ class _productitem extends ConsumerState<ProductItem> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(top: 5, left: 8.0),
+                      padding: const EdgeInsets.only(top: 5, left: 8.0),
                       child: Text(widget.productName,
                           maxLines: 1,
-                          style: TextStyle(
+                          style: const TextStyle(
                             overflow: TextOverflow.ellipsis,
                             fontSize: 13.0,
                             fontWeight: FontWeight.w600,

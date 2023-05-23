@@ -46,7 +46,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: const EdgeInsets.only(top: 32.0, left: 16.0, right: 16.0),
                     child: Text(
                       '어플정보',
@@ -56,7 +56,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                           color: Color(0xFF7C7C7C)),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     color: Color(0xFFF2F2F2),
                     height: 24.0,
                   ),
@@ -65,15 +65,15 @@ class _MyPageScreenState extends State<MyPageScreen> {
                       Navigator.of(context)
                           .push(MaterialPageRoute(builder: (_) => AppHomePageScreen()));
                     },
-                    title: Text('어플소개'),
-                    trailing: Icon(Icons.keyboard_arrow_right, color: Color(0xFFC6C6C6),),
+                    title: const Text('어플소개'),
+                    trailing: const Icon(Icons.keyboard_arrow_right, color: Color(0xFFC6C6C6),),
                   ),
-                  Divider(
+                  const Divider(
                     color: Color(0xFFF2F2F2),
                     height: 10.0,
                   ),
-                  LogoutButton(),
-                  Divider(
+                  const LogoutButton(),
+                  const Divider(
                     color: Color(0xFFF2F2F2),
                     height: 16.0,
                   ),
@@ -129,7 +129,7 @@ class ProfileScreen extends ConsumerWidget {
                     ],
                   ),
                   SizedBox(height: height * 0.1),
-                  Text(
+                  const Text(
                     '안녕하세요!',
                     style: TextStyle(
                       fontSize: 20.0,
@@ -137,7 +137,7 @@ class ProfileScreen extends ConsumerWidget {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8.0,
                   ),
                   FutureBuilder(
@@ -146,7 +146,7 @@ class ProfileScreen extends ConsumerWidget {
                       if (snapshot.hasData == true) {
                         return Text(
                           '${snapshot.data}님.',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 24.0,
                             color: Colors.white,
                             fontWeight: FontWeight.w700,
@@ -164,14 +164,14 @@ class ProfileScreen extends ConsumerWidget {
               ),
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 '내 정보 수정하기',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
                     fontWeight: FontWeight.w400),
               ),
-              trailing: Icon(
+              trailing: const Icon(
                 Icons.keyboard_arrow_right,
                 color: Colors.white,
               ),
@@ -180,20 +180,20 @@ class ProfileScreen extends ConsumerWidget {
                     MaterialPageRoute(builder: (_) => UserInfoUpdateScreen()));
               },
             ),
-            Padding(
+            const Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: SizedBox(
                   height: 16.0, child: Divider(color: Color(0xFF474747))),
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 '내 사진 수정하기',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
                     fontWeight: FontWeight.w400),
               ),
-              trailing: Icon(
+              trailing: const Icon(
                 Icons.keyboard_arrow_right,
                 color: Colors.white,
               ),
@@ -248,8 +248,8 @@ class LogoutButton extends ConsumerWidget {
               );
             });
       },
-      title: Text('로그아웃'),
-      trailing: Icon(Icons.keyboard_arrow_right, color: Color(0xFFC6C6C6),),
+      title: const Text('로그아웃'),
+      trailing: const Icon(Icons.keyboard_arrow_right, color: Color(0xFFC6C6C6),),
     );
   }
 }

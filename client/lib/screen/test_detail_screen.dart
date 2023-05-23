@@ -8,6 +8,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import '../dio/dio.dart';
+import '../layout/root_tab.dart';
 import '../secure_storage/secure_storage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -170,7 +171,7 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
       File image = await file.writeAsBytes(bytes);
     
     final upload =
-        UploadImage(dio: dio, storage: storage, context: context, image: image);
+        UploadImage(isCloth: true, dio: dio, storage: storage, context: context, image: image);
 
     String id = await upload.getUserInfoFromStorage();
     await upload.getImageAndUpload(id);
@@ -197,7 +198,7 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
               return WebView(
                 initialUrl: 'https://www.musinsa.com/app/goods/' +
                     widget.item.id.toString(),
-                javascriptMode: JavascriptMode.unrestricted,
+                javascriptMode: JavascriptMode.disabled,
                 onWebViewCreated: (WebViewController webViewController) {
                   _controller.complete(webViewController);
                 },
@@ -212,26 +213,26 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
                   width: 393 * (screenWidth / finalWidth),
                   height: 110 * (screenHeight / finalHeight) - 15,
                   child: ColoredBox(
-                      color: Color.fromARGB(255, 242, 242, 242),
+                      color: const Color.fromARGB(255, 242, 242, 242),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           IconButton(
                             padding: EdgeInsets.zero,
-                            constraints: BoxConstraints(),
+                            constraints: const BoxConstraints(),
                             onPressed: onFavorite,
                             //alignment: Alignment.centerLeft,
-                            color: Color.fromARGB(255, 255, 174, 53),
+                            color: const Color.fromARGB(255, 255, 174, 53),
                             icon: Icon(isLiked
                                 ? Icons.favorite
                                 : Icons.favorite_outline_outlined),
                             iconSize: 25.0,
                           ),
-                          SizedBox(width: 20),
-                          Container(
+                          const SizedBox(width: 20),
+                          SizedBox(
                             //alignment: Alignment.centerRight,
-                            width: 270 * (screenWidth / finalWidth),
+                            width: 300 * (screenWidth / finalWidth),
                             height: 55 * (screenHeight / finalHeight),
                             //margin: const EdgeInsets.all(10.0),
                             //padding: EdgeInsets.fromLTRB(0, 5, 2, 5),
@@ -240,14 +241,14 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
                                 primary: Colors.black,
                                 elevation: 0,
                               ),
-                              child: Text(
+                              onPressed: onFitting,
+                              child: const Text(
                                 '피팅하기',
                                 style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              onPressed: onFitting,
                             ),
                           )
                         ],
@@ -276,7 +277,7 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
                         // ),
                         IconButton(
                           //alignment: Alignment.bottomLeft,
-                          icon: Icon(Icons.arrow_back
+                          icon: const Icon(Icons.arrow_back
                               //isFavorite ? Icons.favorite : Icons.favorite_border,
                               //color: isFavorite ? Colors.red : null,
                               ),

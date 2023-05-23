@@ -200,14 +200,6 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
       await nameValidator();
     }
 
-    bool isValid() {
-      return (_idController.text.length > 0) &&
-          (_passwordController.text.length > 0) &&
-          (_confirmPasswordController.text.length > 0) &&
-          (_nicknameController.text.length > 0) &&
-          isIdValidate && isNameValidate;
-    }
-
     Future<bool> requestSignUp() async {
       Response response;
       try {
@@ -215,12 +207,15 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
           SIGN_UP_URL,
           data: json.encode(userInfo.toJson()),
         );
+        print(response.data);
 
         if (response.statusCode == 200) {
           response = await dio.get(SIGN_UP_URL);
           print(response.data);
           return true;
         } else {
+          print(response.data);
+          print(response.statusCode);
           return false;
         }
       } catch (e) {
@@ -269,7 +264,6 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
         await storage.write(key: USER_NAME, value: resp.data['User']['user_name']);
         await storage.write(key: USER_ID, value: resp.data['User']['user_id']);
         await storage.write(key: FIRST_LOGIN, value: 'true');
-        await storage.write(key: FIRST_LOGIN, value: 'true');
 
         print('로그인 완료');
       } catch (e) {
@@ -287,7 +281,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
             width: width,
             height: height * 0.9,
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -295,16 +289,16 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   children: <Widget>[
                     CustomTextFormField(
                       width: width,
-                      key: ValueKey(1),
+                      key: const ValueKey(1),
                       controller: _idController,
                       labelText: '아이디',
                       onTextChanged: onIdChanged,
                       validator: (val) {return idText;},
                       textInputAction: TextInputAction.next,
                     ),
-                    SizedBox(height: 24.0),
+                    const SizedBox(height: 24.0),
                     CustomTextFormField(
-                      key: ValueKey(2),
+                      key: const ValueKey(2),
                       width: width,
                       controller: _passwordController,
                       labelText: '비밀번호',
@@ -313,7 +307,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                       validator: pwValidator,
                       textInputAction: TextInputAction.next,
                     ),
-                    SizedBox(height: 24.0),
+                    const SizedBox(height: 24.0),
                     CustomTextFormField(
                       width: width,
                       controller: _confirmPasswordController,
@@ -322,16 +316,16 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                       validator: pwConfirmValidator,
                       textInputAction: TextInputAction.next,
                     ),
-                    SizedBox(height: 24.0),
+                    const SizedBox(height: 24.0),
                     CustomTextFormField(
-                      key: ValueKey(3),
+                      key: const ValueKey(3),
                       width: width,
                       controller: _nicknameController,
                       labelText: '닉네임',
                       onTextChanged: nameChanged,
                       validator: (val) {return nameText;},
                     ),
-                    SizedBox(height: 32.0),
+                    const SizedBox(height: 32.0),
                     SizedBox(
                       width: double.infinity,
                       height: 45.0,
@@ -343,18 +337,18 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                                   await requestSignin();
 
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (_) => OnBoardingPage()));
+                                      builder: (_) => const OnBoardingPage()));
                                 }
                               },
-                        child: Text('회원가입하기'),
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           ),
-                          minimumSize: Size(80, 25),
+                          minimumSize: const Size(80, 25),
                           backgroundColor: PRIMARY_BLACK_COLOR,
                           alignment: Alignment.center,
                         ),
+                        child: const Text('회원가입하기'),
                       ),
                     ),
                   ],

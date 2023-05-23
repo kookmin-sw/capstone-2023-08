@@ -58,7 +58,12 @@ class _UserInfoUpdateScreenState extends ConsumerState<UserInfoUpdateScreen> {
 
       if (textNullCheck(value) == true) return;
       final currentName = await storage.read(key: USER_NAME);
-      if (value == currentName) return;
+      if (value == currentName) {
+        setState(() {
+          nameText = '현재 닉네임과 같습니다';
+        });
+        return;
+      }
 
       Response response;
       try {

@@ -10,7 +10,7 @@ class MyPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Color.fromARGB(255, 255, 174, 53)
+      ..color = const Color.fromARGB(255, 255, 174, 53)
       // ..strokeWidth = 1
       ..style = PaintingStyle.fill;
 
@@ -57,8 +57,8 @@ class HomeScreen extends StatelessWidget {
             top: 160 * (screenHeight / finalHeight),
             left: 30 * (screenWidth / finalWidth),
             child: Container(
-                alignment: Alignment(0, -0.4),
-                child: Text(
+                alignment: const Alignment(0, -0.4),
+                child: const Text(
                   "원하는 옷을\n원하는 장소에서 입어보세요!",
                   style: TextStyle(
                       color: Colors.white,
@@ -73,7 +73,7 @@ class HomeScreen extends StatelessWidget {
             top: 10 * (screenHeight / finalHeight),
             right: -78 * (screenWidth / finalWidth),
             child: CustomPaint(
-              size: Size(75, 240), // 위젯의 크기를 정함.
+              size: const Size(75, 240), // 위젯의 크기를 정함.
               painter: MyPainter(), // painter에 그리기를 담당할 클래스를 넣음.
             ),
           ),
@@ -90,7 +90,7 @@ class HomeScreen extends StatelessWidget {
           Positioned(
             left: 30,
             bottom: screenHeight * 0.2,
-            child: Text(
+            child: const Text(
               "무신사 옷을 입어보거나\n직접 옷을 선택해서 입어볼 수 있어요!",
               style: TextStyle(
                   color: INPUT_BORDER_COLOR,
@@ -159,21 +159,8 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    alignment: Alignment(-0.5, 0.7),
+                    alignment: const Alignment(-0.5, 0.7),
                     child: ElevatedButton(
-                      child: RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'MUSINSA\n',
-                                ),
-                                TextSpan(
-                                  text: '옷 입어보기',
-                                ),
-                              ],
-                              style: TextStyle(
-                                  fontFamily: "Pretendard", fontSize: 17))),
                       onPressed: () {
                         Navigator.push(
                             context,
@@ -185,6 +172,19 @@ class HomeScreen extends StatelessWidget {
                         primary: Colors.black, // Background color
                         alignment: Alignment.center,
                       ),
+                      child: RichText(
+                          textAlign: TextAlign.center,
+                          text: const TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'MUSINSA\n',
+                                ),
+                                TextSpan(
+                                  text: '옷 입어보기',
+                                ),
+                              ],
+                              style: TextStyle(
+                                  fontFamily: "Pretendard", fontSize: 17))),
                     ),
                   ),
                   Container(
@@ -195,19 +195,6 @@ class HomeScreen extends StatelessWidget {
                   Container(
                     //alignment: Alignment(0.5, 0.7),
                     child: ElevatedButton(
-                      child: RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: '갤러리에서\n',
-                                ),
-                                TextSpan(
-                                  text: '옷 입어보기',
-                                ),
-                              ],
-                              style: TextStyle(
-                                  fontFamily: "Pretendard", fontSize: 17))),
                       onPressed: () {
                         Navigator.push(
                             context,
@@ -218,6 +205,19 @@ class HomeScreen extends StatelessWidget {
                         minimumSize: Size(200, 100),
                         primary: Colors.black, // Background color
                       ),
+                      child: RichText(
+                          textAlign: TextAlign.center,
+                          text: const TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: '갤러리에서\n',
+                                ),
+                                TextSpan(
+                                  text: '옷 입어보기',
+                                ),
+                              ],
+                              style: TextStyle(
+                                  fontFamily: "Pretendard", fontSize: 17))),
                     ),
                     // FloatingActionButton(
                     //   backgroundColor: Colors.black,

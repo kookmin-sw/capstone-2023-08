@@ -12,12 +12,14 @@ import '../screen/fail_screen.dart';
 import 'package:http/http.dart' as http;
 
 class UploadImage {
+  final bool? isCloth;
   final Dio dio;
   final FlutterSecureStorage storage;
   final BuildContext context;
   final File image;
 
   UploadImage({
+    this.isCloth = false,
     required this.dio,
     required this.storage,
     required this.image,
@@ -41,8 +43,8 @@ class UploadImage {
 
   Future<String> getPresignedUrl(String id) async {
     try {
-      String bucket_name = 'user-human-img';
-      String image_name = '${id}_human.png';
+      String bucket_name = isCloth == true? 'user-cloth-img': 'user-human-img';
+      String image_name = isCloth == true? '${id}_cloth.png' : '${id}_human.png';
 
       dio.options.headers = {'accessToken': 'true'};
       dio.interceptors.add(

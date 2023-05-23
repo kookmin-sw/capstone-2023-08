@@ -1,19 +1,24 @@
+import 'package:async_button_builder/async_button_builder.dart';
+import 'package:client/component/loading_screen.dart';
 import 'package:client/constant/colors.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AlertButton extends StatelessWidget {
   final Color backgroundColor;
   final Color color;
   final String label;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
+  final AsyncCallback? onAsyncPressed;
   final Color borderColor;
 
-  const AlertButton({
+  AlertButton({
     Key? key,
     required this.backgroundColor,
     required this.color,
     required this.label,
-    required this.onPressed,
+    this.onPressed,
+    this.onAsyncPressed,
     this.borderColor = Colors.transparent,
   }) : super(key: key);
 
@@ -23,7 +28,7 @@ class AlertButton extends StatelessWidget {
       child: SizedBox(
         height: 50.0,
         child: OutlinedButton(
-          onPressed: onPressed,
+          onPressed: onPressed?? onAsyncPressed,
           child: Text(
             label,
             style: TextStyle(
@@ -47,15 +52,15 @@ class AlertButton extends StatelessWidget {
   }
 }
 
-class BasicAlertDialog extends StatelessWidget {
+class BasicAlertDialog extends StatefulWidget {
   final VoidCallback onLeftButtonPressed;
-  final VoidCallback onRightButtonPressed;
+  final AsyncCallback? onRightButtonPressed;
   final String title;
   final String? bodyText;
   final String leftButtonText;
   final String rightButtonText;
 
-  const BasicAlertDialog({
+  BasicAlertDialog({
     Key? key,
     required this.onLeftButtonPressed,
     required this.onRightButtonPressed,
@@ -65,6 +70,11 @@ class BasicAlertDialog extends StatelessWidget {
     required this.rightButtonText,
   }) : super(key: key);
 
+  @override
+  State<BasicAlertDialog> createState() => _BasicAlertDialogState();
+}
+
+class _BasicAlertDialogState extends State<BasicAlertDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -76,7 +86,7 @@ class BasicAlertDialog extends StatelessWidget {
           var height = MediaQuery.of(context).size.height;
           var width = MediaQuery.of(context).size.width;
           return Container(
-            height: bodyText == null ? height * 0.18 : height * 0.2,
+            height: widget.bodyText == null ? height * 0.18 : height * 0.2,
             width: width,
             child: Column(
               children: [
@@ -95,18 +105,44 @@ class BasicAlertDialog extends StatelessWidget {
                         AlertButton(
                           backgroundColor: Colors.white70,
                           color: PRIMARY_BLACK_COLOR,
-                          label: leftButtonText,
-                          onPressed: this.onLeftButtonPressed,
+                          label: widget.leftButtonText,
+                          onPressed: this.widget.onLeftButtonPressed,
                           borderColor: BUTTON_BORDER_COLOR,
                         ),
                         SizedBox(
                           width: 16,
                         ),
-                        AlertButton(
-                          backgroundColor: PRIMARY_BLACK_COLOR,
-                          color: Colors.white,
-                          label: rightButtonText,
-                          onPressed: this.onRightButtonPressed,
+                        AsyncButtonBuilder(
+                          child: Text(
+                            widget.rightButtonText,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          loadingWidget: DefaultLoadingScreen(backgroundColor: Colors.black,),
+                          onPressed: widget.onRightButtonPressed,
+                          builder: (context, child, callback, _) {
+                            return Expanded(
+                              child: SizedBox(
+                                height: 50.0,
+                                child: OutlinedButton(
+                                  onPressed: callback,
+                                  child: child,
+                                  style: OutlinedButton.styleFrom(
+                                    side: BorderSide(
+                                      color: Colors.transparent,
+                                    ),
+                                    backgroundColor: PRIMARY_BLACK_COLOR,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -121,10 +157,10 @@ class BasicAlertDialog extends StatelessWidget {
   }
 
   Widget renderText() {
-    if (bodyText == null) {
+    if (widget.bodyText == null) {
       return Center(
         child: Text(
-          title,
+          widget.title,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 16,
@@ -137,7 +173,7 @@ class BasicAlertDialog extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-          bodyText!,
+          widget.bodyText!,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: PRIMARY_BLACK_COLOR,
@@ -147,7 +183,7 @@ class BasicAlertDialog extends StatelessWidget {
           ),
           SizedBox(height: 8),
           Text(
-            title,
+            widget.title,
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600,),
           ),

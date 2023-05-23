@@ -35,17 +35,18 @@ class _LoadingScreenState extends State<LoadingScreen>
     final double width = MediaQuery.of(context).size.width;
 
     return DefaultLayout(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.black,
       child: Container(
         width: width,
         height: height,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
-            fit: BoxFit.fitWidth,
+            fit: BoxFit.cover,
             image: AssetImage('asset/img/loading.png'),
           ),
         ),
-        child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 32.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -56,30 +57,26 @@ class _LoadingScreenState extends State<LoadingScreen>
               SizedBox(
                 height: height * 0.1,
               ),
-              Text(
+              const Text(
                 'AI가 피팅사진을 생성중입니다',
                 style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 21.0,
                     color: Colors.white),
               ),
-              SizedBox(
-                height: 16.0,
-              ),
-              Text(
+              const SizedBox(height: 16.0),
+              const Text(
                 '잠시만 기다려주세요 :)',
                 style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 21.0,
                     color: Colors.white),
               ),
+              SizedBox(height: height * 0.02),
               SizedBox(
-                height: height * 0.02,
-              ),
-              SizedBox(
-                height: 200,
+                height: 150,
                 child: GifImage(
-                  width: width * 0.4,
+                  width: width * 0.2,
                   controller: controller,
                   image: AssetImage('asset/img/loading_color.gif'),
                 ),

@@ -91,9 +91,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     String token = stringToBase64.encode(rawString); // 어떤걸 encoding 할지 정의
 
-    Response resp;
-    String refreshToken;
-    String accessToken;
+    Response? resp;
+    String? refreshToken;
+    String? accessToken;
+    bool notLogined = true;
     try {
       resp = await dio.post(
         SIGN_IN_URL,
@@ -107,29 +108,37 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           'password': pw,
         }),
       );
-      refreshToken = resp.data['jwt_token']['refresh_token'];
-      accessToken = resp.data['jwt_token']['access_token'];
+      if (resp.statusCode == 200) {
+        refreshToken = resp.data['jwt_token']['refresh_token'];
+        accessToken = resp.data['jwt_token']['access_token'];
+        notLogined = false;
+      }
     } catch (e) {
       print(e);
-      return showDialog(context: context, builder: (BuildContext context) {
-        return OneButtonDialog(title: '오류', onPressed: () {
-          Navigator.of(context).pop();
-        },
-        );
-      }
-      );
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return OneButtonDialog(
+              title: '로그인 정보를 확인해주세요',
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            );
+          });
     }
 
+    if (notLogined == true) return;
     final storage = ref.read(secureStorageProvider);
 
     await storage.write(key: REFRESH_TOKEN_KEY, value: refreshToken);
     await storage.write(key: ACCESS_TOKEN_KEY, value: accessToken);
-    await storage.write(key: USER_NAME, value: resp.data['User']['user_name']);
-    await storage.write(key: USER_ID, value: resp.data['User']['user_id']);
+    await storage.write(key: USER_NAME, value: resp!.data['User']['user_name']);
+    await storage.write(key: USER_ID, value: resp!.data['User']['user_id']);
 
     // first 여부 저장
     print('[LOGIN] ${resp.data['User']['user_img_url']}');
-    String firstLogin = resp.data['User']['user_img_url'] == null? 'true' : 'false';
+    String firstLogin =
+        resp.data['User']['user_img_url'] == null ? 'true' : 'false';
     print('[LOGIN] firstLogin? ${firstLogin}');
     await storage.write(key: FIRST_LOGIN, value: firstLogin);
     if (firstLogin == 'true') {
@@ -137,7 +146,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         MaterialPageRoute(
           builder: (_) => OnBoardingPage(),
         ),
-            (route) => false,
+        (route) => false,
       );
       return;
     }
@@ -146,7 +155,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       MaterialPageRoute(
         builder: (_) => RootTab(),
       ),
-          (route) => false,
+      (route) => false,
     );
   }
 
@@ -194,7 +203,7 @@ class _TopPart extends StatelessWidget {
             SizedBox(
               height: height * 0.05,
             ),
-            Text(
+            const Text(
               '착붙에 로그인하고\n원하는 옷을 원하는 장소에서 입어보세요!',
               style: TextStyle(
                 color: Color(0xFF2C2C2C),
@@ -233,8 +242,8 @@ class _MiddleLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     // id, pw 둘 중 하나라도 null이면 버튼 비활성화
     bool isLoginButtonValid() {
-      return (idTextEditingController.text.length > 0) &&
-          (pwTextEditingController.text.length > 0);
+      return (idTextEditingController.text.isNotEmpty) &&
+          (pwTextEditingController.text.isNotEmpty);
     }
 
     return Column(
@@ -250,9 +259,7 @@ class _MiddleLogin extends StatelessWidget {
         // 엔터키 누르면 로그인 버튼 눌리는 기능 추가 방법
         // Navigation으로 이동시 textInputAction: TextInputAction.done,
         // onSubmitted : () { // 아이디, 비밀번호 맞는지 확인하고 각각 페이지 보여주는 페이지로 }
-        SizedBox(
-          height: 16.0,
-        ),
+        const SizedBox(height: 16.0),
         CustomTextFormField(
           width: width,
           controller: pwTextEditingController,
@@ -261,9 +268,7 @@ class _MiddleLogin extends StatelessWidget {
           onTextChanged: onpwChanged,
           obscureText: true,
         ),
-        SizedBox(
-          height: 16.0,
-        ),
+        const SizedBox(height: 16.0),
         ValueListenableBuilder<TextEditingValue>(
             valueListenable: idTextEditingController,
             builder: (context, value, child) {
@@ -272,10 +277,6 @@ class _MiddleLogin extends StatelessWidget {
                 height: 45.0,
                 child: ElevatedButton(
                   onPressed: isLoginButtonValid() ? onLoginPressed : null,
-                  child: const Text(
-                    '로그인',
-                    style: TextStyle(),
-                  ),
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
                     backgroundColor: PRIMARY_BLACK_COLOR,
@@ -285,13 +286,12 @@ class _MiddleLogin extends StatelessWidget {
                     disabledBackgroundColor: Colors.grey,
                     disabledForegroundColor: Colors.white,
                   ),
+                  child: const Text('로그인'),
                 ),
               );
             }),
-        SizedBox(
-          height: 8.0,
-        ),
-        SizedBox(
+        const SizedBox(height: 8.0),
+        const SizedBox(
           height: 64.0,
           child: Divider(color: BUTTON_BORDER_COLOR),
         ),
@@ -300,12 +300,6 @@ class _MiddleLogin extends StatelessWidget {
           height: 45.0,
           child: ElevatedButton(
             onPressed: onSignUpPressed,
-            child: const Text(
-              '회원가입',
-              style: TextStyle(
-                color: PRIMARY_BLACK_COLOR,
-              ),
-            ),
             style: ElevatedButton.styleFrom(
               elevation: 0,
               shape: RoundedRectangleBorder(
@@ -315,6 +309,12 @@ class _MiddleLogin extends StatelessWidget {
               minimumSize: Size(80, 25),
               backgroundColor: Colors.white,
               alignment: Alignment.center,
+            ),
+            child: const Text(
+              '회원가입',
+              style: TextStyle(
+                color: PRIMARY_BLACK_COLOR,
+              ),
             ),
           ),
         ),
