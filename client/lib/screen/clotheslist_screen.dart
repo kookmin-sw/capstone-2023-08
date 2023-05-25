@@ -64,7 +64,7 @@ Future<List<cloth>> fetchcloth(FlutterSecureStorage storage) async {
     CustomInterceptor(storage: storage),
   );
   Response resp = await dio.get(
-    'http://35.84.85.252:8000/goods/cloth-list',
+    LIST_URL,
   );
 
   if (resp.statusCode == 200) {
@@ -169,7 +169,7 @@ class ShoppingScreen extends ConsumerWidget {
         body: Column(
           children: [
             const SizedBox(
-              height: 30,
+              height: 16,
             ),
             Expanded(child: FirstTabScreen()),
           ],
@@ -329,7 +329,7 @@ class _first extends ConsumerState<FirstTabScreen> {
                     crossAxisSpacing: 10.0,
                   ),
                   delegate: SliverChildBuilderDelegate(
-                      childCount: snapshot.data!.length,
+                    childCount: snapshot.data!.length,
                       (BuildContext context, int index) {
                     return ProductItem(
                       id: snapshot.data![index].id,
@@ -589,7 +589,7 @@ class _productitem extends ConsumerState<ProductItem> {
         CustomInterceptor(storage: storage),
       );
       Response resp = await dio.post(
-        'http://35.84.85.252:8000/goods/dips/add',
+        GOODS_ADD_URL,
         data: json.encode(formData.toJson()),
       );
       print("like를 눌러서 post해 DB에 ADD했어여");
@@ -606,7 +606,7 @@ class _productitem extends ConsumerState<ProductItem> {
         CustomInterceptor(storage: storage),
       );
       Response resp = await dio.delete(
-        'http://35.84.85.252:8000/goods/dips/delete',
+        GOODS_DELETE_URL,
         data: json.encode(formData.toJson()),
       );
       if (resp.statusCode != 200) {
