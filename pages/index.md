@@ -3,6 +3,6 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: Post
-permalink: /
+permalink: /capstone-2023-08
 title: 착붙
 ---
