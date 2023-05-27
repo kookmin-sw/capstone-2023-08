@@ -1,0 +1,3663 @@
+[33mcommit 61d25edcbfe8bba93aa0d1ea7796da1c718a0b27[m[33m ([m[1;36mHEAD -> [m[1;32mrenewal-gitpage-news[m[33m)[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Sun May 28 01:45:27 2023 +0900
+
+    리소스 제거
+
+[33mcommit 69bc4c27803a1e649f7125c4ea2bdbcf87bb33bb[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Sun May 28 01:44:46 2023 +0900
+
+    리소스 용량문제로 유투브 링크로 연결되도록 수정
+
+[33mcommit d886ac0284fe604f1d19fb46bfbaf3e26204195f[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Sun May 28 01:39:44 2023 +0900
+
+    gitpage 리소스 업로드
+
+[33mcommit 0a6c7c46684c2f1b837cdb93c74afc78b9e195a7[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Sun May 28 01:33:09 2023 +0900
+
+    gitpage 깔끔하게 리뉴얼!
+
+[33mcommit 9362a473d59d95d706c20b329cf9828ee46561ad[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: 2006e4e e9d4fe1
+Author: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+Date:   Wed May 24 05:55:02 2023 +0900
+
+    Merge Frontend
+
+[33mcommit 2006e4ee7d0346107d776fa29d4898498743895d[m
+Merge: ed79a9e 5dd0068
+Author: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+Date:   Wed May 24 05:37:51 2023 +0900
+
+    merge Backend (Race Condition)
+
+[33mcommit ed79a9e04482ca0aaa87f98651f3e37c037ddcc9[m
+Author: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+Date:   Wed May 24 00:40:08 2023 +0900
+
+    delete old ver. crawler
+
+[33mcommit 295d36a796266b8595ea586bf90bdbee3ff6f23c[m
+Author: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+Date:   Tue May 23 23:50:00 2023 +0900
+
+    Update README.md
+
+[33mcommit 8dab2f0b678fc4a318c2d65f887fe582d8054bc9[m
+Author: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+Date:   Tue May 23 22:59:50 2023 +0900
+
+    Update README.md
+
+[33mcommit a2ca87fab5141ea17bbfa764d42ab417949ec743[m
+Author: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+Date:   Tue May 23 22:58:02 2023 +0900
+
+    Update README.md
+
+[33mcommit 4b738914084c4155eb610e2054488dab25786283[m
+Author: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+Date:   Tue May 23 22:55:10 2023 +0900
+
+    ADD Tutorial
+
+[33mcommit e9d4fe1d4302a49df368ac565e9c6f18ae1cabe0[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Tue May 23 16:50:42 2023 +0900
+
+    [FE] 머지에서 오류해결 (#153)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Merge] 1차 (#46)
+    
+    * frontend foundation
+    
+    * login screen ver1.
+    
+    * login 처음화면 스크롤되는 버그 해결
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    * frontend infolist add (#26)
+    
+    * 회원가입 및 로그인 기능 구현 완료 (#34)
+    
+    * make accounts app and User model
+    
+    * add gitignore list
+    
+    * make django seceret key as os environ
+    
+    * implement sign up and sign in with POST
+    
+    * ignore csrf
+    
+    * modify data type of user_img_url
+    
+    * Update .gitignore for migrations
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 메인 레이아웃 구성 - 하단바 분리 및 Named Routing (#41)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 카메라로 촬영하는 화면 개발 (#42)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    * 카메라 화면(수동촬영) -> 저장하면 메인페이지로 이동
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * frontend signup page commit (#44)
+    
+    * fix brace issue
+    
+    ---------
+    
+    Co-authored-by: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+    
+    * Update README.md (#64)
+    
+    * README.md 소개 동영상 추가 (#85)
+    
+    * Update README.md (#87)
+    
+    * 일단 다밀고 시작
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+
+[33mcommit d113621a34d4b0baba43af4695826a0254022834[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Tue May 23 15:12:46 2023 +0900
+
+    [FE] 변경점들 다 수정완- (#151)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Merge] 1차 (#46)
+    
+    * frontend foundation
+    
+    * login screen ver1.
+    
+    * login 처음화면 스크롤되는 버그 해결
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    * frontend infolist add (#26)
+    
+    * 회원가입 및 로그인 기능 구현 완료 (#34)
+    
+    * make accounts app and User model
+    
+    * add gitignore list
+    
+    * make django seceret key as os environ
+    
+    * implement sign up and sign in with POST
+    
+    * ignore csrf
+    
+    * modify data type of user_img_url
+    
+    * Update .gitignore for migrations
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 메인 레이아웃 구성 - 하단바 분리 및 Named Routing (#41)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 카메라로 촬영하는 화면 개발 (#42)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    * 카메라 화면(수동촬영) -> 저장하면 메인페이지로 이동
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * frontend signup page commit (#44)
+    
+    * fix brace issue
+    
+    ---------
+    
+    Co-authored-by: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+    
+    * Update README.md (#64)
+    
+    * README.md 소개 동영상 추가 (#85)
+    
+    * Update README.md (#87)
+    
+    * result 수정
+    
+    * 카메라 기능 및 스플래쉬화면제작
+    
+    * 회원가입 및 카메라 화면(셀카모드 좌우반전 이외 수정완료)
+    
+    * 결과, 로그인/회원가입 수정된 api 이외 디자인 전부 수정
+    
+    * user update page 버그 해결 전 commit
+    
+    * user update page 버그 테스트전까지
+    
+    * 찐 최종 테스트끝
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+
+[33mcommit 5dd006887d03d2e9c50143fa75b41c247ead0b53[m
+Author: Donhyeok Kang <94889715+dh5473@users.noreply.github.com>
+Date:   Tue May 23 11:58:05 2023 +0900
+
+    Fix race condition in inference API (#150)
+
+[33mcommit 7d82951581ea105ee150a5cc61110560a7f35532[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Mon May 22 15:26:10 2023 +0900
+
+    [FE] 코드 최신화 및 오류 해결 (#149)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Merge] 1차 (#46)
+    
+    * frontend foundation
+    
+    * login screen ver1.
+    
+    * login 처음화면 스크롤되는 버그 해결
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    * frontend infolist add (#26)
+    
+    * 회원가입 및 로그인 기능 구현 완료 (#34)
+    
+    * make accounts app and User model
+    
+    * add gitignore list
+    
+    * make django seceret key as os environ
+    
+    * implement sign up and sign in with POST
+    
+    * ignore csrf
+    
+    * modify data type of user_img_url
+    
+    * Update .gitignore for migrations
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 메인 레이아웃 구성 - 하단바 분리 및 Named Routing (#41)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 카메라로 촬영하는 화면 개발 (#42)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    * 카메라 화면(수동촬영) -> 저장하면 메인페이지로 이동
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * frontend signup page commit (#44)
+    
+    * fix brace issue
+    
+    ---------
+    
+    Co-authored-by: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+    
+    * Update README.md (#64)
+    
+    * README.md 소개 동영상 추가 (#85)
+    
+    * Update README.md (#87)
+    
+    * result 수정
+    
+    * 카메라 기능 및 스플래쉬화면제작
+    
+    * 회원가입 및 카메라 화면(셀카모드 좌우반전 이외 수정완료)
+    
+    * 결과, 로그인/회원가입 수정된 api 이외 디자인 전부 수정
+    
+    * user update page 버그 해결 전 commit
+    
+    * user update page 버그 테스트전까지
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+
+[33mcommit 36f3bc813e5473b9756b285c30a916f69a770559[m
+Author: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+Date:   Fri May 19 21:04:25 2023 +0900
+
+    merge Crawler
+
+[33mcommit f4072fb08023dc192350cbbf7b20d2c1b228ef81[m
+Author: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+Date:   Fri May 19 20:59:51 2023 +0900
+
+    merge Backend
+
+[33mcommit 3baaaebdf4b723d1ef23212a03dcdf780089858d[m
+Author: Donhyeok Kang <94889715+dh5473@users.noreply.github.com>
+Date:   Fri May 19 15:38:39 2023 +0900
+
+    Feedback api (#143)
+    
+    * Feat feedback path
+    
+    * Refactor feedback API
+    
+    * Refactor feedback API
+
+[33mcommit f9a55625bdec06b03b64ef281e8a9b8875fd49df[m
+Author: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+Date:   Fri May 19 11:48:35 2023 +0900
+
+    Frontend redesign1 PR 합니다! (#142)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Merge] 1차 (#46)
+    
+    * frontend foundation
+    
+    * login screen ver1.
+    
+    * login 처음화면 스크롤되는 버그 해결
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    * frontend infolist add (#26)
+    
+    * 회원가입 및 로그인 기능 구현 완료 (#34)
+    
+    * make accounts app and User model
+    
+    * add gitignore list
+    
+    * make django seceret key as os environ
+    
+    * implement sign up and sign in with POST
+    
+    * ignore csrf
+    
+    * modify data type of user_img_url
+    
+    * Update .gitignore for migrations
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 메인 레이아웃 구성 - 하단바 분리 및 Named Routing (#41)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 카메라로 촬영하는 화면 개발 (#42)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    * 카메라 화면(수동촬영) -> 저장하면 메인페이지로 이동
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * frontend signup page commit (#44)
+    
+    * fix brace issue
+    
+    ---------
+    
+    Co-authored-by: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+    
+    * Update README.md (#64)
+    
+    * signupscreen update
+    
+    * favorite 재수정
+    
+    * frontend redesign commit
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+
+[33mcommit f0a673222b6e3331943d53354877d441cc532bae[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Thu May 18 01:57:22 2023 +0900
+
+    Modify signup logic (#138)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * backend setting fix (#109)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * DRF Token authentication 구축 완료 (#98)
+    
+    * ec2-user
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify after test
+    
+    ---------
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 회원가입시 id 중복체크 분리 및 에러 핸들링 추가 (#112)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * seperate id duplication check and improve error handle
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Permission setting (#114)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add permissions for IsAuthenticated View
+    
+    * add pqyload parser for DipsView
+    
+    * delete token issue when sign up
+    
+    * change authenticate method into decorator
+    
+    * delete payload parser
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Error fix (#120)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * backend setting fix (#109)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * DRF Token authentication 구축 완료 (#98)
+    
+    * ec2-user
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify after test
+    
+    ---------
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 회원가입시 id 중복체크 분리 및 에러 핸들링 추가 (#112)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * seperate id duplication check and improve error handle
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Permission setting (#114)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add permissions for IsAuthenticated View
+    
+    * add pqyload parser for DipsView
+    
+    * delete token issue when sign up
+    
+    * change authenticate method into decorator
+    
+    * delete payload parser
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add status modul
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * 회원가입 폼에서 id, name 중복체크 api 추가 (#122)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * backend setting fix (#109)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * DRF Token authentication 구축 완료 (#98)
+    
+    * ec2-user
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify after test
+    
+    ---------
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 회원가입시 id 중복체크 분리 및 에러 핸들링 추가 (#112)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * seperate id duplication check and improve error handle
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Permission setting (#114)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add permissions for IsAuthenticated View
+    
+    * add pqyload parser for DipsView
+    
+    * delete token issue when sign up
+    
+    * change authenticate method into decorator
+    
+    * delete payload parser
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Error fix (#120)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * backend setting fix (#109)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * DRF Token authentication 구축 완료 (#98)
+    
+    * ec2-user
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify after test
+    
+    ---------
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 회원가입시 id 중복체크 분리 및 에러 핸들링 추가 (#112)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * seperate id duplication check and improve error handle
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Permission setting (#114)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add permissions for IsAuthenticated View
+    
+    * add pqyload parser for DipsView
+    
+    * delete token issue when sign up
+    
+    * change authenticate method into decorator
+    
+    * delete payload parser
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add status modul
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * add GET methods to check id and user name
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * token api url 수정 (#125)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * backend setting fix (#109)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * DRF Token authentication 구축 완료 (#98)
+    
+    * ec2-user
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify after test
+    
+    ---------
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 회원가입시 id 중복체크 분리 및 에러 핸들링 추가 (#112)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * seperate id duplication check and improve error handle
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Permission setting (#114)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add permissions for IsAuthenticated View
+    
+    * add pqyload parser for DipsView
+    
+    * delete token issue when sign up
+    
+    * change authenticate method into decorator
+    
+    * delete payload parser
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Error fix (#120)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * backend setting fix (#109)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * DRF Token authentication 구축 완료 (#98)
+    
+    * ec2-user
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify after test
+    
+    ---------
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 회원가입시 id 중복체크 분리 및 에러 핸들링 추가 (#112)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * seperate id duplication check and improve error handle
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Permission setting (#114)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add permissions for IsAuthenticated View
+    
+    * add pqyload parser for DipsView
+    
+    * delete token issue when sign up
+    
+    * change authenticate method into decorator
+    
+    * delete payload parser
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add status modul
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * 회원가입 폼에서 id, name 중복체크 api 추가 (#122)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * backend setting fix (#109)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * DRF Token authentication 구축 완료 (#98)
+    
+    * ec2-user
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify after test
+    
+    ---------
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 회원가입시 id 중복체크 분리 및 에러 핸들링 추가 (#112)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * seperate id duplication check and improve error handle
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Permission setting (#114)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add permissions for IsAuthenticated View
+    
+    * add pqyload parser for DipsView
+    
+    * delete token issue when sign up
+    
+    * change authenticate method into decorator
+    
+    * delete payload parser
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Error fix (#120)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * backend setting fix (#109)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * DRF Token authentication 구축 완료 (#98)
+    
+    * ec2-user
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify after test
+    
+    ---------
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 회원가입시 id 중복체크 분리 및 에러 핸들링 추가 (#112)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * seperate id duplication check and improve error handle
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Permission setting (#114)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add permissions for IsAuthenticated View
+    
+    * add pqyload parser for DipsView
+    
+    * delete token issue when sign up
+    
+    * change authenticate method into decorator
+    
+    * delete payload parser
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add status modul
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * add GET methods to check id and user name
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * remove slash for token api
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * change s3_img_url field as nullable
+    
+    * add img_url field in response
+    
+    * add permission at presigned url api
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+
+[33mcommit 6b69345ddb4eb354220c6311297dfcbdc42ceedb[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Thu May 18 00:34:01 2023 +0900
+
+    닉네임 및 비밀번호 변경 api 추가 (#137)
+    
+    * add edit username view
+    
+    * add change password api
+    
+    * make add user_img_url to DB API
+    
+    * logout : delete cookie
+    
+    * fix change password api
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+
+[33mcommit a641463e5249e1b29a650f9a85ef352027079513[m
+Author: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+Date:   Fri May 12 16:50:57 2023 +0900
+
+    Frontend favorite 재재재수정입니다 (#131)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Merge] 1차 (#46)
+    
+    * frontend foundation
+    
+    * login screen ver1.
+    
+    * login 처음화면 스크롤되는 버그 해결
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    * frontend infolist add (#26)
+    
+    * 회원가입 및 로그인 기능 구현 완료 (#34)
+    
+    * make accounts app and User model
+    
+    * add gitignore list
+    
+    * make django seceret key as os environ
+    
+    * implement sign up and sign in with POST
+    
+    * ignore csrf
+    
+    * modify data type of user_img_url
+    
+    * Update .gitignore for migrations
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 메인 레이아웃 구성 - 하단바 분리 및 Named Routing (#41)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 카메라로 촬영하는 화면 개발 (#42)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    * 카메라 화면(수동촬영) -> 저장하면 메인페이지로 이동
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * frontend signup page commit (#44)
+    
+    * fix brace issue
+    
+    ---------
+    
+    Co-authored-by: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+    
+    * Update README.md (#64)
+    
+    * signupscreen update
+    
+    * favorite 재수정
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+
+[33mcommit fbd7314519feda649f0b2be6c7717809b52180eb[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Fri May 12 16:25:02 2023 +0900
+
+    Revert "Frontend favorite 수정 사항 PR (#129)" (#130)
+    
+    This reverts commit 1a70d4e5c6dada011eceed4fa02b16ffac38dc7a.
+
+[33mcommit 1a70d4e5c6dada011eceed4fa02b16ffac38dc7a[m
+Author: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+Date:   Fri May 12 16:16:45 2023 +0900
+
+    Frontend favorite 수정 사항 PR (#129)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Merge] 1차 (#46)
+    
+    * frontend foundation
+    
+    * login screen ver1.
+    
+    * login 처음화면 스크롤되는 버그 해결
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    * frontend infolist add (#26)
+    
+    * 회원가입 및 로그인 기능 구현 완료 (#34)
+    
+    * make accounts app and User model
+    
+    * add gitignore list
+    
+    * make django seceret key as os environ
+    
+    * implement sign up and sign in with POST
+    
+    * ignore csrf
+    
+    * modify data type of user_img_url
+    
+    * Update .gitignore for migrations
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 메인 레이아웃 구성 - 하단바 분리 및 Named Routing (#41)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 카메라로 촬영하는 화면 개발 (#42)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    * 카메라 화면(수동촬영) -> 저장하면 메인페이지로 이동
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * frontend signup page commit (#44)
+    
+    * fix brace issue
+    
+    ---------
+    
+    Co-authored-by: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+    
+    * Update README.md (#64)
+    
+    * signupscreen update
+    
+    * gg
+    
+    * Favorite 재수정
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+
+[33mcommit 3ee349a5493fa9a9ff5337cbb7cb45f3a26fbc4c[m
+Author: Donhyeok Kang <94889715+dh5473@users.noreply.github.com>
+Date:   Wed May 10 14:58:09 2023 +0900
+
+    Dl setting -> Backend (#127)
+    
+    * gitignore
+    
+    * modify filename
+    
+    * make project as virtual_fitting_app
+    
+    * modify pychache dir
+    
+    * make model api app
+    
+    * Add initial ACGPN
+    
+    * Remove .git dir
+    
+    * Add download model checkpoints file
+    
+    * Add test model file
+    
+    * Add initial models.py
+    
+    * Add initial serializers.py
+    
+    * Add initial urls.py
+    
+    * Add initial utils.py
+    
+    * Add initial views.py
+    
+    * Feat urlpatterns
+    
+    * Feat urlpatterns
+    
+    * Refactor utils.py for DL API
+    
+    * Refactor dl pipeline
+    
+    * Refactor not used model
+    
+    * Feat feedback api
+    
+    * Refactor predict pose model func
+    
+    * Refactor u2net model path
+    
+    * Refactor dataset path
+    
+    * Refactor load data path
+    
+    * Refactor dataroot path
+    
+    * Refactor dataset path
+    
+    * Refactor model api
+    
+    * Refactor model api utils.py
+    
+    * Refactor api response
+    
+    * Feat jwt func
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+
+[33mcommit 53518a9a73a2eca1ddfbc0e73d3077fc57f208ac[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Wed May 10 00:24:04 2023 +0900
+
+    token api url 수정 (#125)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * backend setting fix (#109)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * DRF Token authentication 구축 완료 (#98)
+    
+    * ec2-user
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify after test
+    
+    ---------
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 회원가입시 id 중복체크 분리 및 에러 핸들링 추가 (#112)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * seperate id duplication check and improve error handle
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Permission setting (#114)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add permissions for IsAuthenticated View
+    
+    * add pqyload parser for DipsView
+    
+    * delete token issue when sign up
+    
+    * change authenticate method into decorator
+    
+    * delete payload parser
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Error fix (#120)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * backend setting fix (#109)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * DRF Token authentication 구축 완료 (#98)
+    
+    * ec2-user
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify after test
+    
+    ---------
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 회원가입시 id 중복체크 분리 및 에러 핸들링 추가 (#112)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * seperate id duplication check and improve error handle
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Permission setting (#114)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add permissions for IsAuthenticated View
+    
+    * add pqyload parser for DipsView
+    
+    * delete token issue when sign up
+    
+    * change authenticate method into decorator
+    
+    * delete payload parser
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add status modul
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * 회원가입 폼에서 id, name 중복체크 api 추가 (#122)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * backend setting fix (#109)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * DRF Token authentication 구축 완료 (#98)
+    
+    * ec2-user
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify after test
+    
+    ---------
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 회원가입시 id 중복체크 분리 및 에러 핸들링 추가 (#112)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * seperate id duplication check and improve error handle
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Permission setting (#114)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add permissions for IsAuthenticated View
+    
+    * add pqyload parser for DipsView
+    
+    * delete token issue when sign up
+    
+    * change authenticate method into decorator
+    
+    * delete payload parser
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Error fix (#120)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * backend setting fix (#109)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * DRF Token authentication 구축 완료 (#98)
+    
+    * ec2-user
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify after test
+    
+    ---------
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 회원가입시 id 중복체크 분리 및 에러 핸들링 추가 (#112)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * seperate id duplication check and improve error handle
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Permission setting (#114)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add permissions for IsAuthenticated View
+    
+    * add pqyload parser for DipsView
+    
+    * delete token issue when sign up
+    
+    * change authenticate method into decorator
+    
+    * delete payload parser
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add status modul
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * add GET methods to check id and user name
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * remove slash for token api
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+
+[33mcommit 9f3c05bfab2d8a970cbe7d874c0d5ac51a3c8e6b[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Tue May 9 21:37:46 2023 +0900
+
+    회원가입 폼에서 id, name 중복체크 api 추가 (#122)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * backend setting fix (#109)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * DRF Token authentication 구축 완료 (#98)
+    
+    * ec2-user
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify after test
+    
+    ---------
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 회원가입시 id 중복체크 분리 및 에러 핸들링 추가 (#112)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * seperate id duplication check and improve error handle
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Permission setting (#114)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add permissions for IsAuthenticated View
+    
+    * add pqyload parser for DipsView
+    
+    * delete token issue when sign up
+    
+    * change authenticate method into decorator
+    
+    * delete payload parser
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Error fix (#120)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * backend setting fix (#109)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * DRF Token authentication 구축 완료 (#98)
+    
+    * ec2-user
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify after test
+    
+    ---------
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 회원가입시 id 중복체크 분리 및 에러 핸들링 추가 (#112)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * seperate id duplication check and improve error handle
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Permission setting (#114)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add permissions for IsAuthenticated View
+    
+    * add pqyload parser for DipsView
+    
+    * delete token issue when sign up
+    
+    * change authenticate method into decorator
+    
+    * delete payload parser
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add status modul
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * add GET methods to check id and user name
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+
+[33mcommit 78b65e982fb102ae88734846e3c4ee745c2bf1c6[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Tue May 9 17:15:20 2023 +0900
+
+    Error fix (#120)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * backend setting fix (#109)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    
+    * DRF Token authentication 구축 완료 (#98)
+    
+    * ec2-user
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify after test
+    
+    ---------
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 회원가입시 id 중복체크 분리 및 에러 핸들링 추가 (#112)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * seperate id duplication check and improve error handle
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * Permission setting (#114)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add permissions for IsAuthenticated View
+    
+    * add pqyload parser for DipsView
+    
+    * delete token issue when sign up
+    
+    * change authenticate method into decorator
+    
+    * delete payload parser
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add status modul
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+
+[33mcommit 9760bf1e8be5a0993fabc019577edabf07117549[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Tue May 9 17:10:33 2023 +0900
+
+    [FE] 회원가입~카메라 화면 변경 (#103)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Merge] 1차 (#46)
+    
+    * frontend foundation
+    
+    * login screen ver1.
+    
+    * login 처음화면 스크롤되는 버그 해결
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    * frontend infolist add (#26)
+    
+    * 회원가입 및 로그인 기능 구현 완료 (#34)
+    
+    * make accounts app and User model
+    
+    * add gitignore list
+    
+    * make django seceret key as os environ
+    
+    * implement sign up and sign in with POST
+    
+    * ignore csrf
+    
+    * modify data type of user_img_url
+    
+    * Update .gitignore for migrations
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 메인 레이아웃 구성 - 하단바 분리 및 Named Routing (#41)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 카메라로 촬영하는 화면 개발 (#42)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    * 카메라 화면(수동촬영) -> 저장하면 메인페이지로 이동
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * frontend signup page commit (#44)
+    
+    * fix brace issue
+    
+    ---------
+    
+    Co-authored-by: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+    
+    * Update README.md (#64)
+    
+    * README.md 소개 동영상 추가 (#85)
+    
+    * Update README.md (#87)
+    
+    * result 수정
+    
+    * 카메라 기능 및 스플래쉬화면제작
+    
+    * 회원가입 및 카메라 화면(셀카모드 좌우반전 이외 수정완료)
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+
+[33mcommit c0663de497bfb6bff51f4d478530f4b3256f369e[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Tue May 9 16:49:47 2023 +0900
+
+    Permission setting (#114)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * 찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * add permissions for IsAuthenticated View
+    
+    * add pqyload parser for DipsView
+    
+    * delete token issue when sign up
+    
+    * change authenticate method into decorator
+    
+    * delete payload parser
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+
+[33mcommit 6c5ac50ecaa7f00489269510e688fe1eb01ed698[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Thu May 4 01:39:16 2023 +0900
+
+    회원가입시 id 중복체크 분리 및 에러 핸들링 추가 (#112)
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * seperate id duplication check and improve error handle
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+
+[33mcommit 11c433af0be5099062a3d238e5bfbf0ada8c2be7[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Wed May 3 00:39:52 2023 +0900
+
+    DRF Token authentication 구축 완료 (#98)
+    
+    * ec2-user
+    
+    * jwt authentication sign up and sign in
+    
+    * make requirements.txt for server
+    
+    * add User serializer to send Client
+    
+    * modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * modify after test
+    
+    ---------
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+
+[33mcommit a8547a724c67f38b62171c6c291a05c07ea6832f[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Tue May 2 16:40:24 2023 +0900
+
+    backend setting fix (#109)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-21-159.us-west-2.compute.internal>
+
+[33mcommit e9db11b50a60f2ccb9ae5cf8d7ce8bd85e3ab5b0[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Mon May 1 19:14:01 2023 +0900
+
+    modify to get bucket, file name from client (#106)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+
+[33mcommit c4f6dc7eecd15c4cd4388fbeebfba3e068fde1d2[m
+Author: Donhyeok Kang <94889715+dh5473@users.noreply.github.com>
+Date:   Sat Apr 29 00:33:19 2023 +0900
+
+    Dl setting (#102)
+    
+    * gitignore
+    
+    * modify filename
+    
+    * make project as virtual_fitting_app
+    
+    * modify pychache dir
+    
+    * make model api app
+    
+    * Add initial ACGPN
+    
+    * Remove .git dir
+    
+    * Add download model checkpoints file
+    
+    * Add test model file
+    
+    * Add initial models.py
+    
+    * Add initial serializers.py
+    
+    * Add initial urls.py
+    
+    * Add initial utils.py
+    
+    * Add initial views.py
+    
+    * Feat urlpatterns
+    
+    * Feat urlpatterns
+    
+    * Refactor utils.py for DL API
+    
+    * Refactor dl pipeline
+    
+    * Refactor not used model
+    
+    * Feat feedback api
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+
+[33mcommit f3fa8847eb40fe1410e563ce5c6011cf5c4de4fa[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Thu Apr 27 14:07:23 2023 +0900
+
+    찜기능 API 수정 구현 완료 (#101)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    * change get into post
+    
+    * add dips exist check logic
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+
+[33mcommit 48dd80fd8416a951d83dd22b250d9c8e85e02812[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Wed Apr 26 00:22:05 2023 +0900
+
+    Revert "찜기능 API 개발 완료 (#97)" (#100)
+    
+    This reverts commit 16d30733008c0d451dfab00c1f0c172ca4a50032.
+
+[33mcommit 16d30733008c0d451dfab00c1f0c172ca4a50032[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Tue Apr 25 22:01:41 2023 +0900
+
+    찜기능 API 개발 완료 (#97)
+    
+    * make Dips model
+    
+    * make Dips View and model, post func. add dips element
+    
+    * show dips list
+    
+    * delete dips element
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+
+[33mcommit 3faafc46d05ff93dcd35011a2b1484d25698d4ed[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Tue Apr 25 19:46:27 2023 +0900
+
+    Frontend result merge 수정 (#96)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Merge] 1차 (#46)
+    
+    * frontend foundation
+    
+    * login screen ver1.
+    
+    * login 처음화면 스크롤되는 버그 해결
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    * frontend infolist add (#26)
+    
+    * 회원가입 및 로그인 기능 구현 완료 (#34)
+    
+    * make accounts app and User model
+    
+    * add gitignore list
+    
+    * make django seceret key as os environ
+    
+    * implement sign up and sign in with POST
+    
+    * ignore csrf
+    
+    * modify data type of user_img_url
+    
+    * Update .gitignore for migrations
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 메인 레이아웃 구성 - 하단바 분리 및 Named Routing (#41)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 카메라로 촬영하는 화면 개발 (#42)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    * 카메라 화면(수동촬영) -> 저장하면 메인페이지로 이동
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * frontend signup page commit (#44)
+    
+    * fix brace issue
+    
+    ---------
+    
+    Co-authored-by: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+    
+    * Update README.md (#64)
+    
+    * README.md 소개 동영상 추가 (#85)
+    
+    * Update README.md (#87)
+    
+    * result 수정
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+
+[33mcommit 9aa25b82b44976dd180c44dcf1e2e7c211281d28[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Fri Apr 14 17:47:17 2023 +0900
+
+    Frontend result 페이지 (로컬이미지 사용) (#91)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Merge] 1차 (#46)
+    
+    * frontend foundation
+    
+    * login screen ver1.
+    
+    * login 처음화면 스크롤되는 버그 해결
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    * frontend infolist add (#26)
+    
+    * 회원가입 및 로그인 기능 구현 완료 (#34)
+    
+    * make accounts app and User model
+    
+    * add gitignore list
+    
+    * make django seceret key as os environ
+    
+    * implement sign up and sign in with POST
+    
+    * ignore csrf
+    
+    * modify data type of user_img_url
+    
+    * Update .gitignore for migrations
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 메인 레이아웃 구성 - 하단바 분리 및 Named Routing (#41)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 카메라로 촬영하는 화면 개발 (#42)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    * 카메라 화면(수동촬영) -> 저장하면 메인페이지로 이동
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * frontend signup page commit (#44)
+    
+    * fix brace issue
+    
+    ---------
+    
+    Co-authored-by: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+    
+    * Update README.md (#64)
+    
+    * README.md 소개 동영상 추가 (#85)
+    
+    * Update README.md (#87)
+    
+    * result page 완성
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+
+[33mcommit 8a65d2d54c99498be36b8b828881c93498b4a7d6[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Fri Apr 7 18:15:14 2023 +0900
+
+    옷 이미지 리스트 및 상세페이지 url 반환 api 구현 완료 (#78)
+    
+    * musinsa cloth list api
+    
+    * return goods image s3_url list and detail page url
+    
+    * add brand_name field to Goods model
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+
+[33mcommit bfeb352f84ae39145f7cd7973e746a169ade97dd[m
+Author: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+Date:   Fri Apr 7 15:33:43 2023 +0900
+
+    Update README.md (#87)
+
+[33mcommit e44bba0d39eb8e01288f6e1a859965c40329dfe8[m
+Author: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+Date:   Fri Apr 7 15:12:08 2023 +0900
+
+    README.md 소개 동영상 추가 (#85)
+
+[33mcommit 24ea11cd2da13970fc3bc3421f0f82df226fd439[m
+Author: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+Date:   Thu Apr 6 08:15:30 2023 +0900
+
+    Frontend signup 페이지 업데이트 (#82)
+    
+    * frontend signup page commit
+    
+    * signup update
+    
+    ---------
+    
+    Co-authored-by: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+
+[33mcommit c9fea00069cf0a93612bc17256300313e18d269f[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Wed Apr 5 22:38:33 2023 +0900
+
+    create presigned url api (#79)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+
+[33mcommit b2c4bf4101f3e8c952dbadcb9250e64a42f8b637[m
+Author: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+Date:   Mon Apr 3 00:20:20 2023 +0900
+
+    Update README.md (#64)
+
+[33mcommit 0311a55c2f10c6d1e5991092a137f3e026de7875[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Thu Mar 30 01:15:27 2023 +0900
+
+    modify setting for ec2 (#60)
+    
+    Co-authored-by: Ubuntu <ubuntu@ip-172-31-25-221.us-west-2.compute.internal>
+
+[33mcommit b67432ee40904779bf2d4b8624228d30c00bdf11[m
+Author: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+Date:   Thu Mar 30 00:51:46 2023 +0900
+
+    remain only server code
+
+[33mcommit 9bcba7a45a26508cdd055be6aa240b9615024fff[m
+Author: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+Date:   Thu Mar 30 00:48:50 2023 +0900
+
+    remain only server code
+
+[33mcommit 9075bdf3112cc77cba64e06894ddfce846b90f44[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Wed Mar 29 21:09:35 2023 +0900
+
+    lambda상의 crawler 로부터 json 파일 받아 DB에 write 하는 api 개발 완료 (#57)
+    
+    * create musinsa-list app and goods model
+    
+    * make receive api from lambda
+    
+    * complete crawler api
+    
+    * remove comment about is_latest
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+
+[33mcommit 38ddd982d85cc4285bced8ca9c50b2cd283715c3[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Fri Mar 24 21:25:37 2023 +0900
+
+    DB setting for use mysql (#52)
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+
+[33mcommit 45394d13ab19df1779235fd3a946e584500951ee[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Fri Mar 24 17:17:44 2023 +0900
+
+    [Merge] 1차 (#46)
+    
+    * frontend foundation
+    
+    * login screen ver1.
+    
+    * login 처음화면 스크롤되는 버그 해결
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    * frontend infolist add (#26)
+    
+    * 회원가입 및 로그인 기능 구현 완료 (#34)
+    
+    * make accounts app and User model
+    
+    * add gitignore list
+    
+    * make django seceret key as os environ
+    
+    * implement sign up and sign in with POST
+    
+    * ignore csrf
+    
+    * modify data type of user_img_url
+    
+    * Update .gitignore for migrations
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 메인 레이아웃 구성 - 하단바 분리 및 Named Routing (#41)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * [Frontend] 카메라로 촬영하는 화면 개발 (#42)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    * 카메라 화면(수동촬영) -> 저장하면 메인페이지로 이동
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * frontend signup page commit (#44)
+    
+    * fix brace issue
+    
+    ---------
+    
+    Co-authored-by: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    Co-authored-by: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+
+[33mcommit d1de5d68c82b8d1a1283fad40758342468aef5c1[m
+Author: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+Date:   Tue Mar 21 14:37:10 2023 +0900
+
+    frontend signup page commit (#44)
+
+[33mcommit 478f84611601f0b005d66b619f9adc867bac32b3[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Tue Mar 21 14:15:17 2023 +0900
+
+    [Frontend] 카메라로 촬영하는 화면 개발 (#42)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    * 카메라 화면(수동촬영) -> 저장하면 메인페이지로 이동
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+
+[33mcommit 24f630e92d56183e86666e12cf61332f7a8497fb[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Tue Mar 21 14:05:01 2023 +0900
+
+    [Frontend] 메인 레이아웃 구성 - 하단바 분리 및 Named Routing (#41)
+    
+    * 크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+    
+    * 프론트 하단바 문제 해결
+    
+    * 메인 레이아웃 따로 분리
+    
+    ---------
+    
+    Co-authored-by: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+
+[33mcommit 189b77870de897b2f1861004345d067f3bbff941[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Thu Mar 16 19:30:51 2023 +0900
+
+    회원가입 및 로그인 기능 구현 완료 (#34)
+    
+    * make accounts app and User model
+    
+    * add gitignore list
+    
+    * make django seceret key as os environ
+    
+    * implement sign up and sign in with POST
+    
+    * ignore csrf
+    
+    * modify data type of user_img_url
+    
+    * Update .gitignore for migrations
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+
+[33mcommit 8490ab4e46aa248693d6b408c2b22955b0cf72a9[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Wed Mar 15 16:58:14 2023 +0900
+
+    크롤링 모듈 개발 (#21)
+    
+    * musinsa ranking image crawler
+    
+    * add newline at end of the file
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+
+[33mcommit b4027836653ae3b15cd7931a61e41f7e8a3162b4[m
+Author: grapefruit224 <55117023+grapefruit224@users.noreply.github.com>
+Date:   Wed Mar 15 09:51:09 2023 +0900
+
+    frontend infolist add (#26)
+
+[33mcommit f493daa41fd78a2b05bf1746d25373d99dbe2750[m
+Merge: 4b168ce c03d8a6
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Fri Mar 10 17:29:31 2023 +0900
+
+    Merge pull request #19 from lucyya99/frontend-login
+    
+    로그인 페이지 개발 (#4)
+
+[33mcommit c03d8a665ab295f461f4765ddb5c38a8cd1b58b0[m
+Merge: e436115 4b168ce
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Fri Mar 10 17:17:33 2023 +0900
+
+    Merge branch 'Frontend' into frontend-login
+
+[33mcommit 85f58ff826571c796d6ca9e810f0c1b4bc4498e9[m
+Author: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+Date:   Thu Mar 9 02:28:50 2023 +0900
+
+    add newline at end of the file
+
+[33mcommit 2414abe036c415b728572f59c14bdcdccccd7b6b[m
+Author: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+Date:   Thu Mar 9 02:13:16 2023 +0900
+
+    musinsa ranking image crawler
+
+[33mcommit e436115268b38f4b6f13b9e8096a2b5788bba514[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Wed Mar 8 00:32:46 2023 +0900
+
+    login 처음화면 스크롤되는 버그 해결
+
+[33mcommit 5ffe62fa7fd354a00dabd4e56e0d7e99be261b68[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Tue Mar 7 22:55:14 2023 +0900
+
+    login screen ver1.
+
+[33mcommit 4b168cebac68c95ed16a5a90ac81b0dfd35ef6ff[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Tue Mar 7 22:41:15 2023 +0900
+
+    frontend foundation (#18)
+
+[33mcommit c6bccb2cad20f1f3448950b56b9bcb6656291606[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Tue Mar 7 22:26:58 2023 +0900
+
+    frontend foundation
+
+[33mcommit 62280a0743c4bf2e2ea4ba7a85023205df49955c[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Sat Feb 25 00:05:42 2023 +0900
+
+    장고 프레임워크 구축 (#14)
+    
+    * gitignore
+    
+    * modify filename
+    
+    * make project as virtual_fitting_app
+    
+    * modify pychache dir
+    
+    * make model api app
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+
+[33mcommit adafde763378a2bcb921f51682eac3005caa3dfe[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Sat Feb 25 00:00:03 2023 +0900
+
+    Delete FrontEnd directory (#13)
+
+[33mcommit e77a58287b6d0c8bed95efbd127fc8364939d6e2[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Fri Feb 24 23:43:59 2023 +0900
+
+    gitignore 설정 (#12)
+    
+    * gitignore
+    
+    * modify filename
+    
+    ---------
+    
+    Co-authored-by: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+
+[33mcommit 75d750327dd018869453eba8648d68b4dadfdc83[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Thu Feb 23 16:58:08 2023 +0900
+
+    Update and rename readme.md to README.md
+
+[33mcommit aab636b7ebad7015dd0e4a4f02a6468e9aebc6af[m
+Author: lucyya99 <80736490+lucyya99@users.noreply.github.com>
+Date:   Wed Feb 22 22:36:00 2023 +0900
+
+    Create readme.md
+
+[33mcommit c8e7370c04ff1521a9e669f9bf5537ec902c71f9[m
+Author: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+Date:   Tue Feb 7 14:43:17 2023 +0900
+
+    initial commit
+
+[33mcommit e92e05b06c5d56a7ae03c188fab8fcdcc829493b[m
+Author: Hyeon-Young Lee <72314987+wynter122@users.noreply.github.com>
+Date:   Tue Feb 7 14:40:28 2023 +0900
+
+    Update README.md
+
+[33mcommit acaaf6e5a663c4a03040d155f169dc98858775b6[m
+Author: wynter <72314987+HyeonYoung-Lee@users.noreply.github.com>
+Date:   Wed Dec 28 12:37:29 2022 +0900
+
+    first commit
