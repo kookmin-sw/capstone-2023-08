@@ -25,7 +25,7 @@ url: "https://kookmin-sw.github.io/capstone-2023-08" # the base hostname & proto
 
 # If you want to install this jekyll in a subpath (eg /digitalgarden) set it here. 
 # Else keep it Empty (DON'T PUT /; Keep it empty)
-baseurl: "capstone-2023-08/"
+baseurl: ""
 
 # Website Header, Description, Footer year and text. 
 # If you are deleting this, make sure you remove it from HTML files too 
