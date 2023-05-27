@@ -1,4 +1,4 @@
 name: Jekyll-Garden [DEBUG MODE]
-debug: false
+debug: true
 baseurl: ""
-url: http://127.0.0.1:4000
+url: https://kookmin-sw.github.io/capstone-2023-08/
