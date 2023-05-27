@@ -1178,7 +1178,7 @@ ol p {
 
 .content sup,
 .content sub {
-  font-size: 75%; }
+  font-size: 60%; }
 
 .content table {
   width: 100%; }
@@ -1208,13 +1208,13 @@ ol p {
   margin-top: 0; }
 
 .content.is-small {
-  font-size: 0.8rem; }
+  font-size: 0.7rem; }
 
 .content.is-medium {
-  font-size: 1.25rem; }
+  font-size: 1rem; }
 
 .content.is-large {
-  font-size: 1.25rem; }
+  font-size: 1rem; }
 
 .icon {
   align-items: center;
