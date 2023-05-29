@@ -30,6 +30,7 @@ class ResultScreen extends ConsumerStatefulWidget {
 
 class _ResultScreenState extends ConsumerState<ResultScreen> {
   final dio = Dio();
+
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -237,8 +238,8 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
                     }),
                 child: const Text('다음'),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
