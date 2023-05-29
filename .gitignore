@@ -1,6 +1,0 @@
-venv/
-__pychache__/
-.DS_Store
-db.sqlite3
-*.pyc
-migrations/

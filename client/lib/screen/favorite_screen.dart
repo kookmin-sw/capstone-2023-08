@@ -1,5 +1,4 @@
 import 'package:client/component/loading_screen.dart';
-import 'package:client/layout/default_layout.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -96,7 +95,7 @@ Future<List<cloth>> fetchcloth(FlutterSecureStorage storage) async {
     CustomInterceptor(storage: storage),
   );
   Response resp = await dio.post(
-    GOODS_SHOW_URL,
+    'http://35.84.85.252:8000/goods/dips/show',
   );
 
   if (resp.statusCode == 200) {
@@ -115,13 +114,26 @@ Future<List<cloth>> fetchcloth(FlutterSecureStorage storage) async {
   }
 }
 
+void main() {
+  runApp(const FavoriteScreen());
+}
+
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const DefaultLayout(
-      child: Favoritetest(),
+    // 안드로이드에서 StatusBar의 색과 안드로이드와 iOS 모두에서 StatusBar 아이콘 색상을
+    // 설정하기 위해 AnnotatedRegion을 사용함.
+    return const AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+          statusBarColor: Colors.white,
+          statusBarBrightness: Brightness.light,
+          statusBarIconBrightness: Brightness.dark),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Favoritetest(),
+      ),
     );
   }
 }
@@ -133,53 +145,75 @@ class Favoritetest extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
         child: NestedScrollView(
-      headerSliverBuilder: (context, innerBoxIsScrolled) {
-        return [
-          SliverAppBar(
-            pinned: true,
-            floating: true,
-            forceElevated: innerBoxIsScrolled,
-            toolbarHeight: 60,
-            elevation: 0,
-            backgroundColor: Colors.white,
-            automaticallyImplyLeading: true,
-            centerTitle: false,
-            title: Transform(
-              transform: Matrix4.translationValues(-20.0, 0.0, 10),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  //alignment: Alignment.bottomLeft,
-                  backgroundColor: Colors.white,
-                  padding: const EdgeInsets.only(left: 30),
-                  minimumSize: const Size(70, 70),
+            headerSliverBuilder: (context, innerBoxIsScrolled) {
+              return [
+                SliverAppBar(
+                  pinned: true,
+                  floating: true,
+                  forceElevated: innerBoxIsScrolled,
+                  toolbarHeight: 20,
                   elevation: 0,
+                  backgroundColor: Colors.white,
+                  automaticallyImplyLeading: true,
+                  // title: Text(
+                    
+                  // ),
+                  // leading: Padding(
+                  //   padding: const EdgeInsets.only(top: 28.0),
+                  //   child: Column(
+                  //   mainAxisAlignment: MainAxisAlignment.start,
+                  //   crossAxisAlignment: CrossAxisAlignment.end,
+                  //   //textBaseline: TextBaseline.alphabetic,
+                  //   children: [
+                  //     // Container(
+                  //     //     alignment: Alignment.bottomCenter,
+                  //     //     child: RichText(
+                  //     //         textAlign: TextAlign.center,
+                  //     //         text: TextSpan(children: [
+                  //     //           TextSpan(
+                  //     //               text: 'Fit on, ',
+                  //     //               style: TextStyle(
+                  //     //                   fontSize: 25, color: Colors.grey)),
+                  //     //           TextSpan(
+                  //     //               text: 'Fit me!',
+                  //     //               style: TextStyle(
+                  //     //                   fontSize: 25, color: Colors.black)),
+                  //     //         ]))),
+                  //     IconButton(
+                  //       //alignment: Alignment.bottomLeft,
+                  //       icon: Icon(Icons.arrow_back_ios_new_rounded),
+                  //       iconSize: 20.0,
+                  //       onPressed: () {
+                  //         Navigator.push(
+                  //             context,
+                  //             MaterialPageRoute(
+                  //                 builder: (context) => MyApp()));
+                  //       },
+                  //     ),
+                  //   ],
+                  // ),
+                  // ),
+                  // actions: <Widget>[
+                  //   IconButton(
+                  //     icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                  //     //tooltip: 'Add new entry',
+                  //     onPressed: () {
+                  //       Navigator.push(context,
+                  //           MaterialPageRoute(builder: (context) => MyApp()));
+                  //     },
+                  //   ),
+                  // ]
                 ),
-                onPressed: () {
-                  var controller = PrimaryScrollController.of(context);
-                  controller?.jumpTo(0);
-                },
-                child: Image.asset(
-                  "asset/logo_black.png",
-                  width: 70,
-                  height: 70,
-                  //alignment: Alignment.bottomCenter,
-                ),
-              ),
-            ),
-          ),
-        ];
-      },
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 16,
-          ),
-          Expanded(
-            child: Favorite(),
-          ),
-        ],
-      ),
-    ));
+                // 변경사항
+                // SliverOverlapAbsorber(
+                //   handle:
+                //       NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                //   sliver: const SliverPersistentHeader(
+                //       pinned: true, delegate: TabBarDelegate()),
+                // ),
+              ];
+            },
+            body: Favorite()));
   }
 }
 
@@ -204,8 +238,8 @@ class _favorite extends ConsumerState<Favorite> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return FutureBuilder<List<cloth>>(
-      future: futurecloth,
-      // this is a code smell. Make sure that the future is NOT recreated when build is called. Create the future in initState instead.
+      future:
+          futurecloth, // this is a code smell. Make sure that the future is NOT recreated when build is called. Create the future in initState instead.
       builder: (context, snapshot) {
         Widget newsListSliver;
         if (snapshot.hasData) {
@@ -252,6 +286,7 @@ class Product {
   const Product(
       {required this.name, required this.price, required this.imageUrl});
 }
+
 
 class ProductItem extends ConsumerStatefulWidget {
   const ProductItem({
@@ -339,7 +374,7 @@ class _productitem extends ConsumerState<ProductItem> {
         CustomInterceptor(storage: storage),
       );
       Response resp = await dio.post(
-        GOODS_ADD_URL,
+        'http://35.84.85.252:8000/goods/dips/add',
         data: json.encode(formData.toJson()),
       );
       print("like를 눌러서 post해 DB에 ADD했어여");
@@ -361,7 +396,7 @@ class _productitem extends ConsumerState<ProductItem> {
         CustomInterceptor(storage: storage),
       );
       Response resp = await dio.delete(
-        GOODS_DELETE_URL,
+        'http://35.84.85.252:8000/goods/dips/delete',
         data: json.encode(formData.toJson()),
       );
       if (resp.statusCode != 200) {
@@ -369,7 +404,6 @@ class _productitem extends ConsumerState<ProductItem> {
       }
     }
   }
-
   // final String id;
   // final String imageUrl;
   // final String productName;
