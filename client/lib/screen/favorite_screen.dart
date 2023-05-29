@@ -68,25 +68,7 @@ class Data {
   }
 }
 
-// class ForFavorite {
-//   String? user;
-
-//   ForFavorite({this.user});
-
-//   Map<String, dynamic> toJson() => {'user_id': user};
-// }
-
 Future<List<cloth>> fetchcloth(FlutterSecureStorage storage) async {
-  // String token = '';
-  // ForFavorite formData = ForFavorite();
-  // formData.user = 'test';
-  // final response = await http.post(
-  //     Uri.parse('http://35.84.85.252:8000/goods/dips/show'),
-  //     headers: {'Authorization': 'Bearer $token'},
-  //     body: json.encode(formData.toJson()));
-  // final response =
-  //     await http.get(Uri.parse('http://35.84.85.252:8000/goods/cloth-list'));
-
   final dio = Dio(
     BaseOptions(
       headers: {'accessToken': 'true'}, // accessToken이 필요하다는 뜻
@@ -106,8 +88,7 @@ Future<List<cloth>> fetchcloth(FlutterSecureStorage storage) async {
     for (int i = 0; i < data.length; i++) {
       data2.add(data[i]['goods_info']);
     }
-    // var allInfo = data.map((item) => Data.fromJson(item)).toList();
-    // print(allInfo);
+
     var real = data2.map((item) => cloth.fromJson(item)).toList();
     return real;
   } else {
@@ -126,11 +107,18 @@ class FavoriteScreen extends StatelessWidget {
   }
 }
 
-class Favoritetest extends StatelessWidget {
+class Favoritetest extends ConsumerWidget {
   const Favoritetest({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    Future<String?> getUserName() async {
+      final storage = ref.watch(secureStorageProvider);
+      final user_name = await storage.read(key: USER_NAME);
+      print(user_name);
+      return user_name;
+    }
+
     return Material(
         child: NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) {
@@ -145,27 +133,40 @@ class Favoritetest extends StatelessWidget {
             automaticallyImplyLeading: true,
             centerTitle: false,
             title: Transform(
-              transform: Matrix4.translationValues(-20.0, 0.0, 10),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  //alignment: Alignment.bottomLeft,
-                  backgroundColor: Colors.white,
-                  padding: const EdgeInsets.only(left: 30),
-                  minimumSize: const Size(70, 70),
-                  elevation: 0,
-                ),
-                onPressed: () {
-                  var controller = PrimaryScrollController.of(context);
-                  controller?.jumpTo(0);
-                },
-                child: Image.asset(
-                  "asset/logo_black.png",
-                  width: 70,
-                  height: 70,
-                  //alignment: Alignment.bottomCenter,
-                ),
-              ),
-            ),
+                transform: Matrix4.translationValues(0.0, 0.0, 10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: [
+                    FutureBuilder(
+                      future: getUserName(),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        if (snapshot.hasData == true) {
+                          return Expanded(
+                              child: Text(
+                            '${snapshot.data}',
+                            style: const TextStyle(
+                              fontSize: 33.0,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ));
+                        } else {
+                          return Container();
+                        }
+                      },
+                    ),
+                    Text(
+                      " 님이 좋아하는 옷이에요!",
+                      style: TextStyle(
+                          fontSize: 20,
+                          //fontWeight: FontWeight.bold,
+                          fontFamily: "Pretendard",
+                          color: Colors.black),
+                    ),
+                  ],
+                )),
           ),
         ];
       },
@@ -325,11 +326,6 @@ class _productitem extends ConsumerState<ProductItem> {
     }
 
     if (isLiked == true) {
-      // var result = await http.post(
-      //   Uri.parse('http://35.84.85.252:8000/goods/dips/add'),
-      //   headers: {'Authorization': 'Bearer $token'},
-      //   body: json.encode(formData.toJson()),
-      // );
       final dio = Dio(
         BaseOptions(
           headers: {'accessToken': 'true'}, // accessToken이 필요하다는 뜻
@@ -347,11 +343,6 @@ class _productitem extends ConsumerState<ProductItem> {
         print("찜 추가 실패_add");
       }
     } else {
-      // var result = await http.delete(
-      //   Uri.parse('http://35.84.85.252:8000/goods/dips/delete'),
-      //   headers: {'Authorization': 'Bearer $token'},
-      //   body: json.encode(formData.toJson()),
-      // );
       final dio = Dio(
         BaseOptions(
           headers: {'accessToken': 'true'}, // accessToken이 필요하다는 뜻
@@ -369,31 +360,6 @@ class _productitem extends ConsumerState<ProductItem> {
       }
     }
   }
-
-  // final String id;
-  // final String imageUrl;
-  // final String productName;
-  // final String brand;
-  // final String favorite;
-
-  // FavoriteFormData formData = FavoriteFormData();
-  // bool isLiked = false;
-
-  // onFavorite() async {
-  //   //찜 API 연결
-  //   formData.user_id = "test";
-  //   formData.goods_id = id.toString();
-  //   setState((){
-  //     isLiked = !isLiked;
-  //   });
-  //   var result = await http.post(
-  //     Uri.parse('http://35.84.85.252:8000/goods/dips/add'),
-  //     body: json.encode(formData.toJson()),
-  //   );
-  //   if (result.statusCode != 200) {
-  //     print("찜 추가 실패");
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -418,27 +384,16 @@ class _productitem extends ConsumerState<ProductItem> {
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 242, 242, 242),
             borderRadius: BorderRadius.circular(5.0),
-            // boxShadow: [
-            //   BoxShadow(
-            //     color: Colors.grey.withOpacity(0.5),
-            //     spreadRadius: 2,
-            //     blurRadius: 5,
-            //     offset: Offset(0, 3),
-            //   ),
-            // ],
           ),
           child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // SizedBox(
-              //   height: 6.5,
-              // ),
-              // Stack(
-              //   children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
-                child: Image.network(
-                  widget.imageUrl,
+                child: 
+                Image.network(
+                  "asset/logo_black.png",
+                  //고쳐야됨
+                  //widget.imageUrl,
                   height: 200.0,
                   width: 200.0,
                   fit: BoxFit.cover,
@@ -471,18 +426,7 @@ class _productitem extends ConsumerState<ProductItem> {
                     ),
                   ),
                 ),
-                // IconButton(
-                //   onPressed: onFavorite,
-                //   padding: EdgeInsets.zero,
-                //   //alignment: Alignment.centerLeft,
-                //   color: Color.fromARGB(255, 255, 174, 53),
-                //   icon: Icon(isLiked
-                //       ? Icons.favorite
-                //       : Icons.favorite_outline_outlined),
-                //   iconSize: 20.0,
-                // ),
               ]),
-              // SizedBox(height: 3.0),
               Row(
                 children: [
                   Expanded(
@@ -505,106 +449,3 @@ class _productitem extends ConsumerState<ProductItem> {
         ));
   }
 }
-// class ProductItem extends StatelessWidget {
-//   final int id;
-//   final String imageUrl;
-//   final String productName;
-//   final String brand;
-//   // final String favorite;
-
-//   ProductItem({
-//     Key? key,
-//     required this.id,
-//     required this.imageUrl,
-//     required this.productName,
-//     required this.brand,
-//     // required this.favorite,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return GestureDetector(
-//         onTap: () {
-//           Navigator.push(
-//               context,
-//               MaterialPageRoute(
-//                   builder: (context) => DetailScreen(
-//                       item: ProductItem(
-//                           id: id,
-//                           imageUrl: imageUrl,
-//                           productName: productName,
-//                           brand: brand))));
-//         },
-//         child: Container(
-//           decoration: BoxDecoration(
-//             color: Colors.grey,
-//             borderRadius: BorderRadius.circular(10.0),
-//             boxShadow: [
-//               BoxShadow(
-//                 color: Colors.grey.withOpacity(0.5),
-//                 spreadRadius: 2,
-//                 blurRadius: 5,
-//                 offset: Offset(0, 3),
-//               ),
-//             ],
-//           ),
-//           child: Column(
-//             // crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               SizedBox(
-//                 height: 3,
-//               ),
-//               // Stack(
-//               //   children: [
-//               ClipRRect(
-//                 borderRadius: BorderRadius.circular(10.0),
-//                 child: Image.network(
-//                   imageUrl,
-//                   height: 200.0,
-//                   width: 200.0,
-//                 ),
-//               ),
-//               // 사진 옆에 찜 버튼
-//               // Positioned(
-//               //   bottom: 5,
-//               //   right: 5,
-//               //   child: IconButton(
-//               //     //alignment: Alignment.centerLeft,
-//               //     onPressed: onFavorite,
-//               //               //alignment: Alignment.centerLeft,
-//               //     icon: Icon(isLiked
-//               //                   ? Icons.favorite
-//               //                   : Icons.favorite_outline_outlined),
-//               //               iconSize: 15.0,
-//               //   ),
-//               // ),
-//               // ],
-//               // ),
-//               SizedBox(height: 5.0),
-//               Padding(
-//                 padding: EdgeInsets.only(left: 7),
-//                 child: Text(
-//                   brand,
-//                   textAlign: TextAlign.left,
-//                   style: TextStyle(
-//                       fontSize: 12.0, color: Color.fromARGB(255, 71, 71, 71)),
-//                 ),
-//               ),
-//               SizedBox(height: 3.0),
-//               Padding(
-//                 padding: EdgeInsets.only(left: 7),
-//                 child: Text(
-//                   productName,
-//                   textAlign: TextAlign.left,
-//                   style: TextStyle(
-//                     fontSize: 12.0,
-//                     fontWeight: FontWeight.bold,
-//                     color: Colors.black,
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ));
-//   }
-// }

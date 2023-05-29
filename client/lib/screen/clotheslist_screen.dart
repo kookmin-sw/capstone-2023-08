@@ -20,17 +20,6 @@ import 'dart:async';
 import 'login_screen.dart';
 import 'test_detail_screen.dart';
 
-
-//찜 버튼
-// class FavoriteFormData {
-//   String? user_id;
-//   String? goods_id;
-
-//   FavoriteFormData({this.user_id, this.goods_id});
-
-//   Map<String, dynamic> toJson() => {'user_id': user_id, 'goods_id': goods_id};
-// }
-
 import 'dart:convert';
 import 'dart:async';
 import 'login_screen.dart';
@@ -84,12 +73,9 @@ Future<List<cloth>> fetchcloth(FlutterSecureStorage storage) async {
   );
 
   if (resp.statusCode == 200) {
-    //print(resp.data);
-    // final body = json.decode(resp.data);
-    // List<dynamic> data = body['data'];
+
     Map body = resp.data;
     List<dynamic> data = body['data'];
-    // var allInfo = data.map((item) => cloth.fromJson(item)).toList();
     var allInfo = data.map((item) => cloth.fromJson(item)).toList();
     return allInfo;
   } else {
@@ -124,17 +110,9 @@ class ShoppingApp extends ConsumerWidget {
 class ShoppingScreen extends ConsumerWidget {
   const ShoppingScreen({Key? key}) : super(key: key);
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   futurecloth = fetchcloth();
-  // }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // iOS에서 StatusBar의 색상을 정해주기위해 설정
-    // TabBar 등을 사용하려면 Scaffold 혹은 Meterial로 감싸줘야함.
-    //fetchcloth();
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return Material(
@@ -155,14 +133,12 @@ class ShoppingScreen extends ConsumerWidget {
                     transform: Matrix4.translationValues(-20.0, 0.0, 10),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        //alignment: Alignment.bottomLeft,
                         backgroundColor: Colors.white,
                         padding: const EdgeInsets.only(left: 30),
                         minimumSize: const Size(70, 70),
                         elevation: 0,
                       ),
                       onPressed: () {
-                        //Navigator.pop(context);
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => RootTab()));
                       },
@@ -173,13 +149,6 @@ class ShoppingScreen extends ConsumerWidget {
                         //alignment: Alignment.bottomCenter,
                       ),
                     ))),
-            // 변경사항
-            // SliverOverlapAbsorber(
-            //   handle:
-            //       NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-            //   sliver: const SliverPersistentHeader(
-            //       pinned: true, delegate: TabBarDelegate()),
-            // ),
           ];
         },
         body: Column(
@@ -190,102 +159,7 @@ class ShoppingScreen extends ConsumerWidget {
             Expanded(child: FirstTabScreen()),
           ],
         ),
-        // Column(
-        //   children: [
-        //     // SizedBox(height: 48),
-        //     Expanded(
-        //       child: TabBarView(
-        //         children: [
-        //           const FirstTabScreen(),
-        //           Container(
-        //             color: Colors.redAccent,
-        //           ),
-        //           Container(
-        //             color: Colors.blue,
-        //           ),
-        //         ],
-        //       ),
-        //     ),
-        //   ],
-        // ),
       ),
-      // SafeArea(
-      //   child: DefaultTabController(
-      //     length: 3, //개수 변경
-      //     child: NestedScrollView(
-      //       headerSliverBuilder: (context, innerBoxIsScrolled) {
-      //         return [
-      //           SliverAppBar(
-      //               pinned: false,
-      //               floating: true,
-      //               forceElevated: innerBoxIsScrolled,
-      //               toolbarHeight: 60,
-      //               elevation: 0,
-      //               backgroundColor: Colors.white,
-      //               automaticallyImplyLeading: true,
-      //               centerTitle: false,
-      //               title: Transform(
-      //                   transform: Matrix4.translationValues(-20.0, 0.0, 0.0),
-      //                   child: ElevatedButton(
-      //                     child: Image.asset(
-      //                       "asset/logo_black.png",
-      //                       width: 70,
-      //                       height: 70,
-      //                       //alignment: Alignment.bottomCenter,
-      //                     ),
-      //                     style: ElevatedButton.styleFrom(
-      //                       //alignment: Alignment.bottomLeft,
-      //                       backgroundColor: Colors.white,
-      //                       padding: EdgeInsets.only(left: 30),
-      //                       minimumSize: Size(70, 70),
-      //                       elevation: 0,
-      //                     ),
-      //                     onPressed: () {
-      //                       //Navigator.pop(context);
-      //                       Navigator.push(
-      //                           context,
-      //                           MaterialPageRoute(
-      //                               builder: (context) => RootTab()));
-      //                     },
-      //                   ))),
-      //           // 변경사항
-      //           // SliverOverlapAbsorber(
-      //           //   handle:
-      //           //       NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-      //           //   sliver: const SliverPersistentHeader(
-      //           //       pinned: true, delegate: TabBarDelegate()),
-      //           // ),
-      //         ];
-      //       },
-      //       body: Column(
-      //         children: [
-      //           SizedBox(height: 20,),
-      //           Expanded(
-      //             child: FirstTabScreen()
-      //           ),
-      //         ],
-      //       )
-      //       // Column(
-      //       //   children: [
-      //       //     // SizedBox(height: 48),
-      //       //     Expanded(
-      //       //       child: TabBarView(
-      //       //         children: [
-      //       //           const FirstTabScreen(),
-      //       //           Container(
-      //       //             color: Colors.redAccent,
-      //       //           ),
-      //       //           Container(
-      //       //             color: Colors.blue,
-      //       //           ),
-      //       //         ],
-      //       //       ),
-      //       //     ),
-      //       //   ],
-      //       // ),
-      //     ),
-      //   ),
-      // ),
     );
   }
 }
@@ -299,31 +173,13 @@ class FirstTabScreen extends ConsumerStatefulWidget {
 
 //상의 Tab Screen
 class _first extends ConsumerState<FirstTabScreen> {
-  //const FirstTabScreen({Key? key}) : super(key: key);
   late Future<List<cloth>> futurecloth;
 
-  // late SharedPreferences prefs;
-
-  // Future initPrefs() async {
-  //   prefs = await SharedPreferences.getInstance();
-  //   final likedToons = prefs.getStringList('likedToons');
-  //   if (likedToons != null) {
-  //     if (likedToons.contains(widget.id) == true) {
-  //       //화면이 변경될 때
-  //       setState(() {
-  //         isLiked = true;
-  //       });
-  //     }
-  //   } else {
-  //     await prefs.setStringList('likedToons', []);
-  //   }
-  // }
 
   @override
   void initState() {
     final storage = ref.read(secureStorageProvider);
     futurecloth = fetchcloth(storage);
-    //initPrefs();
   }
 
   @override
@@ -363,8 +219,6 @@ class _first extends ConsumerState<FirstTabScreen> {
 
           return CustomScrollView(
             slivers: <Widget>[
-              // const SliverPersistentHeader(
-              //     pinned: true, delegate: CategoryBreadcrumbs()),
 
               newsListSliver
             ],
@@ -373,124 +227,6 @@ class _first extends ConsumerState<FirstTabScreen> {
       ),
     );
   }
-
-//   @override
-//   Widget build(BuildContext context) {
-// // 변경사항
-//     return Column(
-//       children: [
-//         const SizedBox(height: 48),
-//         Expanded(
-//           child: CustomScrollView(
-//             slivers: [
-//               // SliverToBoxAdapter(
-//               //   child: Container(
-//               //     height: 400,
-//               //     color: Colors.grey,
-//               //   ),
-//               // ),
-
-//               const SliverPersistentHeader(
-//                   pinned: true, delegate: CategoryBreadcrumbs()),
-
-//               // SliverList(
-//               //     delegate: SliverChildBuilderDelegate(
-//               //         (context, index) => Container(
-//               //               height: 40,
-//               //               // 보는 재미를 위해 인덱스에 아무 숫자나 곱한 뒤 255로
-//               //               // 나눠 다른 색이 보이도록 함.
-//               //               color: Color.fromRGBO((index * 45) % 255,
-//               //                   (index * 70) % 255, (index * 25), 1.0),
-//               //             ),
-//               //         childCount: 40)
-//               //         ),
-
-//               // SliverGrid(
-//               //   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-//               //     maxCrossAxisExtent: 200.0,
-//               //     mainAxisSpacing: 10.0,
-//               //     crossAxisSpacing: 10.0,
-//               //     childAspectRatio: 4.0,
-//               //   ),
-//               //   delegate: SliverChildBuilderDelegate(
-//               //     (BuildContext context, int index) {
-//               //       return Container(
-//               //         alignment: Alignment.center,
-//               //         color: Colors.teal[100 * (index % 9)],
-//               //         child: Text(
-//               //           'Grid Item ${index + 1}',
-//               //           style: TextStyle(fontSize: 20),
-//               //         ),
-//               //       );
-//               //     },
-//               //     childCount: 10,
-//               //   ),
-//               // ),
-//               SliverList(
-//                 delegate: SliverChildListDelegate([
-//                   Container(
-//                       child: FutureBuilder(
-//                           future: futurecloth,
-//                           builder: (context, snapshot) {
-//                             if (snapshot.hasData) {
-//                               int index = snapshot.data!.length;
-//                               return ProductItem(
-//                                 imageUrl: snapshot.data![index].s3_img_url,
-//                                 productName: snapshot.data![index].goods_name,
-//                                 price: '\$${(index + 1) * 10}',
-//                               );
-//                             } else if (snapshot.hasError) {
-//                               return Text('${snapshot.hasError}');
-//                             }
-//                             return const CircularProgressIndicator();
-//                           }))
-//                 ]),
-//               ),
-
-//               // FutureBuilder<List<cloth>>(
-//               //     future: futurecloth,
-//               //     builder: (context, snapshot){
-//               //       if (snapshot.hasData) {
-//               //         return ListView.builder(
-//               //             itemCount: snapshot.data!.length,
-//               //             itemBuilder: (context, index) {
-//               //               cloth goods = snapshot.data![index];
-//               //               return Card(
-//               //                 child: ListTile(
-//               //                   title: Text(goods.id.toString()),
-//               //                 ),
-//               //               );
-//               //             });
-//               //       } else if (snapshot.hasError) {
-//               //         return Text('${snapshot.hasError}');
-//               //       }
-//               //       return const CircularProgressIndicator();
-//               //     }
-//               // ),
-//               SliverGrid(
-//                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                   crossAxisCount: 2,
-//                   childAspectRatio: 0.7,
-//                   mainAxisSpacing: 16.0,
-//                   crossAxisSpacing: 16.0,
-//                 ),
-//                 delegate: SliverChildBuilderDelegate(
-//                   (BuildContext context, int index) {
-//                     return ProductItem(
-//                       imageUrl: 'assets/clothes/product-image.jpg',
-//                       productName: 'Product Name $index',
-//                       price: '\$${(index + 1) * 10}',
-//                     );
-//                   },
-//                   childCount: 20,
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ],
-//     );
-//   }
 }
 
 class Product {
@@ -559,10 +295,6 @@ class _productitem extends ConsumerState<ProductItem> {
   void initState() {
     initPrefs();
     super.initState();
-    //initPrefs();
-    // if(Platform.isAndroid){
-    //   WebView.platform = SurfaceAndroidWebView();
-    // }
   }
 
   onFavorite() async {
@@ -579,10 +311,8 @@ class _productitem extends ConsumerState<ProductItem> {
     if (likedToons != null) {
       if (isLiked) {
         likedToons.add(widget.id);
-        // likedToons.remove(widget.id);
       } else {
         likedToons.remove(widget.id);
-        // likedToons.add(widget.id);
       }
       //핸드폰 저장소에 다시 List를 저장
       prefs = await SharedPreferences.getInstance();
@@ -590,11 +320,6 @@ class _productitem extends ConsumerState<ProductItem> {
     }
 
     if (isLiked == true) {
-      // var result = await http.post(
-      //   Uri.parse('http://35.84.85.252:8000/goods/dips/add'),
-      //   headers: {'Authorization': 'Bearer $token'},
-      //   body: json.encode(formData.toJson()),
-      // );
       final dio = Dio(
         BaseOptions(
           headers: {'accessToken': 'true'}, // accessToken이 필요하다는 뜻
@@ -630,31 +355,6 @@ class _productitem extends ConsumerState<ProductItem> {
     }
   }
 
-  // final String id;
-  // final String imageUrl;
-  // final String productName;
-  // final String brand;
-  // final String favorite;
-
-  // FavoriteFormData formData = FavoriteFormData();
-  // bool isLiked = false;
-
-  // onFavorite() async {
-  //   //찜 API 연결
-  //   formData.user_id = "test";
-  //   formData.goods_id = id.toString();
-  //   setState((){
-  //     isLiked = !isLiked;
-  //   });
-  //   var result = await http.post(
-  //     Uri.parse('http://35.84.85.252:8000/goods/dips/add'),
-  //     body: json.encode(formData.toJson()),
-  //   );
-  //   if (result.statusCode != 200) {
-  //     print("찜 추가 실패");
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -676,26 +376,13 @@ class _productitem extends ConsumerState<ProductItem> {
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 242, 242, 242),
             borderRadius: BorderRadius.circular(5.0),
-            // boxShadow: [
-            //   BoxShadow(
-            //     color: Colors.grey.withOpacity(0.5),
-            //     spreadRadius: 2,
-            //     blurRadius: 5,
-            //     offset: Offset(0, 3),
-            //   ),
-            // ],
           ),
           child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // SizedBox(
-              //   height: 6.5,
-              // ),
-              // Stack(
-              //   children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
-                child: Image.network(
+                child: 
+                Image.network(
                   widget.imageUrl,
                   height: 200.0,
                   width: 200.0,
@@ -716,7 +403,6 @@ class _productitem extends ConsumerState<ProductItem> {
                     ),
                   ),
                 ),
-                //SizedBox(width: 0),
                 Padding(
                   padding: const EdgeInsets.only(top: 8, right: 8.0),
                   child: GestureDetector(
@@ -730,18 +416,9 @@ class _productitem extends ConsumerState<ProductItem> {
                     ),
                   ),
                 ),
-                // IconButton(
-                //   onPressed: onFavorite,
-                //   padding: EdgeInsets.zero,
-                //   //alignment: Alignment.centerLeft,
-                //   color: Color.fromARGB(255, 255, 174, 53),
-                //   icon: Icon(isLiked
-                //       ? Icons.favorite
-                //       : Icons.favorite_outline_outlined),
-                //   iconSize: 20.0,
-                // ),
+
               ]),
-              // SizedBox(height: 3.0),
+
               Row(
                 children: [
                   Expanded(
@@ -767,103 +444,103 @@ class _productitem extends ConsumerState<ProductItem> {
   }
 }
 
-//카테고리별 탭 영역
-class TabBarDelegate extends SliverPersistentHeaderDelegate {
-  const TabBarDelegate();
+// //카테고리별 탭 영역
+// class TabBarDelegate extends SliverPersistentHeaderDelegate {
+//   const TabBarDelegate();
 
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: Colors.white,
-      child: TabBar(
-        tabs: [
-          Tab(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              color: Colors.white,
-              child: const Text(
-                "상의",
-              ),
-            ),
-          ),
-          Tab(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              color: Colors.white,
-              child: const Text(
-                "하의",
-              ),
-            ),
-          ),
-          Tab(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              color: Colors.white,
-              child: const Text(
-                "blank",
-              ),
-            ),
-          ),
-        ],
-        indicatorWeight: 2,
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        unselectedLabelColor: Colors.grey,
-        labelColor: Colors.black,
-        indicatorColor: Colors.black,
-        indicatorSize: TabBarIndicatorSize.label,
-      ),
-    );
-  }
+//   @override
+//   Widget build(
+//       BuildContext context, double shrinkOffset, bool overlapsContent) {
+//     return Container(
+//       color: Colors.white,
+//       child: TabBar(
+//         tabs: [
+//           Tab(
+//             child: Container(
+//               padding: const EdgeInsets.symmetric(horizontal: 8),
+//               color: Colors.white,
+//               child: const Text(
+//                 "상의",
+//               ),
+//             ),
+//           ),
+//           Tab(
+//             child: Container(
+//               padding: const EdgeInsets.symmetric(horizontal: 8),
+//               color: Colors.white,
+//               child: const Text(
+//                 "하의",
+//               ),
+//             ),
+//           ),
+//           Tab(
+//             child: Container(
+//               padding: const EdgeInsets.symmetric(horizontal: 8),
+//               color: Colors.white,
+//               child: const Text(
+//                 "blank",
+//               ),
+//             ),
+//           ),
+//         ],
+//         indicatorWeight: 2,
+//         padding: const EdgeInsets.symmetric(horizontal: 16.0),
+//         unselectedLabelColor: Colors.grey,
+//         labelColor: Colors.black,
+//         indicatorColor: Colors.black,
+//         indicatorSize: TabBarIndicatorSize.label,
+//       ),
+//     );
+//   }
 
-  @override
-  double get maxExtent => 48;
+//   @override
+//   double get maxExtent => 48;
 
-  @override
-  double get minExtent => 48;
+//   @override
+//   double get minExtent => 48;
 
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
-  }
-}
+//   @override
+//   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+//     return false;
+//   }
+// }
 
-//카테고리 영역
-class CategoryBreadcrumbs extends SliverPersistentHeaderDelegate {
-  const CategoryBreadcrumbs();
+// //카테고리 영역
+// class CategoryBreadcrumbs extends SliverPersistentHeaderDelegate {
+//   const CategoryBreadcrumbs();
 
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: Colors.white,
-      height: 48,
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Row(
-        children: [
-          const Text("의류", style: TextStyle(color: Colors.black)),
-          const SizedBox(width: 4),
-          const Text(">", style: TextStyle(color: Colors.black)),
-          const SizedBox(width: 4),
-          const Text("전체", style: TextStyle(color: Colors.black)),
-          const Spacer(),
-          TextButton(
-            onPressed: () {},
-            child: const Center(child: Text("전체보기")),
-          )
-        ],
-      ),
-    );
-  }
+//   @override
+//   Widget build(
+//       BuildContext context, double shrinkOffset, bool overlapsContent) {
+//     return Container(
+//       color: Colors.white,
+//       height: 48,
+//       padding: const EdgeInsets.symmetric(horizontal: 16.0),
+//       child: Row(
+//         children: [
+//           const Text("의류", style: TextStyle(color: Colors.black)),
+//           const SizedBox(width: 4),
+//           const Text(">", style: TextStyle(color: Colors.black)),
+//           const SizedBox(width: 4),
+//           const Text("전체", style: TextStyle(color: Colors.black)),
+//           const Spacer(),
+//           TextButton(
+//             onPressed: () {},
+//             child: const Center(child: Text("전체보기")),
+//           )
+//         ],
+//       ),
+//     );
+//   }
 
-  @override
-  double get maxExtent => 48;
+//   @override
+//   double get maxExtent => 48;
 
-  @override
-  double get minExtent => 48;
+//   @override
+//   double get minExtent => 48;
 
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
-  }
-}
+//   @override
+//   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+//     return false;
+//   }
+// }
