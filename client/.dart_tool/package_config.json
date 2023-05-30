@@ -3,895 +3,895 @@
   "packages": [
     {
       "name": "_fe_analyzer_shared",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/_fe_analyzer_shared-60.0.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-61.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "analyzer",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/analyzer-5.12.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/analyzer-5.13.0",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
     {
       "name": "animated_snack_bar",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/animated_snack_bar-0.3.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/animated_snack_bar-0.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     },
     {
       "name": "animated_text_kit",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/animated_text_kit-4.2.2",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/animated_text_kit-4.2.2",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "archive",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/archive-3.3.7",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/archive-3.3.7",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "args",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/args-2.4.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/args-2.4.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "async",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/async-2.10.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/async-2.10.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "async_button_builder",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/async_button_builder-3.0.0+1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/async_button_builder-3.0.0+1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "boolean_selector",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/boolean_selector-2.1.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/boolean_selector-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "build",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/build-2.3.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/build-2.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "build_config",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/build_config-1.1.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/build_config-1.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "build_daemon",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/build_daemon-3.1.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/build_daemon-3.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "build_resolvers",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/build_resolvers-2.2.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/build_resolvers-2.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "build_runner",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/build_runner-2.3.3",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/build_runner-2.3.3",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "build_runner_core",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/build_runner_core-7.2.7",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/build_runner_core-7.2.7",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "built_collection",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/built_collection-5.1.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/built_collection-5.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "built_value",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/built_value-8.5.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/built_value-8.6.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "camera",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/camera-0.10.5",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/camera-0.10.5+1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "camera_android",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/camera_android-0.10.8+1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/camera_android-0.10.8+2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "camera_avfoundation",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/camera_avfoundation-0.9.13+1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/camera_avfoundation-0.9.13+2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "camera_platform_interface",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/camera_platform_interface-2.5.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/camera_platform_interface-2.5.1",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "camera_web",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/camera_web-0.3.1+3",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/camera_web-0.3.1+4",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "carousel_slider",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/carousel_slider-4.2.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/carousel_slider-4.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "characters",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/characters-1.2.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/characters-1.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "checked_yaml",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/checked_yaml-2.0.3",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/checked_yaml-2.0.3",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
     {
       "name": "cli_util",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/cli_util-0.4.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/cli_util-0.4.0",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
     {
       "name": "clock",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/clock-1.1.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/clock-1.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "code_builder",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/code_builder-4.4.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/code_builder-4.4.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "collection",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/collection-1.17.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/collection-1.17.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "confetti",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/confetti-0.7.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/confetti-0.7.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "convert",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/convert-3.1.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/convert-3.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "cross_file",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/cross_file-0.3.3+4",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/cross_file-0.3.3+4",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "crypto",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/crypto-3.0.3",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/crypto-3.0.3",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
     {
       "name": "csslib",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/csslib-0.17.2",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/csslib-0.17.3",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.19"
     },
     {
       "name": "cupertino_icons",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/cupertino_icons-1.0.5",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.5",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "dart_style",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/dart_style-2.3.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/dart_style-2.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
     {
       "name": "dio",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/dio-5.1.2",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/dio-5.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
     {
       "name": "dots_indicator",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/dots_indicator-2.1.2",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/dots_indicator-2.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "fake_async",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/fake_async-1.3.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/fake_async-1.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "ffi",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/ffi-2.0.2",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/ffi-2.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "file",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/file-6.1.4",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/file-6.1.4",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "fixnum",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/fixnum-1.1.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/fixnum-1.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
     {
       "name": "flutter",
-      "rootUri": "file:///C:/Users/lucyy/libraries/flutter/packages/flutter",
+      "rootUri": "file:///Users/isojeong/Documents/flutter/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "flutter_gif",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_gif-0.0.4",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_gif-0.0.4",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     },
     {
       "name": "flutter_keyboard_visibility",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_keyboard_visibility-5.4.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility-5.4.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_keyboard_visibility_linux",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_keyboard_visibility_linux-1.0.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_linux-1.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_keyboard_visibility_macos",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_keyboard_visibility_macos-1.0.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_macos-1.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_keyboard_visibility_platform_interface",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_keyboard_visibility_platform_interface-2.0.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_platform_interface-2.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_keyboard_visibility_web",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_keyboard_visibility_web-2.0.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_web-2.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_keyboard_visibility_windows",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_keyboard_visibility_windows-1.0.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility_windows-1.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_launcher_icons",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_launcher_icons-0.13.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_launcher_icons-0.13.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-2.0.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_lints-2.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "flutter_native_splash",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_native_splash-2.2.19",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_native_splash-2.2.19",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "flutter_plugin_android_lifecycle",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.15",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.15",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "flutter_riverpod",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_riverpod-2.3.6",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_riverpod-2.3.6",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "flutter_secure_storage",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage-8.0.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_secure_storage-8.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_secure_storage_linux",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage_linux-1.1.3",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_secure_storage_linux-1.1.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_secure_storage_macos",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage_macos-3.0.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_secure_storage_macos-3.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_secure_storage_platform_interface",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage_platform_interface-1.0.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_secure_storage_platform_interface-1.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_secure_storage_web",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage_web-1.1.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_secure_storage_web-1.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_secure_storage_windows",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_secure_storage_windows-2.0.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/flutter_secure_storage_windows-2.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_test",
-      "rootUri": "file:///C:/Users/lucyy/libraries/flutter/packages/flutter_test",
+      "rootUri": "file:///Users/isojeong/Documents/flutter/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "flutter_web_plugins",
-      "rootUri": "file:///C:/Users/lucyy/libraries/flutter/packages/flutter_web_plugins",
+      "rootUri": "file:///Users/isojeong/Documents/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "freezed_annotation",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/freezed_annotation-2.2.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/freezed_annotation-2.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "frontend_server_client",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/frontend_server_client-3.2.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/frontend_server_client-3.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "glob",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/glob-2.1.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/glob-2.1.2",
       "packageUri": "lib/",
-      "languageVersion": "2.15"
+      "languageVersion": "2.19"
     },
     {
       "name": "graphs",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/graphs-2.3.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/graphs-2.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "html",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/html-0.15.3",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/html-0.15.3",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "http",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/http-0.13.6",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/http-0.13.6",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
     {
       "name": "http_multi_server",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/http_multi_server-3.2.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/http_multi_server-3.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "http_parser",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/http_parser-4.0.2",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/http_parser-4.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "image",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/image-4.0.17",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/image-4.0.17",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
     {
       "name": "image_gallery_saver",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/image_gallery_saver-1.7.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/image_gallery_saver-1.7.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "image_picker",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker-0.8.7+5",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/image_picker-0.8.7+5",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "image_picker_android",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.6+15",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/image_picker_android-0.8.6+16",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "image_picker_for_web",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_for_web-2.1.12",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/image_picker_for_web-2.1.12",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "image_picker_ios",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_ios-0.8.7+4",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.7+4",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "image_picker_platform_interface",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_platform_interface-2.6.3",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/image_picker_platform_interface-2.6.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "introduction_screen",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/introduction_screen-3.1.8",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/introduction_screen-3.1.8",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "io",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/io-1.0.4",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/io-1.0.4",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "js",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/js-0.6.5",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/js-0.6.5",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     },
     {
       "name": "json_annotation",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/json_annotation-4.8.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/json_annotation-4.8.1",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
     {
       "name": "json_serializable",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/json_serializable-6.6.2",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/json_serializable-6.6.2",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
     {
       "name": "lints",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/lints-2.0.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/lints-2.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "logger",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/logger-1.3.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/logger-1.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "logging",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/logging-1.1.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/logging-1.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "matcher",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/matcher-0.12.13",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/matcher-0.12.13",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "material_color_utilities",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/material_color_utilities-0.2.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/material_color_utilities-0.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.13"
     },
     {
       "name": "meta",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.8.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/meta-1.8.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "mime",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/mime-1.0.4",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/mime-1.0.4",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "modal_bottom_sheet",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/modal_bottom_sheet-2.1.2",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/modal_bottom_sheet-2.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "nested",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/nested-1.0.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/nested-1.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "package_config",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/package_config-2.1.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/package_config-2.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "path",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/path-1.8.2",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/path-1.8.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "path_provider",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider-2.0.15",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/path_provider-2.0.15",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "path_provider_android",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_android-2.0.27",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/path_provider_android-2.0.27",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "path_provider_foundation",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_foundation-2.2.3",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/path_provider_foundation-2.2.3",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "path_provider_linux",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_linux-2.1.10",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.11",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "path_provider_platform_interface",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_platform_interface-2.0.6",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.0.6",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "path_provider_windows",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_windows-2.1.6",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.6",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "percent_indicator",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/percent_indicator-4.2.3",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/percent_indicator-4.2.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "petitparser",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/petitparser-5.1.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/petitparser-5.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "platform",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/platform-3.1.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/platform-3.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "plugin_platform_interface",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/plugin_platform_interface-2.1.4",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.4",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "pointycastle",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/pointycastle-3.7.3",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/pointycastle-3.7.3",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "pool",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/pool-1.5.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/pool-1.5.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "process",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/process-4.2.4",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/process-4.2.4",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "provider",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/provider-6.0.5",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/provider-6.0.5",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "pub_semver",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/pub_semver-2.1.4",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/pub_semver-2.1.4",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "pubspec_parse",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/pubspec_parse-1.2.3",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/pubspec_parse-1.2.3",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "quiver",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/quiver-3.2.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/quiver-3.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "retrofit",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/retrofit-4.0.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/retrofit-4.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "retrofit_generator",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/retrofit_generator-5.0.0+1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/retrofit_generator-5.0.0+1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "riverpod",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/riverpod-2.3.6",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/riverpod-2.3.6",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "shared_preferences",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences-2.1.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/shared_preferences-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "shared_preferences_android",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_android-2.1.4",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/shared_preferences_android-2.1.4",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "shared_preferences_foundation",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_foundation-2.2.2",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.2.2",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "shared_preferences_linux",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_linux-2.2.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "shared_preferences_platform_interface",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_platform_interface-2.2.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "shared_preferences_web",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_web-2.1.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/shared_preferences_web-2.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "shared_preferences_windows",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/shared_preferences_windows-2.2.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "shelf",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/shelf-1.4.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/shelf-1.4.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "shelf_web_socket",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/shelf_web_socket-1.0.4",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/shelf_web_socket-1.0.4",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///C:/Users/lucyy/libraries/flutter/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///Users/isojeong/Documents/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "source_gen",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/source_gen-1.3.2",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/source_gen-1.3.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "source_helper",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/source_helper-1.3.3",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/source_helper-1.3.3",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "source_span",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/source_span-1.9.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/source_span-1.9.1",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "stack_trace",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/stack_trace-1.11.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/stack_trace-1.11.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "state_notifier",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/state_notifier-0.7.2+1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/state_notifier-0.7.2+1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "stream_channel",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/stream_channel-2.1.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/stream_channel-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "stream_transform",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/stream_transform-2.1.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/stream_transform-2.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "string_scanner",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/string_scanner-1.2.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/string_scanner-1.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "term_glyph",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/term_glyph-1.2.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/term_glyph-1.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "test_api",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/test_api-0.4.16",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/test_api-0.4.16",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "timing",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/timing-1.0.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/timing-1.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "tuple",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/tuple-2.0.1",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/tuple-2.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "typed_data",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/typed_data-1.3.2",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/typed_data-1.3.2",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "universal_io",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/universal_io-2.2.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/universal_io-2.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
     {
       "name": "vector_math",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/vector_math-2.1.4",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/vector_math-2.1.4",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "watcher",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/watcher-1.0.2",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/watcher-1.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "web_socket_channel",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/web_socket_channel-2.4.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/web_socket_channel-2.4.0",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
     {
       "name": "webview_flutter",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter-2.8.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/webview_flutter-2.8.0",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "webview_flutter_android",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter_android-2.10.4",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/webview_flutter_android-2.10.4",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "webview_flutter_platform_interface",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter_platform_interface-1.9.5",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-1.9.5",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "webview_flutter_wkwebview",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter_wkwebview-2.9.5",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-2.9.5",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "win32",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/win32-4.1.4",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/win32-4.1.4",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "xdg_directories",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/xdg_directories-1.0.0",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/xdg_directories-1.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "xml",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/xml-6.2.2",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/xml-6.2.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "yaml",
-      "rootUri": "file:///C:/Users/lucyy/AppData/Local/Pub/Cache/hosted/pub.dev/yaml-3.1.2",
+      "rootUri": "file:///Users/isojeong/.pub-cache/hosted/pub.dev/yaml-3.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -902,7 +902,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-05-25T05:55:06.899970Z",
+  "generated": "2023-05-30T11:14:12.032772Z",
   "generator": "pub",
-  "generatorVersion": "2.19.5"
+  "generatorVersion": "2.19.2"
 }

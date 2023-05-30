@@ -20,13 +20,11 @@ class DefaultLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: renderAppBar(),
         backgroundColor: backgroundColor?? Colors.white,
         body: child,
         bottomNavigationBar: bottomNavigationBar,
-      ),
     );
   }
 

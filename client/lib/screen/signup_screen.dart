@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:client/component/async_button.dart';
 import 'package:client/constant/colors.dart';
 import 'package:client/constant/page_url.dart';
 import 'package:client/screen/onboarding_screen.dart';
@@ -49,8 +48,12 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
       if (value == null || value.isEmpty) {
         setState(() {
           switch (category) {
-            case '아이디' : idText = '$category를 입력해주세요'; break;
-            case '닉네임' : nameText = '$category를 입력해주세요'; break;
+            case '아이디':
+              idText = '$category를 입력해주세요';
+              break;
+            case '닉네임':
+              nameText = '$category를 입력해주세요';
+              break;
           }
         });
         return true;
@@ -68,8 +71,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
       try {
         response = await dio.get(
           SIGN_UP_ID_CHECK_URL,
-          data: json.encode(
-              {'user_id': value.toString()}),
+          data: json.encode({'user_id': value.toString()}),
         );
 
         if (response.statusCode == 205) {
@@ -157,8 +159,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
       try {
         response = await dio.get(
           SIGN_UP_NAME_CHECK_URL,
-          data: json.encode(
-              {'user_name': value.toString()}),
+          data: json.encode({'user_name': value.toString()}),
         );
 
         if (response.statusCode == 205) {
@@ -225,14 +226,15 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
       }
     }
 
-    Future<void> requestSignin () async {
+    Future<void> requestSignin() async {
       final String? id = userInfo.user_id;
       final String? pw = userInfo.password;
 
       final rawString = '${id}:${pw}';
       print(rawString);
 
-      Codec<String, String> stringToBase64 = utf8.fuse(base64); // encoding 방식 정의
+      Codec<String, String> stringToBase64 =
+          utf8.fuse(base64); // encoding 방식 정의
 
       String token = stringToBase64.encode(rawString); // 어떤걸 encoding 할지 정의
 
@@ -262,7 +264,8 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
 
         await storage.write(key: REFRESH_TOKEN_KEY, value: refreshToken);
         await storage.write(key: ACCESS_TOKEN_KEY, value: accessToken);
-        await storage.write(key: USER_NAME, value: resp.data['User']['user_name']);
+        await storage.write(
+            key: USER_NAME, value: resp.data['User']['user_name']);
         await storage.write(key: USER_ID, value: resp.data['User']['user_id']);
         await storage.write(key: FIRST_LOGIN, value: 'true');
 
@@ -282,7 +285,8 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
             width: width,
             height: height * 0.9,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -294,7 +298,9 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                       controller: _idController,
                       labelText: '아이디',
                       onTextChanged: onIdChanged,
-                      validator: (val) {return idText;},
+                      validator: (val) {
+                        return idText;
+                      },
                       textInputAction: TextInputAction.next,
                     ),
                     const SizedBox(height: 24.0),
@@ -324,17 +330,19 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                       controller: _nicknameController,
                       labelText: '닉네임',
                       onTextChanged: nameChanged,
-                      validator: (val) {return nameText;},
+                      validator: (val) {
+                        return nameText;
+                      },
                     ),
                     const SizedBox(height: 32.0),
                     SizedBox(
                       width: double.infinity,
-                      child: AsyncButton(
-                        height: 45.0,
-                        text: '회원가입하기',
+                      height: 45.0,
+                      child: ElevatedButton(
                         onPressed: () async {
                           if (_formKey.currentState!.validate() &&
-                              isIdValidate && isNameValidate) {
+                              isIdValidate &&
+                              isNameValidate) {
                             await requestSignUp();
                             await requestSignin();
 
@@ -342,6 +350,15 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                                 builder: (_) => const OnBoardingPage()));
                           }
                         },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          minimumSize: const Size(80, 25),
+                          backgroundColor: PRIMARY_BLACK_COLOR,
+                          alignment: Alignment.center,
+                        ),
+                        child: const Text('회원가입하기'),
                       ),
                     ),
                   ],

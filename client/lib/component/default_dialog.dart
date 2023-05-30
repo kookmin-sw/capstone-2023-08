@@ -4,8 +4,6 @@ import 'package:client/constant/colors.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'async_button.dart';
-
 class AlertButton extends StatelessWidget {
   final Color backgroundColor;
   final Color color;
@@ -114,10 +112,37 @@ class _BasicAlertDialogState extends State<BasicAlertDialog> {
                         SizedBox(
                           width: 16,
                         ),
-                        AsyncButton(
-                          text: widget.rightButtonText,
+                        AsyncButtonBuilder(
+                          child: Text(
+                            widget.rightButtonText,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          loadingWidget: DefaultLoadingScreen(backgroundColor: Colors.black,),
                           onPressed: widget.onRightButtonPressed,
-                          height: 50.0,
+                          builder: (context, child, callback, _) {
+                            return Expanded(
+                              child: SizedBox(
+                                height: 50.0,
+                                child: OutlinedButton(
+                                  onPressed: callback,
+                                  child: child,
+                                  style: OutlinedButton.styleFrom(
+                                    side: BorderSide(
+                                      color: Colors.transparent,
+                                    ),
+                                    backgroundColor: PRIMARY_BLACK_COLOR,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),

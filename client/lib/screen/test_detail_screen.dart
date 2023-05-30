@@ -7,12 +7,10 @@ import 'package:client/data/upload_image.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import '../component/async_button.dart';
 import '../dio/dio.dart';
 import '../layout/root_tab.dart';
 import '../secure_storage/secure_storage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'dart:async';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -118,7 +116,7 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
         CustomInterceptor(storage: storage),
       );
       Response resp = await dio.post(
-        GOODS_ADD_URL,
+        'http://35.84.85.252:8000/goods/dips/add',
         data: json.encode(formData.toJson()),
       );
       print("like를 눌러서 post해 DB에 ADD했어여");
@@ -140,7 +138,7 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
         CustomInterceptor(storage: storage),
       );
       Response resp = await dio.delete(
-        GOODS_DELETE_URL,
+        'http://35.84.85.252:8000/goods/dips/delete',
         data: json.encode(formData.toJson()),
       );
       if (resp.statusCode != 200) {
@@ -149,7 +147,7 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
     }
   }
 
-  Future<void> onFitting() async {
+  onFitting() async {
     final dio = Dio();
     final storage = ref.read(secureStorageProvider);
     //final image = Image.network(widget.item.imageUrl);
@@ -182,7 +180,7 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
         MaterialPageRoute(
           builder: (_) => FittingScreen(),
         ),
-    );
+);
   }
 
   @override
@@ -235,16 +233,9 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
                           SizedBox(
                             //alignment: Alignment.centerRight,
                             width: 300 * (screenWidth / finalWidth),
+                            height: 55 * (screenHeight / finalHeight),
                             //margin: const EdgeInsets.all(10.0),
                             //padding: EdgeInsets.fromLTRB(0, 5, 2, 5),
-                            child: AsyncButton(
-                              height: 55 * (screenHeight / finalHeight),
-                              text: '피팅하기',
-                              onPressed: onFitting,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 15,
-                            ),
-                            /*
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.black,
@@ -258,7 +249,7 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                            ),*/
+                            ),
                           )
                         ],
                       ))),

@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Positioned(
-            top: 60 * (screenHeight / finalHeight),
+            top: 80 * (screenHeight / finalHeight),
             left: 30 * (screenWidth / finalWidth),
             child: Image.asset(
               'asset/logo_white.png',
@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 160 * (screenHeight / finalHeight),
+            top: 180 * (screenHeight / finalHeight),
             left: 30 * (screenWidth / finalWidth),
             child: Container(
                 alignment: const Alignment(0, -0.4),
@@ -68,28 +68,27 @@ class HomeScreen extends StatelessWidget {
                       fontFamily: "Pretendard-Bold"),
                 )),
           ),
-
           Positioned(
-            top: 10 * (screenHeight / finalHeight),
+            top: 15 * (screenHeight / finalHeight),
             right: -78 * (screenWidth / finalWidth),
             child: CustomPaint(
               size: const Size(75, 240), // 위젯의 크기를 정함.
               painter: MyPainter(), // painter에 그리기를 담당할 클래스를 넣음.
             ),
           ),
-
           Positioned(
-            top: 220 * (screenHeight / finalHeight),
-            left: -5 * (screenWidth / finalWidth),
+            top: 250 * (screenHeight / finalHeight),
+            //left: -10 * (screenWidth / finalWidth),
             child: Image.asset(
               'asset/image.png',
-              width: 400,
+              //width: 410 * (screenWidth / finalWidth),
               height: 400,
+              fit: BoxFit.fitWidth,
             ),
           ),
           Positioned(
             left: 30,
-            bottom: screenHeight * 0.2,
+            bottom: screenHeight * 0.15,
             child: const Text(
               "무신사 옷을 입어보거나\n직접 옷을 선택해서 입어볼 수 있어요!",
               style: TextStyle(
@@ -100,60 +99,8 @@ class HomeScreen extends StatelessWidget {
                   fontFamily: "Pretendard-Bold"),
             ),
           ),
-
-          // Container(
-          //   alignment: Alignment(0, -0.7),
-          //   child: RichText(
-          //       textAlign: TextAlign.center,
-          //       text: TextSpan(children: [
-          //         TextSpan(
-          //             text: 'Fit on, ',
-          //             style: TextStyle(fontSize: 35, color: Colors.grey)),
-          //         TextSpan(
-          //             text: 'Fit me!',
-          //             style: TextStyle(fontSize: 35, color: Colors.black)),
-          //       ])),
-          // ),
-          // Container(
-          //     alignment: Alignment(0, -0.4),
-          //     child: Text(
-          //         "원하는 옷을 원하는 장소에서 입어보세요!\n무신사 TOP 90을 입거나,\n직접 옷을 선택해서 입어볼 수 있습니다.",
-          //         style: TextStyle(color: Colors.white),
-          //         )
-          // ),
-          // Container(
-          //   alignment: Alignment(0, 0.2),
-          //   child: CarouselSlider(
-          //     options: CarouselOptions(
-          //       autoPlay: true,
-          //       // onPageChanged: (index, reason) {
-          //       //   setState(() {
-          //       //     _currentPages = index;
-          //       //     _currentKeyword = keywords[_currentPage];
-          //       //   });
-          //       // },
-          //       //enableInfiniteScroll: true,
-          //     ),
-          //     items: imageList.map((image) {
-          //       return Builder(
-          //         builder: (BuildContext context) {
-          //           return Container(
-          //             //Alignment(0, 0),
-          //             width: MediaQuery.of(context).size.width,
-          //             margin: EdgeInsets.symmetric(horizontal: 5.0),
-          //             child: ClipRRect(
-          //               borderRadius: BorderRadius.circular(10.0),
-          //               child: image,
-          //             ),
-          //           );
-          //         },
-          //       );
-          //     }).toList(),
-          //   ),
-          // ),
-          //CarouselPage(),
           Positioned(
-              top: 610 * (screenHeight / finalHeight),
+              top: 650 * (screenHeight / finalHeight),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -219,11 +166,6 @@ class HomeScreen extends StatelessWidget {
                               style: TextStyle(
                                   fontFamily: "Pretendard", fontSize: 17))),
                     ),
-                    // FloatingActionButton(
-                    //   backgroundColor: Colors.black,
-                    //   onPressed: () {},
-                    //   child: Icon(Icons.camera_alt_rounded),
-                    // ),
                   )
                 ],
               )),

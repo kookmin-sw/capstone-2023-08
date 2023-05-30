@@ -68,25 +68,7 @@ class Data {
   }
 }
 
-// class ForFavorite {
-//   String? user;
-
-//   ForFavorite({this.user});
-
-//   Map<String, dynamic> toJson() => {'user_id': user};
-// }
-
 Future<List<cloth>> fetchcloth(FlutterSecureStorage storage) async {
-  // String token = '';
-  // ForFavorite formData = ForFavorite();
-  // formData.user = 'test';
-  // final response = await http.post(
-  //     Uri.parse('http://35.84.85.252:8000/goods/dips/show'),
-  //     headers: {'Authorization': 'Bearer $token'},
-  //     body: json.encode(formData.toJson()));
-  // final response =
-  //     await http.get(Uri.parse('http://35.84.85.252:8000/goods/cloth-list'));
-
   final dio = Dio(
     BaseOptions(
       headers: {'accessToken': 'true'}, // accessToken이 필요하다는 뜻
@@ -106,8 +88,7 @@ Future<List<cloth>> fetchcloth(FlutterSecureStorage storage) async {
     for (int i = 0; i < data.length; i++) {
       data2.add(data[i]['goods_info']);
     }
-    // var allInfo = data.map((item) => Data.fromJson(item)).toList();
-    // print(allInfo);
+
     var real = data2.map((item) => cloth.fromJson(item)).toList();
     return real;
   } else {
@@ -115,99 +96,91 @@ Future<List<cloth>> fetchcloth(FlutterSecureStorage storage) async {
   }
 }
 
-void main() {
-  runApp(const FavoriteScreen());
-}
-
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // 안드로이드에서 StatusBar의 색과 안드로이드와 iOS 모두에서 StatusBar 아이콘 색상을
-    // 설정하기 위해 AnnotatedRegion을 사용함.
     return const DefaultLayout(
-        child: Favoritetest(),
+      child: Favoritetest(),
     );
   }
 }
 
-class Favoritetest extends StatelessWidget {
+class Favoritetest extends ConsumerWidget {
   const Favoritetest({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    Future<String?> getUserName() async {
+      final storage = ref.watch(secureStorageProvider);
+      final user_name = await storage.read(key: USER_NAME);
+      print(user_name);
+      return user_name;
+    }
+
     return Material(
         child: NestedScrollView(
-            headerSliverBuilder: (context, innerBoxIsScrolled) {
-              return [
-                SliverAppBar(
-                  pinned: true,
-                  floating: true,
-                  forceElevated: innerBoxIsScrolled,
-                  toolbarHeight: 20,
-                  elevation: 0,
-                  backgroundColor: Colors.white,
-                  automaticallyImplyLeading: true,
-                  // title: Text(
-                    
-                  // ),
-                  // leading: Padding(
-                  //   padding: const EdgeInsets.only(top: 28.0),
-                  //   child: Column(
-                  //   mainAxisAlignment: MainAxisAlignment.start,
-                  //   crossAxisAlignment: CrossAxisAlignment.end,
-                  //   //textBaseline: TextBaseline.alphabetic,
-                  //   children: [
-                  //     // Container(
-                  //     //     alignment: Alignment.bottomCenter,
-                  //     //     child: RichText(
-                  //     //         textAlign: TextAlign.center,
-                  //     //         text: TextSpan(children: [
-                  //     //           TextSpan(
-                  //     //               text: 'Fit on, ',
-                  //     //               style: TextStyle(
-                  //     //                   fontSize: 25, color: Colors.grey)),
-                  //     //           TextSpan(
-                  //     //               text: 'Fit me!',
-                  //     //               style: TextStyle(
-                  //     //                   fontSize: 25, color: Colors.black)),
-                  //     //         ]))),
-                  //     IconButton(
-                  //       //alignment: Alignment.bottomLeft,
-                  //       icon: Icon(Icons.arrow_back_ios_new_rounded),
-                  //       iconSize: 20.0,
-                  //       onPressed: () {
-                  //         Navigator.push(
-                  //             context,
-                  //             MaterialPageRoute(
-                  //                 builder: (context) => MyApp()));
-                  //       },
-                  //     ),
-                  //   ],
-                  // ),
-                  // ),
-                  // actions: <Widget>[
-                  //   IconButton(
-                  //     icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                  //     //tooltip: 'Add new entry',
-                  //     onPressed: () {
-                  //       Navigator.push(context,
-                  //           MaterialPageRoute(builder: (context) => MyApp()));
-                  //     },
-                  //   ),
-                  // ]
-                ),
-                // 변경사항
-                // SliverOverlapAbsorber(
-                //   handle:
-                //       NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                //   sliver: const SliverPersistentHeader(
-                //       pinned: true, delegate: TabBarDelegate()),
-                // ),
-              ];
-            },
-            body: Favorite()));
+      headerSliverBuilder: (context, innerBoxIsScrolled) {
+        return [
+          SliverAppBar(
+            pinned: true,
+            floating: true,
+            forceElevated: innerBoxIsScrolled,
+            toolbarHeight: 60,
+            elevation: 0,
+            backgroundColor: Colors.white,
+            automaticallyImplyLeading: true,
+            centerTitle: false,
+            title: Transform(
+                transform: Matrix4.translationValues(0.0, 0.0, 10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: [
+                    FutureBuilder(
+                      future: getUserName(),
+                      builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        if (snapshot.hasData == true) {
+                          return Expanded(
+                              child: Text(
+                            '${snapshot.data}',
+                            style: const TextStyle(
+                              fontSize: 33.0,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ));
+                        } else {
+                          return Container();
+                        }
+                      },
+                    ),
+                    Text(
+                      " 님이 좋아하는 옷이에요!",
+                      style: TextStyle(
+                          fontSize: 20,
+                          //fontWeight: FontWeight.bold,
+                          fontFamily: "Pretendard",
+                          color: Colors.black),
+                    ),
+                  ],
+                )),
+          ),
+        ];
+      },
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 16,
+          ),
+          Expanded(
+            child: Favorite(),
+          ),
+        ],
+      ),
+    ));
   }
 }
 
@@ -232,8 +205,8 @@ class _favorite extends ConsumerState<Favorite> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return FutureBuilder<List<cloth>>(
-      future:
-          futurecloth, // this is a code smell. Make sure that the future is NOT recreated when build is called. Create the future in initState instead.
+      future: futurecloth,
+      // this is a code smell. Make sure that the future is NOT recreated when build is called. Create the future in initState instead.
       builder: (context, snapshot) {
         Widget newsListSliver;
         if (snapshot.hasData) {
@@ -280,7 +253,6 @@ class Product {
   const Product(
       {required this.name, required this.price, required this.imageUrl});
 }
-
 
 class ProductItem extends ConsumerStatefulWidget {
   const ProductItem({
@@ -354,11 +326,6 @@ class _productitem extends ConsumerState<ProductItem> {
     }
 
     if (isLiked == true) {
-      // var result = await http.post(
-      //   Uri.parse('http://35.84.85.252:8000/goods/dips/add'),
-      //   headers: {'Authorization': 'Bearer $token'},
-      //   body: json.encode(formData.toJson()),
-      // );
       final dio = Dio(
         BaseOptions(
           headers: {'accessToken': 'true'}, // accessToken이 필요하다는 뜻
@@ -376,11 +343,6 @@ class _productitem extends ConsumerState<ProductItem> {
         print("찜 추가 실패_add");
       }
     } else {
-      // var result = await http.delete(
-      //   Uri.parse('http://35.84.85.252:8000/goods/dips/delete'),
-      //   headers: {'Authorization': 'Bearer $token'},
-      //   body: json.encode(formData.toJson()),
-      // );
       final dio = Dio(
         BaseOptions(
           headers: {'accessToken': 'true'}, // accessToken이 필요하다는 뜻
@@ -398,30 +360,6 @@ class _productitem extends ConsumerState<ProductItem> {
       }
     }
   }
-  // final String id;
-  // final String imageUrl;
-  // final String productName;
-  // final String brand;
-  // final String favorite;
-
-  // FavoriteFormData formData = FavoriteFormData();
-  // bool isLiked = false;
-
-  // onFavorite() async {
-  //   //찜 API 연결
-  //   formData.user_id = "test";
-  //   formData.goods_id = id.toString();
-  //   setState((){
-  //     isLiked = !isLiked;
-  //   });
-  //   var result = await http.post(
-  //     Uri.parse('http://35.84.85.252:8000/goods/dips/add'),
-  //     body: json.encode(formData.toJson()),
-  //   );
-  //   if (result.statusCode != 200) {
-  //     print("찜 추가 실패");
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -446,27 +384,16 @@ class _productitem extends ConsumerState<ProductItem> {
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 242, 242, 242),
             borderRadius: BorderRadius.circular(5.0),
-            // boxShadow: [
-            //   BoxShadow(
-            //     color: Colors.grey.withOpacity(0.5),
-            //     spreadRadius: 2,
-            //     blurRadius: 5,
-            //     offset: Offset(0, 3),
-            //   ),
-            // ],
           ),
           child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // SizedBox(
-              //   height: 6.5,
-              // ),
-              // Stack(
-              //   children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
-                child: Image.network(
-                  widget.imageUrl,
+                child: 
+                Image.network(
+                  "asset/logo_black.png",
+                  //고쳐야됨
+                  //widget.imageUrl,
                   height: 200.0,
                   width: 200.0,
                   fit: BoxFit.cover,
@@ -499,18 +426,7 @@ class _productitem extends ConsumerState<ProductItem> {
                     ),
                   ),
                 ),
-                // IconButton(
-                //   onPressed: onFavorite,
-                //   padding: EdgeInsets.zero,
-                //   //alignment: Alignment.centerLeft,
-                //   color: Color.fromARGB(255, 255, 174, 53),
-                //   icon: Icon(isLiked
-                //       ? Icons.favorite
-                //       : Icons.favorite_outline_outlined),
-                //   iconSize: 20.0,
-                // ),
               ]),
-              // SizedBox(height: 3.0),
               Row(
                 children: [
                   Expanded(
@@ -533,106 +449,3 @@ class _productitem extends ConsumerState<ProductItem> {
         ));
   }
 }
-// class ProductItem extends StatelessWidget {
-//   final int id;
-//   final String imageUrl;
-//   final String productName;
-//   final String brand;
-//   // final String favorite;
-
-//   ProductItem({
-//     Key? key,
-//     required this.id,
-//     required this.imageUrl,
-//     required this.productName,
-//     required this.brand,
-//     // required this.favorite,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return GestureDetector(
-//         onTap: () {
-//           Navigator.push(
-//               context,
-//               MaterialPageRoute(
-//                   builder: (context) => DetailScreen(
-//                       item: ProductItem(
-//                           id: id,
-//                           imageUrl: imageUrl,
-//                           productName: productName,
-//                           brand: brand))));
-//         },
-//         child: Container(
-//           decoration: BoxDecoration(
-//             color: Colors.grey,
-//             borderRadius: BorderRadius.circular(10.0),
-//             boxShadow: [
-//               BoxShadow(
-//                 color: Colors.grey.withOpacity(0.5),
-//                 spreadRadius: 2,
-//                 blurRadius: 5,
-//                 offset: Offset(0, 3),
-//               ),
-//             ],
-//           ),
-//           child: Column(
-//             // crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               SizedBox(
-//                 height: 3,
-//               ),
-//               // Stack(
-//               //   children: [
-//               ClipRRect(
-//                 borderRadius: BorderRadius.circular(10.0),
-//                 child: Image.network(
-//                   imageUrl,
-//                   height: 200.0,
-//                   width: 200.0,
-//                 ),
-//               ),
-//               // 사진 옆에 찜 버튼
-//               // Positioned(
-//               //   bottom: 5,
-//               //   right: 5,
-//               //   child: IconButton(
-//               //     //alignment: Alignment.centerLeft,
-//               //     onPressed: onFavorite,
-//               //               //alignment: Alignment.centerLeft,
-//               //     icon: Icon(isLiked
-//               //                   ? Icons.favorite
-//               //                   : Icons.favorite_outline_outlined),
-//               //               iconSize: 15.0,
-//               //   ),
-//               // ),
-//               // ],
-//               // ),
-//               SizedBox(height: 5.0),
-//               Padding(
-//                 padding: EdgeInsets.only(left: 7),
-//                 child: Text(
-//                   brand,
-//                   textAlign: TextAlign.left,
-//                   style: TextStyle(
-//                       fontSize: 12.0, color: Color.fromARGB(255, 71, 71, 71)),
-//                 ),
-//               ),
-//               SizedBox(height: 3.0),
-//               Padding(
-//                 padding: EdgeInsets.only(left: 7),
-//                 child: Text(
-//                   productName,
-//                   textAlign: TextAlign.left,
-//                   style: TextStyle(
-//                     fontSize: 12.0,
-//                     fontWeight: FontWeight.bold,
-//                     color: Colors.black,
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ));
-//   }
-// }

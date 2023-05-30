@@ -71,7 +71,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       onDone: () async {
         List<CameraDescription> cameras = await availableCameras();
 
-        Navigator.of(context).pushReplacement(
+        Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => CameraScreen(cameras: cameras)),
         );
       },
