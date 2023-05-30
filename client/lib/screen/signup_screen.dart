@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:client/component/async_button.dart';
 import 'package:client/constant/colors.dart';
 import 'package:client/constant/page_url.dart';
 import 'package:client/screen/onboarding_screen.dart';
@@ -328,27 +329,19 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                     const SizedBox(height: 32.0),
                     SizedBox(
                       width: double.infinity,
-                      height: 45.0,
-                      child: ElevatedButton(
+                      child: AsyncButton(
+                        height: 45.0,
+                        text: '회원가입하기',
                         onPressed: () async {
-                                if (_formKey.currentState!.validate() &&
-                                    isIdValidate && isNameValidate) {
-                                  await requestSignUp();
-                                  await requestSignin();
+                          if (_formKey.currentState!.validate() &&
+                              isIdValidate && isNameValidate) {
+                            await requestSignUp();
+                            await requestSignin();
 
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (_) => const OnBoardingPage()));
-                                }
-                              },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          minimumSize: const Size(80, 25),
-                          backgroundColor: PRIMARY_BLACK_COLOR,
-                          alignment: Alignment.center,
-                        ),
-                        child: const Text('회원가입하기'),
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (_) => const OnBoardingPage()));
+                          }
+                        },
                       ),
                     ),
                   ],

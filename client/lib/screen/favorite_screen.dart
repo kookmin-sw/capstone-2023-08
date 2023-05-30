@@ -1,4 +1,5 @@
 import 'package:client/component/loading_screen.dart';
+import 'package:client/layout/default_layout.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -95,7 +96,7 @@ Future<List<cloth>> fetchcloth(FlutterSecureStorage storage) async {
     CustomInterceptor(storage: storage),
   );
   Response resp = await dio.post(
-    'http://35.84.85.252:8000/goods/dips/show',
+    GOODS_SHOW_URL,
   );
 
   if (resp.statusCode == 200) {
@@ -125,15 +126,8 @@ class FavoriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // 안드로이드에서 StatusBar의 색과 안드로이드와 iOS 모두에서 StatusBar 아이콘 색상을
     // 설정하기 위해 AnnotatedRegion을 사용함.
-    return const AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle(
-          statusBarColor: Colors.white,
-          statusBarBrightness: Brightness.light,
-          statusBarIconBrightness: Brightness.dark),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Favoritetest(),
-      ),
+    return const DefaultLayout(
+        child: Favoritetest(),
     );
   }
 }
@@ -374,7 +368,7 @@ class _productitem extends ConsumerState<ProductItem> {
         CustomInterceptor(storage: storage),
       );
       Response resp = await dio.post(
-        'http://35.84.85.252:8000/goods/dips/add',
+        GOODS_ADD_URL,
         data: json.encode(formData.toJson()),
       );
       print("like를 눌러서 post해 DB에 ADD했어여");
@@ -396,7 +390,7 @@ class _productitem extends ConsumerState<ProductItem> {
         CustomInterceptor(storage: storage),
       );
       Response resp = await dio.delete(
-        'http://35.84.85.252:8000/goods/dips/delete',
+        GOODS_DELETE_URL,
         data: json.encode(formData.toJson()),
       );
       if (resp.statusCode != 200) {
