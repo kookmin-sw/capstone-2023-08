@@ -34,9 +34,7 @@ class CameraResult extends ConsumerStatefulWidget {
 class _CameraResultState extends ConsumerState<CameraResult> {
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery
-        .of(context)
-        .size;
+    Size screenSize = MediaQuery.of(context).size;
     double width = screenSize.width;
     double height = screenSize.height;
     final dio = Dio();
@@ -44,8 +42,6 @@ class _CameraResultState extends ConsumerState<CameraResult> {
 
     final upload = UploadImage(
         dio: dio, storage: storage, context: context, image: widget.image);
-
-
 
     Future<bool> onPictureUpdatePressed() async {
       String id = await upload.getUserInfoFromStorage();
@@ -65,12 +61,9 @@ class _CameraResultState extends ConsumerState<CameraResult> {
 
         Response response;
         try {
-          response = await dio.post(
-              UPDATE_IMG_URL,
-              data: {
-                'user_img_url': 's3://user-human-img/${id}_human.png',
-              }
-          );
+          response = await dio.post(UPDATE_IMG_URL, data: {
+            'user_img_url': 's3://user-human-img/${id}_human.png',
+          });
           if (response.statusCode == 200) {
             await storage.write(key: FIRST_LOGIN, value: 'false');
             print('first login and saved to s3');
@@ -82,7 +75,8 @@ class _CameraResultState extends ConsumerState<CameraResult> {
 
       // Root로 이동
       Navigator.of(context, rootNavigator: true).pop();
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_)=> RootTab()), (route) => false);
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (_) => RootTab()), (route) => false);
 
       // ignore: use_build_context_synchronously
       final snackBar = CustomSnackBar(text: '사진이 저장되었습니다!', context: context);
