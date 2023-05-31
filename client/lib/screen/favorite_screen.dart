@@ -123,7 +123,7 @@ class FavoriteScreen extends StatelessWidget {
     // 안드로이드에서 StatusBar의 색과 안드로이드와 iOS 모두에서 StatusBar 아이콘 색상을
     // 설정하기 위해 AnnotatedRegion을 사용함.
     return const DefaultLayout(
-      child: Favoritetest(),
+        child: Favoritetest(),
     );
   }
 }
