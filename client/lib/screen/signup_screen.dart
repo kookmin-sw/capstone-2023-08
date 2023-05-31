@@ -327,22 +327,19 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                       validator: (val) {return nameText;},
                     ),
                     const SizedBox(height: 32.0),
-                    SizedBox(
-                      width: double.infinity,
-                      child: AsyncButton(
-                        height: 45.0,
-                        text: '회원가입하기',
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate() &&
-                              isIdValidate && isNameValidate) {
-                            await requestSignUp();
-                            await requestSignin();
+                    AsyncButton(
+                      height: 45.0,
+                      text: '회원가입하기',
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate() &&
+                            isIdValidate && isNameValidate) {
+                          await requestSignUp();
+                          await requestSignin();
 
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (_) => const OnBoardingPage()));
-                          }
-                        },
-                      ),
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) => const OnBoardingPage()));
+                        }
+                      },
                     ),
                   ],
                 ),
