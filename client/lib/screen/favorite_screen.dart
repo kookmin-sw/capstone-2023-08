@@ -284,7 +284,8 @@ class _productitem extends ConsumerState<ProductItem> {
     if (likedToons != null) {
       //화면이 변경될 때
       setState(() {
-        isLiked = likedToons.contains(widget.id.toString());
+        //isLiked = likedToons.contains(widget.id.toString());
+        isLiked = true;
       });
     } else {
       await prefs.setStringList('likedToons', []);
@@ -389,11 +390,8 @@ class _productitem extends ConsumerState<ProductItem> {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
-                child: 
-                Image.network(
-                  "asset/logo_black.png",
-                  //고쳐야됨
-                  //widget.imageUrl,
+                child: Image.network(
+                  widget.imageUrl,
                   height: 200.0,
                   width: 200.0,
                   fit: BoxFit.cover,

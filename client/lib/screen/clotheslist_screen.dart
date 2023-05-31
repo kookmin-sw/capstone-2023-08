@@ -443,3 +443,104 @@ class _productitem extends ConsumerState<ProductItem> {
         ));
   }
 }
+
+// //카테고리별 탭 영역
+// class TabBarDelegate extends SliverPersistentHeaderDelegate {
+//   const TabBarDelegate();
+
+//   @override
+//   Widget build(
+//       BuildContext context, double shrinkOffset, bool overlapsContent) {
+//     return Container(
+//       color: Colors.white,
+//       child: TabBar(
+//         tabs: [
+//           Tab(
+//             child: Container(
+//               padding: const EdgeInsets.symmetric(horizontal: 8),
+//               color: Colors.white,
+//               child: const Text(
+//                 "상의",
+//               ),
+//             ),
+//           ),
+//           Tab(
+//             child: Container(
+//               padding: const EdgeInsets.symmetric(horizontal: 8),
+//               color: Colors.white,
+//               child: const Text(
+//                 "하의",
+//               ),
+//             ),
+//           ),
+//           Tab(
+//             child: Container(
+//               padding: const EdgeInsets.symmetric(horizontal: 8),
+//               color: Colors.white,
+//               child: const Text(
+//                 "blank",
+//               ),
+//             ),
+//           ),
+//         ],
+//         indicatorWeight: 2,
+//         padding: const EdgeInsets.symmetric(horizontal: 16.0),
+//         unselectedLabelColor: Colors.grey,
+//         labelColor: Colors.black,
+//         indicatorColor: Colors.black,
+//         indicatorSize: TabBarIndicatorSize.label,
+//       ),
+//     );
+//   }
+
+//   @override
+//   double get maxExtent => 48;
+
+//   @override
+//   double get minExtent => 48;
+
+//   @override
+//   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+//     return false;
+//   }
+// }
+
+// //카테고리 영역
+// class CategoryBreadcrumbs extends SliverPersistentHeaderDelegate {
+//   const CategoryBreadcrumbs();
+
+//   @override
+//   Widget build(
+//       BuildContext context, double shrinkOffset, bool overlapsContent) {
+//     return Container(
+//       color: Colors.white,
+//       height: 48,
+//       padding: const EdgeInsets.symmetric(horizontal: 16.0),
+//       child: Row(
+//         children: [
+//           const Text("의류", style: TextStyle(color: Colors.black)),
+//           const SizedBox(width: 4),
+//           const Text(">", style: TextStyle(color: Colors.black)),
+//           const SizedBox(width: 4),
+//           const Text("전체", style: TextStyle(color: Colors.black)),
+//           const Spacer(),
+//           TextButton(
+//             onPressed: () {},
+//             child: const Center(child: Text("전체보기")),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+
+//   @override
+//   double get maxExtent => 48;
+
+//   @override
+//   double get minExtent => 48;
+
+//   @override
+//   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+//     return false;
+//   }
+// }
