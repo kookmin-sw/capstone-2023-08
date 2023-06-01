@@ -1,5 +1,3 @@
-// import 'dart:html';
-
 import 'package:client/component/loading_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -73,7 +71,6 @@ Future<List<cloth>> fetchcloth(FlutterSecureStorage storage) async {
   );
 
   if (resp.statusCode == 200) {
-
     Map body = resp.data;
     List<dynamic> data = body['data'];
     var allInfo = data.map((item) => cloth.fromJson(item)).toList();
@@ -109,7 +106,6 @@ class ShoppingApp extends ConsumerWidget {
 
 class ShoppingScreen extends ConsumerWidget {
   const ShoppingScreen({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -175,7 +171,6 @@ class FirstTabScreen extends ConsumerStatefulWidget {
 class _first extends ConsumerState<FirstTabScreen> {
   late Future<List<cloth>> futurecloth;
 
-
   @override
   void initState() {
     final storage = ref.read(secureStorageProvider);
@@ -201,7 +196,7 @@ class _first extends ConsumerState<FirstTabScreen> {
                     crossAxisSpacing: 10.0,
                   ),
                   delegate: SliverChildBuilderDelegate(
-                    childCount: snapshot.data!.length,
+                      childCount: snapshot.data!.length,
                       (BuildContext context, int index) {
                     return ProductItem(
                       id: snapshot.data![index].id,
@@ -218,10 +213,7 @@ class _first extends ConsumerState<FirstTabScreen> {
           }
 
           return CustomScrollView(
-            slivers: <Widget>[
-
-              newsListSliver
-            ],
+            slivers: <Widget>[newsListSliver],
           );
         },
       ),
@@ -278,22 +270,52 @@ class _productitem extends ConsumerState<ProductItem> {
   late SharedPreferences prefs;
   bool isLiked = false;
 
-  Future initPrefs() async {
+  Future initPrefs(FlutterSecureStorage storage) async {
+    var user = await storage.read(key: USER_ID);
+    user = user.toString();
     prefs = await SharedPreferences.getInstance();
-    final likedToons = prefs.getStringList('likedToons');
+
+    final dio = Dio(
+      BaseOptions(
+        headers: {'accessToken': 'true'}, // accessToken이 필요하다는 뜻
+      ),
+    );
+    dio.interceptors.add(
+      CustomInterceptor(storage: storage),
+    );
+    Response resp = await dio.post(
+      GOODS_SHOW_URL,
+    );
+    List<String> data2 = [];
+
+    if (resp.statusCode == 200) {
+      Map body = resp.data;
+      List<dynamic> data = body['data'];
+      for (int i = 0; i < data.length; i++) {
+        data2.add(data[i]['goods_info']['id'].toString());
+      }
+
+    } else {
+      throw Exception('Failed to load album');
+    }
+
+    prefs.setStringList('likedToons' + user, data2);
+    final likedToons = prefs.getStringList('likedToons' + user);
+
     if (likedToons != null) {
       //화면이 변경될 때
       setState(() {
         isLiked = likedToons.contains(widget.id);
       });
     } else {
-      await prefs.setStringList('likedToons', []);
+      await prefs.setStringList('likedToons' + user, []);
     }
   }
 
   @override
   void initState() {
-    initPrefs();
+    final storage = ref.read(secureStorageProvider);
+    initPrefs(storage);
     super.initState();
   }
 
@@ -303,7 +325,8 @@ class _productitem extends ConsumerState<ProductItem> {
     formData.user_id = await storage.read(key: USER_ID);
     formData.goods_id = widget.id.toString();
 
-    final likedToons = prefs.getStringList('likedToons');
+    final likedToons =
+        prefs.getStringList('likedToons' + formData.user_id.toString());
     setState(() {
       isLiked = !isLiked;
       print("setstate");
@@ -316,7 +339,8 @@ class _productitem extends ConsumerState<ProductItem> {
       }
       //핸드폰 저장소에 다시 List를 저장
       prefs = await SharedPreferences.getInstance();
-      prefs.setStringList('likedToons', likedToons);
+      prefs.setStringList(
+          'likedToons' + formData.user_id.toString(), likedToons);
     }
 
     if (isLiked == true) {
@@ -368,7 +392,8 @@ class _productitem extends ConsumerState<ProductItem> {
                           imageUrl: widget.imageUrl,
                           productName: widget.productName,
                           brand: widget.brand)))).then((value) {
-            initPrefs();
+            final storage = ref.read(secureStorageProvider);
+            initPrefs(storage);
           });
         },
         child: Container(
@@ -381,8 +406,7 @@ class _productitem extends ConsumerState<ProductItem> {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
-                child: 
-                Image.network(
+                child: Image.network(
                   widget.imageUrl,
                   height: 200.0,
                   width: 200.0,
@@ -416,7 +440,6 @@ class _productitem extends ConsumerState<ProductItem> {
                     ),
                   ),
                 ),
-
               ]),
 
               Row(

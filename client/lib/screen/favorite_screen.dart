@@ -278,9 +278,11 @@ class _productitem extends ConsumerState<ProductItem> {
   late SharedPreferences prefs;
   bool isLiked = false;
 
-  Future initPrefs() async {
+  Future initPrefs(FlutterSecureStorage storage) async {
+    var user = await storage.read(key: USER_ID);
+    user = user.toString();
     prefs = await SharedPreferences.getInstance();
-    final likedToons = prefs.getStringList('likedToons');
+    final likedToons = prefs.getStringList('likedToons' + user);
     if (likedToons != null) {
       //화면이 변경될 때
       setState(() {
@@ -288,13 +290,14 @@ class _productitem extends ConsumerState<ProductItem> {
         isLiked = true;
       });
     } else {
-      await prefs.setStringList('likedToons', []);
+      await prefs.setStringList('likedToons'+user, []);
     }
   }
 
   @override
   void initState() {
-    initPrefs();
+    final storage = ref.read(secureStorageProvider);
+    initPrefs(storage);
     super.initState();
     //initPrefs();
     // if(Platform.isAndroid){
@@ -308,7 +311,7 @@ class _productitem extends ConsumerState<ProductItem> {
     formData.user_id = await storage.read(key: USER_ID);
     formData.goods_id = widget.id.toString();
 
-    final likedToons = prefs.getStringList('likedToons');
+    final likedToons = prefs.getStringList('likedToons' + formData.user_id.toString());
     setState(() {
       isLiked = !isLiked;
       print("setstate");
@@ -323,7 +326,7 @@ class _productitem extends ConsumerState<ProductItem> {
       }
       //핸드폰 저장소에 다시 List를 저장
       prefs = await SharedPreferences.getInstance();
-      prefs.setStringList('likedToons', likedToons);
+      prefs.setStringList('likedToons' + formData.user_id.toString(), likedToons);
     }
 
     if (isLiked == true) {
@@ -375,8 +378,8 @@ class _productitem extends ConsumerState<ProductItem> {
                           imageUrl: widget.imageUrl,
                           productName: widget.productName,
                           brand: widget.brand)))).then((value) {
-            initPrefs();
             final storage = ref.read(secureStorageProvider);
+            initPrefs(storage);
             fetchcloth(storage);
           });
         },

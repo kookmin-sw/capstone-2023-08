@@ -31,7 +31,6 @@ class DetailScreen extends ConsumerStatefulWidget {
   const DetailScreen({Key? key, this.item}) : super(key: key);
 
   final item;
-  
 
   @override
   ConsumerState<DetailScreen> createState() => _DetailScreenState();
@@ -53,23 +52,28 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
   late SharedPreferences prefs;
   bool isLiked = false;
 
-  Future initPrefs() async {
+  Future initPrefs(FlutterSecureStorage storage) async {
+    var user = await storage.read(key: USER_ID);
+    user = user.toString();
     prefs = await SharedPreferences.getInstance();
-    final likedToons = prefs.getStringList('likedToons');
+    final likedToons = prefs.getStringList('likedToons' + user);
+    print("엥");
+    print(likedToons);
     if (likedToons != null) {
       //화면이 변경될 때
       setState(() {
         isLiked = likedToons.contains(widget.item.id.toString());
       });
     } else {
-      await prefs.setStringList('likedToons', []);
+      await prefs.setStringList('likedToons' + user, []);
     }
   }
 
   @override
   void initState() {
+    final storage = ref.read(secureStorageProvider);
     super.initState();
-    initPrefs();
+    initPrefs(storage);
     // if(Platform.isAndroid){
     //   WebView.platform = SurfaceAndroidWebView();
     // }
@@ -83,7 +87,8 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
     formData.user_id = await storage.read(key: USER_ID);
     formData.goods_id = widget.item.id.toString();
 
-    final likedToons = prefs.getStringList('likedToons');
+    final likedToons =
+        prefs.getStringList('likedToons' + formData.user_id.toString());
     setState(() {
       isLiked = !isLiked;
     });
@@ -97,7 +102,8 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
       }
       //핸드폰 저장소에 다시 List를 저장
       prefs = await SharedPreferences.getInstance();
-      prefs.setStringList('likedToons', likedToons);
+      prefs.setStringList(
+          'likedToons' + formData.user_id.toString(), likedToons);
     }
     //user_id 필요
 
@@ -162,25 +168,30 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
 //     http.Response response = await http.get(Uri.parse(widget.item.imageUrl));
 // // write bodyBytes received in response to file.
 //     await image.writeAsBytes(response.bodyBytes);
-      var data = await http.get(Uri.parse(widget.item.imageUrl));
-      var bytes = data.bodyBytes;
-      final dir = await getApplicationDocumentsDirectory();
-      final name = p.join(dir.path, (rng.nextInt(100)).toString() + '.png');//From Alberto Miola's answer
-      File file = File(name);
-      print(dir.path);
-      File image = await file.writeAsBytes(bytes);
-    
-    final upload =
-        UploadImage(isCloth: true, dio: dio, storage: storage, context: context, image: image);
+    var data = await http.get(Uri.parse(widget.item.imageUrl));
+    var bytes = data.bodyBytes;
+    final dir = await getApplicationDocumentsDirectory();
+    final name = p.join(dir.path,
+        (rng.nextInt(100)).toString() + '.png'); //From Alberto Miola's answer
+    File file = File(name);
+    print(dir.path);
+    File image = await file.writeAsBytes(bytes);
+
+    final upload = UploadImage(
+        isCloth: true,
+        dio: dio,
+        storage: storage,
+        context: context,
+        image: image);
 
     String id = await upload.getUserInfoFromStorage();
     await upload.getImageAndUpload(id);
 
     Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => FittingScreen(),
-        ),
-);
+      MaterialPageRoute(
+        builder: (_) => FittingScreen(),
+      ),
+    );
   }
 
   @override
