@@ -136,14 +136,14 @@ class Favoritetest extends ConsumerWidget {
                 transform: Matrix4.translationValues(0.0, 0.0, 10),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.baseline,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   textBaseline: TextBaseline.alphabetic,
                   children: [
                     FutureBuilder(
                       future: getUserName(),
                       builder: (BuildContext context, AsyncSnapshot snapshot) {
                         if (snapshot.hasData == true) {
-                          return Expanded(
-                              child: Text(
+                          return Text(
                             '${snapshot.data}',
                             style: const TextStyle(
                               fontSize: 33.0,
@@ -151,7 +151,7 @@ class Favoritetest extends ConsumerWidget {
                               fontWeight: FontWeight.w700,
                               overflow: TextOverflow.ellipsis,
                             ),
-                          ));
+                          );
                         } else {
                           return Container();
                         }
