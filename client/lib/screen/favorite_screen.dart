@@ -115,10 +115,6 @@ Future<List<cloth>> fetchcloth(FlutterSecureStorage storage) async {
   }
 }
 
-void main() {
-  runApp(const FavoriteScreen());
-}
-
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
 
@@ -132,82 +128,86 @@ class FavoriteScreen extends StatelessWidget {
   }
 }
 
-class Favoritetest extends StatelessWidget {
+class Favoritetest extends ConsumerWidget {
   const Favoritetest({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    Future<String?> getUserName() async {
+      final storage = ref.watch(secureStorageProvider);
+      final user_name = await storage.read(key: USER_NAME);
+      print(user_name);
+      return user_name;
+    }
+
     return Material(
-        child: NestedScrollView(
-            headerSliverBuilder: (context, innerBoxIsScrolled) {
-              return [
-                SliverAppBar(
-                  pinned: true,
-                  floating: true,
-                  forceElevated: innerBoxIsScrolled,
-                  toolbarHeight: 20,
-                  elevation: 0,
-                  backgroundColor: Colors.white,
-                  automaticallyImplyLeading: true,
-                  // title: Text(
-                    
-                  // ),
-                  // leading: Padding(
-                  //   padding: const EdgeInsets.only(top: 28.0),
-                  //   child: Column(
-                  //   mainAxisAlignment: MainAxisAlignment.start,
-                  //   crossAxisAlignment: CrossAxisAlignment.end,
-                  //   //textBaseline: TextBaseline.alphabetic,
-                  //   children: [
-                  //     // Container(
-                  //     //     alignment: Alignment.bottomCenter,
-                  //     //     child: RichText(
-                  //     //         textAlign: TextAlign.center,
-                  //     //         text: TextSpan(children: [
-                  //     //           TextSpan(
-                  //     //               text: 'Fit on, ',
-                  //     //               style: TextStyle(
-                  //     //                   fontSize: 25, color: Colors.grey)),
-                  //     //           TextSpan(
-                  //     //               text: 'Fit me!',
-                  //     //               style: TextStyle(
-                  //     //                   fontSize: 25, color: Colors.black)),
-                  //     //         ]))),
-                  //     IconButton(
-                  //       //alignment: Alignment.bottomLeft,
-                  //       icon: Icon(Icons.arrow_back_ios_new_rounded),
-                  //       iconSize: 20.0,
-                  //       onPressed: () {
-                  //         Navigator.push(
-                  //             context,
-                  //             MaterialPageRoute(
-                  //                 builder: (context) => MyApp()));
-                  //       },
-                  //     ),
-                  //   ],
-                  // ),
-                  // ),
-                  // actions: <Widget>[
-                  //   IconButton(
-                  //     icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                  //     //tooltip: 'Add new entry',
-                  //     onPressed: () {
-                  //       Navigator.push(context,
-                  //           MaterialPageRoute(builder: (context) => MyApp()));
-                  //     },
-                  //   ),
-                  // ]
-                ),
-                // 변경사항
-                // SliverOverlapAbsorber(
-                //   handle:
-                //       NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                //   sliver: const SliverPersistentHeader(
-                //       pinned: true, delegate: TabBarDelegate()),
-                // ),
-              ];
-            },
-            body: Favorite()));
+      child: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return [
+            SliverAppBar(
+              pinned: true,
+              floating: true,
+              forceElevated: innerBoxIsScrolled,
+              toolbarHeight: 60,
+              elevation: 0,
+              backgroundColor: Colors.white,
+              automaticallyImplyLeading: true,
+              centerTitle: false,
+              title: Transform(
+                  transform: Matrix4.translationValues(0.0, 0.0, 10),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 32.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        FutureBuilder(
+                          future: getUserName(),
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            if (snapshot.hasData == true) {
+                              return Text(
+                                '${snapshot.data}',
+                                maxLines: 1,
+                                style: const TextStyle(
+                              fontSize: 20.0,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              overflow: TextOverflow.ellipsis,
+                                ),
+                              );
+                            } else {
+                              return Container();
+                            }
+                          },
+                        ),
+                        Text(
+                          " 님이 좋아하는 옷이에요!",
+                          style: TextStyle(
+                              fontSize: 16,
+                              //fontWeight: FontWeight.bold,
+                              fontFamily: "Pretendard",
+                              color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  )),
+            ),
+          ];
+        },
+        body: Column(
+          children: [
+            const SizedBox(
+              height: 16,
+            ),
+            Expanded(
+              child: Favorite(),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -232,8 +232,8 @@ class _favorite extends ConsumerState<Favorite> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return FutureBuilder<List<cloth>>(
-      future:
-          futurecloth, // this is a code smell. Make sure that the future is NOT recreated when build is called. Create the future in initState instead.
+      future: futurecloth,
+      // this is a code smell. Make sure that the future is NOT recreated when build is called. Create the future in initState instead.
       builder: (context, snapshot) {
         Widget newsListSliver;
         if (snapshot.hasData) {
@@ -280,7 +280,6 @@ class Product {
   const Product(
       {required this.name, required this.price, required this.imageUrl});
 }
-
 
 class ProductItem extends ConsumerStatefulWidget {
   const ProductItem({
@@ -398,6 +397,7 @@ class _productitem extends ConsumerState<ProductItem> {
       }
     }
   }
+
   // final String id;
   // final String imageUrl;
   // final String productName;

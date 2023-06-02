@@ -114,10 +114,12 @@ class _BasicAlertDialogState extends State<BasicAlertDialog> {
                         SizedBox(
                           width: 16,
                         ),
-                        AsyncButton(
-                          text: widget.rightButtonText,
-                          onPressed: widget.onRightButtonPressed,
-                          height: 50.0,
+                        Expanded(
+                          child: AsyncButton(
+                            text: widget.rightButtonText,
+                            onPressed: widget.onRightButtonPressed,
+                            height: 50.0,
+                          ),
                         ),
                       ],
                     ),

@@ -366,11 +366,11 @@ class _CameraScreenState extends State<CameraScreen>
                         Icons.cameraswitch,
                         color: Colors.transparent,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
-            ],
+            ),
           ),
         ],
       ),

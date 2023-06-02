@@ -7,12 +7,14 @@ import 'loading_screen.dart';
 class AsyncButton extends StatefulWidget {
   final AsyncCallback? onPressed;
   final String text;
+  final double? width;
   final double height;
   final double? fontSize;
   final FontWeight? fontWeight;
   const AsyncButton({
     this.onPressed,
     required this.text,
+    this.width,
     required this.height,
     this.fontSize = 13,
     this.fontWeight = FontWeight.w400,
@@ -29,22 +31,21 @@ class _AsyncButtonState extends State<AsyncButton> {
       loadingWidget: const DefaultLoadingScreen(backgroundColor: Colors.black,),
       onPressed: widget.onPressed,
       builder: (context, child, callback, _) {
-        return Expanded(
-          child: SizedBox(
-            height: widget.height,
-            child: OutlinedButton(
-              onPressed: callback,
-              style: OutlinedButton.styleFrom(
-                side: const BorderSide(
-                  color: Colors.transparent,
-                ),
-                backgroundColor: Colors.black,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
+        return SizedBox(
+          width: widget.width?? double.infinity,
+          height: widget.height,
+          child: OutlinedButton(
+            onPressed: callback,
+            style: OutlinedButton.styleFrom(
+              side: const BorderSide(
+                color: Colors.transparent,
               ),
-              child: child,
+              backgroundColor: Colors.black,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0),
+              ),
             ),
+            child: child,
           ),
         );
       },

@@ -232,33 +232,13 @@ class _DetailScreenState extends ConsumerState<DetailScreen> {
                             iconSize: 25.0,
                           ),
                           const SizedBox(width: 20),
-                          SizedBox(
-                            //alignment: Alignment.centerRight,
+                          AsyncButton(
                             width: 300 * (screenWidth / finalWidth),
-                            //margin: const EdgeInsets.all(10.0),
-                            //padding: EdgeInsets.fromLTRB(0, 5, 2, 5),
-                            child: AsyncButton(
-                              height: 55 * (screenHeight / finalHeight),
-                              text: '피팅하기',
-                              onPressed: onFitting,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 15,
-                            ),
-                            /*
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                primary: Colors.black,
-                                elevation: 0,
-                              ),
-                              onPressed: onFitting,
-                              child: const Text(
-                                '피팅하기',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),*/
+                            height: 55 * (screenHeight / finalHeight),
+                            text: '피팅하기',
+                            onPressed: onFitting,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
                           )
                         ],
                       ))),
